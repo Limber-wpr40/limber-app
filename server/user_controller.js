@@ -4,29 +4,40 @@ module.exports = {
         const db = req.app.get('db');
 
         db.get_user_profile()
-            .then(featured => res.status(200).send(featured))
+            .then(profile => res.status(200).send(profile))
             .catch(err => {
                 res.status(500).send({ errorMessage: "Oops! Something went wrong. Our engineers have been informed!" });
                 console.log(err)
             });
     },
 
-    getSpeakers: (req, res, next) => {
+    getUserData: (req, res, next) => {
         const db = req.app.get('db');
 
-        db.get_speakers()
-            .then(speakers => res.status(200).send(speakers))
+        db.get_user_data()
+            .then(user => res.status(200).send(user))
             .catch(err => {
                 res.status(500).send({ errorMessage: "Oops! Something went wrong. Our engineers have been informed!" });
                 console.log(err)
             });
     },
 
-    addSpeaker: (req, res, next) => {
+    getMatches: (req, res, next) => {
         const db = req.app.get('db');
-        const { speaker_name, speaker_title, speaking_date, speaker_bio, speaker_image } = req.body;
+
+        db.get_matches()
+            .then(matches => res.status(200).send(matches))
+            .catch(err => {
+                res.status(500).send({ errorMessage: "Oops! Something went wrong. Our engineers have been informed!" });
+                console.log(err)
+            });
+    },
+
+    addLike: (req, res, next) => {
+        const db = req.app.get('db');
+        const { user_id, match_id, super_like } = req.body;
         console.log(req.body)
-        db.add_speaker([speaker_name, speaker_title, speaking_date, speaker_bio, speaker_image ])
+        db.add_like([user_id, match_id, super_like ])
             .then(() => res.sendStatus(200))
             .catch(err => {
                 res.status(500).send({ errorMessage: "Oops! Something went wrong. Our engineers have been informed!" });
@@ -34,11 +45,23 @@ module.exports = {
             });
 
     },
-    updateSpeaker: ( req, res, next ) => {
+    updateProfile: ( req, res, next ) => {
         const dbInstance = req.app.get('db');
         const { params, query } = req;
     
-        dbInstance.update_product([ params.id, query.title ])
+        dbInstance.update_product([ params.id, query.body ])
+          .then( () => res.sendStatus(200) )
+          .catch( err => {
+            res.status(500).send({errorMessage: "Oops! Something went wrong. Our engineers have been informed!"});
+            console.log(err)
+          } );
+      },
+
+      updateSettings: ( req, res, next ) => {
+        const dbInstance = req.app.get('db');
+        const { params, query } = req;
+    
+        dbInstance.update_product([ params.id, query.body ])
           .then( () => res.sendStatus(200) )
           .catch( err => {
             res.status(500).send({errorMessage: "Oops! Something went wrong. Our engineers have been informed!"});
@@ -48,11 +71,11 @@ module.exports = {
 
 
 
-    deleteSpeaker: (req, res, next) => {
+    deleteUser: (req, res, next) => {
         const db = req.app.get('db');
         const { id } = req.params;
 
-        db.delete_speaker([id])
+        db.delete_user([id])
             .then(() => res.sendStatus(200))
             .catch(err => {
                 res.status(500).send({ errorMessage: "Oops! Something went wrong. Our engineers have been informed!" });

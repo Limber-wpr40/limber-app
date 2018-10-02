@@ -1,7 +1,7 @@
 
-Create Table user_likes (likdes_id SERIAL PRIMARY KEY, user_id INTEGER, match_id INTEGER, super Boolean);
+Create Table user_likes (likes_id SERIAL PRIMARY KEY, user_id INTEGER, match_id INTEGER, super_like Boolean);
 
-insert into user_likes (user_id,match_id, super)
+insert into user_likes (user_id,match_id, super_like)
 values
 (176,179,true),
 (176, 54, false),
