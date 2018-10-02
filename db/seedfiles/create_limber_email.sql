@@ -1,22 +1,17 @@
-CREATE TABLE limber_settings
-(
-    settings_id Serial PRIMARY KEY,
-    user_id integer,
-    locale text,
-    display_gender text,
-    max_distance integer,
-    min_age integer,
-    max_age integer,
-    show_me boolean,
-    share_my_feed boolean,
-    email_notifications boolean,
-    push_notifications boolean
-);
+CREATE TABLE limber_email (
+email_id Serial Primary Key,		
+user_id	integer				
+new_matches	boolean				
+new_messages	boolean				
+promotions	boolean				
+unsubscribe	boolean
 
-insert into limber_settings
-    ( user_id, locale, display_gender, max_distance, min_age, max_age, show_me, share_my_feed, email_notifications, push_notifications
-    )
-values
+)
+
+
+INSERT INTO limber_email (user_id, new_matches,new_messages, promotions, unsubscribe)
+
+VALUES
 (1, 'my current location', 'female', 30, 25, 40, True, True, True, True),
 (2, 'my current location', 'female', 30, 25, 40, True, True, True, True),
 (3, 'my current location', 'male', 30, 25, 40, True, True, True, True),
