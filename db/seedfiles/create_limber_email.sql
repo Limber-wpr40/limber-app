@@ -5,9 +5,7 @@ new_matches	boolean
 new_messages	boolean				
 promotions	boolean				
 unsubscribe	boolean
-
 )
-
 
 INSERT INTO limber_email (user_id, new_matches,new_messages, promotions, unsubscribe)
 
