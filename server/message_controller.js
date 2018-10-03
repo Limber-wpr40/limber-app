@@ -16,6 +16,7 @@ getMessages:(req,res)=>{
         const db = req.app.get('db');
         const {create_date, sender_id, recv_id, msg_body} = req.body;
         console.log(`the date created is ${create_date}`)
+         await db.add_message(create_date,sender_id,recv_id,msg_body)
         let updatedMessage = await  db.get_message_thread(sender_id, recv_id)
             res.status(200).send(updatedMessage)
            
