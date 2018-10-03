@@ -33,6 +33,18 @@ module.exports = {
             });
     },
 
+    
+    getPossibleMatches: (req, res, next) => {
+        const db = req.app.get('db');
+
+        db.get_pot_matches_by_age_range()
+            .then(matches => res.status(200).send(matches))
+            .catch(err => {
+                res.status(500).send({ errorMessage: "Oops! Something went wrong. Our engineers have been informed!" });
+                console.log(err)
+            });
+    },
+
     addLike: (req, res, next) => {
         const db = req.app.get('db');
         const { user_id, match_id, super_like } = req.body;
