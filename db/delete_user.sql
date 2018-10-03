@@ -1,0 +1,1 @@
+DELETE FROM limber_user WHERE user_id = $1;
