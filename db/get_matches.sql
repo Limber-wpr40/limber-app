@@ -1,1 +1,1 @@
-select user_likes.user_id, user_likes.match_id from user_likes Inner Join user_likes as likes_1 ON (user_likes.match_id = likes_1.user_id) AND (user_likes.user_id = likes_1.match_id) where user_likes.user_id =$1;
+select limber_likes.user_id, limber_likes.match_id from limber_likes Inner Join limber_likes as likes_1 ON (limber_likes.match_id = likes_1.user_id) AND (limber_likes.user_id = likes_1.match_id) where limber_likes.user_id =$1;

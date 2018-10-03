@@ -18,15 +18,20 @@ app.use(bodyParser.json());
 
 app.use(express.static(`${__dirname}/../build`));
 
-app.get("/api/user", uo.getUserData);
-app.get("/api/profile", uo.getUserProfile);
-app.get("/api/matches", uo.getMatches);
-app.get("/api/possiblematch", uo.getPossibleMatches);
+app.get("/api/user/:id", uo.getUserData);
+app.get("/api/profile/:id", uo.getUserProfile);
+app.get("/api/matches/:id", uo.getMatches);
+app.get("/api/possiblematch/:id", uo.getPossibleMatches);
+
+app.put("/api/settings", uo.updateMinAge);
+app.put("/api/settings", uo.updateMaxAge);
+app.put("/api/settings", uo.updateDistance);
+app.put("api/profile",uo.updateProfile)
 
 app.post("/api/likes", uo.addLike);
+app.post("/api/message", uo.addMessage)
 
-app.put("/api/user/:id", uo.updateSettings);
-app.put("/api/profile/:id", uo.updateProfile);
+
 
 app.delete("/api/user/:id", uo.deleteUser);
 

@@ -1,5 +1,5 @@
 
-Create Table user_likes (likes_id SERIAL PRIMARY KEY, user_id INTEGER, match_id INTEGER, super_like Boolean);
+Create Table limber_likes (likes_id SERIAL PRIMARY KEY, user_id INTEGER, match_id INTEGER, super_like Boolean);
 
 insert into user_likes (user_id,match_id, super_like)
 values

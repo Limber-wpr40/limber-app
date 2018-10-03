@@ -2,8 +2,8 @@ module.exports = {
 
     getUserProfile: (req, res, next) => {
         const db = req.app.get('db');
-
-        db.get_user_profile()
+        let id = parseInt(req.params.id);
+        db.get_user_profile([id])
             .then(profile => res.status(200).send(profile))
             .catch(err => {
                 res.status(500).send({ errorMessage: "Oops! Something went wrong. Our engineers have been informed!" });
@@ -13,8 +13,8 @@ module.exports = {
 
     getUserData: (req, res, next) => {
         const db = req.app.get('db');
-
-        db.get_user_data()
+        let id = parseInt(req.params.id);
+        db.get_user_data([id])
             .then(user => res.status(200).send(user))
             .catch(err => {
                 res.status(500).send({ errorMessage: "Oops! Something went wrong. Our engineers have been informed!" });
@@ -24,8 +24,8 @@ module.exports = {
 
     getMatches: (req, res, next) => {
         const db = req.app.get('db');
-
-        db.get_matches()
+        let id = parseInt(req.params.id);
+        db.get_matches([id])
             .then(matches => res.status(200).send(matches))
             .catch(err => {
                 res.status(500).send({ errorMessage: "Oops! Something went wrong. Our engineers have been informed!" });
@@ -36,8 +36,8 @@ module.exports = {
     
     getPossibleMatches: (req, res, next) => {
         const db = req.app.get('db');
-
-        db.get_pot_matches_by_age_range()
+        let id = parseInt(req.params.id);
+        db.get_pot_matches_by_age_range([id, 30, 38, 'Female'])
             .then(matches => res.status(200).send(matches))
             .catch(err => {
                 res.status(500).send({ errorMessage: "Oops! Something went wrong. Our engineers have been informed!" });
@@ -57,7 +57,22 @@ module.exports = {
             });
 
     },
-    updateProfile: ( req, res, next ) => {
+
+    addMessage: async (req, res, next) => {
+        const db = req.app.get('db');
+        const { create_date, sender_id, recv_id, msg_body } = req.body;
+        console.log(req.body)
+        let updatedMessage = db.add_message([create_date,sender_id, recv_id, msg_body ])
+            .then(() => res.status(200).send(updatedMessage))
+            .catch(err => {
+                res.status(500).send({ errorMessage: "Oops! Something went wrong. Our engineers have been informed!" });
+                console.log(err)
+            });
+
+    },
+
+
+    updateMinAge: ( req, res, next ) => {
         const dbInstance = req.app.get('db');
         const { params, query } = req;
     
@@ -69,11 +84,35 @@ module.exports = {
           } );
       },
 
-      updateSettings: ( req, res, next ) => {
+      updateMaxAge: ( req, res, next ) => {
         const dbInstance = req.app.get('db');
         const { params, query } = req;
     
-        dbInstance.update_product([ params.id, query.body ])
+        dbInstance.update_max_age([ params.id, query.body ])
+          .then( () => res.sendStatus(200) )
+          .catch( err => {
+            res.status(500).send({errorMessage: "Oops! Something went wrong. Our engineers have been informed!"});
+            console.log(err)
+          } );
+      },
+
+      updateDistance: ( req, res, next ) => {
+        const dbInstance = req.app.get('db');
+        const { params, query } = req;
+    
+        dbInstance.update_distance([ params.id, query.body ])
+          .then( () => res.sendStatus(200) )
+          .catch( err => {
+            res.status(500).send({errorMessage: "Oops! Something went wrong. Our engineers have been informed!"});
+            console.log(err)
+          } );
+      },
+
+      updateProfile: ( req, res, next ) => {
+        const dbInstance = req.app.get('db');
+        const { params, query } = req;
+    
+        dbInstance.update_profile([ params.id, query.body ])
           .then( () => res.sendStatus(200) )
           .catch( err => {
             res.status(500).send({errorMessage: "Oops! Something went wrong. Our engineers have been informed!"});
