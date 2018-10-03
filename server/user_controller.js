@@ -36,8 +36,9 @@ module.exports = {
     
     getPossibleMatches: (req, res, next) => {
         const db = req.app.get('db');
-        let id = parseInt(req.params.id);
-        db.get_pot_matches_by_age_range([id, 30, 38, 'Female'])
+        let {min_age, max_age, gender} = req.query;
+        console.log(`My min_age, max_age and gender are: ${min_age},${max_age} and ${gender}`)
+        db.get_pot_matches_by_age_range(min_age, max_age, gender)
             .then(matches => res.status(200).send(matches))
             .catch(err => {
                 res.status(500).send({ errorMessage: "Oops! Something went wrong. Our engineers have been informed!" });
@@ -57,20 +58,6 @@ module.exports = {
             });
 
     },
-
-    addMessage: async (req, res, next) => {
-        const db = req.app.get('db');
-        const { create_date, sender_id, recv_id, msg_body } = req.body;
-        console.log(req.body)
-        let updatedMessage = db.add_message([create_date,sender_id, recv_id, msg_body ])
-            .then(() => res.status(200).send(updatedMessage))
-            .catch(err => {
-                res.status(500).send({ errorMessage: "Oops! Something went wrong. Our engineers have been informed!" });
-                console.log(err)
-            });
-
-    },
-
 
     updateMinAge: ( req, res, next ) => {
         const dbInstance = req.app.get('db');

@@ -6,6 +6,7 @@ const session = require("express-session");
 const axios = require("axios");
 
 const uo = require("./user_controller");
+const mo = require("./message_controller");
 
 const app = express();
 
@@ -21,7 +22,8 @@ app.use(express.static(`${__dirname}/../build`));
 app.get("/api/user/:id", uo.getUserData);
 app.get("/api/profile/:id", uo.getUserProfile);
 app.get("/api/matches/:id", uo.getMatches);
-app.get("/api/possiblematch/:id", uo.getPossibleMatches);
+app.get("/api/possiblematches", uo.getPossibleMatches);
+app.get("/api/messages",mo.getMessages)
 
 app.put("/api/settings", uo.updateMinAge);
 app.put("/api/settings", uo.updateMaxAge);
@@ -29,7 +31,7 @@ app.put("/api/settings", uo.updateDistance);
 app.put("api/profile",uo.updateProfile)
 
 app.post("/api/likes", uo.addLike);
-app.post("/api/message", uo.addMessage)
+app.post("/api/message", mo.addMessage)
 
 
 
