@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import MotionStack from 'react-motion-stack';
 import Card from '../Card/Card';
 import refresh from '../logos/refresh.png';
 import nope from '../logos/nope.png';
@@ -11,13 +12,22 @@ import './Footer.css';
 
 
 export default class Landing extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
 
         }
     }
+
+    // renderButtons(props) {
+    //     return (
+    //         <div className="btn-group">
+                // <button children="👎" onClick={props.reject} />
+    //             <button children="👍" onClick={props.accept} />
+    //         </div>
+    //     );
+    // }
 
 
 
@@ -25,6 +35,10 @@ export default class Landing extends Component {
         return (
             <div>
                 <Card />
+                {/* <MotionStack 
+
+                    renderButtons={this.renderButtons}
+                /> */}
                 <div className='landing-container' >
                     <footer className='landing-footer'>
                         <div className='dot-2'>
@@ -48,3 +62,4 @@ export default class Landing extends Component {
         )
     }
 }
+

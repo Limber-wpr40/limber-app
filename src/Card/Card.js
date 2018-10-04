@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { render } from 'react-dom';
 import MotionStack from 'react-motion-stack';
 import 'react-motion-stack/build/motion-stack.css';
 import './Card.css';
-
 
 const data = Array.from({ length: 10 }, (_, i) => ({
     id: new Date().getTime() + i,
@@ -18,18 +18,28 @@ const data = Array.from({ length: 10 }, (_, i) => ({
 }));
 
 export default class Card extends Component {
+    constructor(){
+        super();
+
+        this.state = {
+            potMatches: []
+        }
+    }
+
     onSwipeEnd = ({ data }) => {
         console.log("data", data);
     };
 
-    // renderButtons(props) {
-    //   return (
-    //     <div className="btn-group">
-    //       <button children="👎" onClick={props.reject} />
-    //       <button children="👍" onClick={props.accept} />
-    //     </div>
-    //   );
-    // }
+    componentDidMount() {
+        console.log(res.data)
+        axios.get('/api/possiblematches')
+        .then(res => {
+            this.setState({
+                potMatches: res.data
+            })
+        })
+
+    }
 
     render() {
         return (
@@ -40,6 +50,7 @@ export default class Card extends Component {
                     render={props => props.element}
                     renderButtons={this.renderButtons}
                 />
+                <meh>meh</meh>
             </div>
         );
     }
