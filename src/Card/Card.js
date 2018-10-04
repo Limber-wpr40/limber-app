@@ -31,12 +31,12 @@ export default class Card extends Component {
     };
 
     componentDidMount() {
-        console.log(res.data)
         axios.get('/api/possiblematches')
         .then(res => {
             this.setState({
                 potMatches: res.data
             })
+            console.log(res.data)
         })
 
     }
@@ -50,7 +50,6 @@ export default class Card extends Component {
                     render={props => props.element}
                     renderButtons={this.renderButtons}
                 />
-                <meh>meh</meh>
             </div>
         );
     }

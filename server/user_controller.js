@@ -44,14 +44,17 @@ module.exports = {
   getPossibleMatches: (req, res, next) => {
     const db = req.app.get("db");
 
-    let { user_id, min_age, max_age, gender } = db.get_settings(
-      req.session.user_id
-    );
-    console.log(res.body);
+    // let { user_id, min_age, max_age, gender } = db.get_settings(
+    //   req.session.user_id
+    // );
+    // console.log(res.body);
 
-    db.get_matches_by_age_gender_dist(user_id, min_age, max_age, gender)
-      .then(matches => {
-        let filteredMatches = matches.filter(match => match.dist <= dist);
+    const {user_id, min_age, max_age, gender, max_distance} = req.session.user
+    
+    db.get_matches_by_age_gender_dist(user_id, min_age, max_age, gender, max_distance)
+    .then(matches => {
+      console.log(matches)
+        let filteredMatches = matches.filter(match => match.dist <= max_distance);
         res.status(200).send(filteredMatches);
       })
 
