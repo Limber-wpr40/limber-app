@@ -1,0 +1,1 @@
+Select * ,Round([user_1].[latitude]-[limber_user].[latitude],1)*69 AS Lat_dist, Round([user_1].[longitude]-[limber_user].[longitude],1)*53 AS Long_dist, IIF([Lat_dist]>[Long_dist],[Lat_dist],[Long_dist]) AS distance From limber_user, limber_user AS user_1 where user_1.user_id = 22;

@@ -1,0 +1,8 @@
+.matchimage{
+    margin: 50px 10%;
+    max-height:400px;
+    width:400px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
