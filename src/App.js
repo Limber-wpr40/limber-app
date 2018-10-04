@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Geolocation from './Geolocation';
+import Landing from './Landing/Landing';
+import Nav from './Nav/Nav';
 
 class App extends Component {
 
@@ -12,7 +13,9 @@ class App extends Component {
 
     return (
       <div className="App">
+        <Nav />
         <Geolocation />
+        <Landing />
       </div>
     );
   }
