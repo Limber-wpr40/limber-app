@@ -1,0 +1,1 @@
+UPDATE limber_settings SET max_distance = $2 where user_id  = $1;
