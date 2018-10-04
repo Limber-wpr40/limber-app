@@ -1,0 +1,19 @@
+.sec1{
+    display: flex;
+    flex-direction: row;
+
+}
+
+.view1{
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+text-align: center;
+color: grey;
+width: 80%;
+margin: 10px 10%;
+
+}
+
+.login-img {
+    margin: 20px 0;
+  width: 80%;
+}
