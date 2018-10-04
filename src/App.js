@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Geolocation from './Geolocation';
+import Messages from './Components/Messages/Messages';
 
 class App extends Component {
 
@@ -11,8 +12,9 @@ class App extends Component {
    
 
     return (
-      <div className="App">
-        <Geolocation />
+<div className="Navbar">
+        {/* <Geolocation /> */}
+        <Messages />
       </div>
     );
   }
