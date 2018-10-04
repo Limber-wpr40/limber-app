@@ -37,7 +37,7 @@ return "hahaha"
           Privacy Policy
         </h3>
        
-        <button className='fblogin btn' onClick={() => this.handleClick()}>LOG IN WITH PHONE NUMBER</button>
+        <button className='fblogin btn' onClick={() => this.handleClick()}>LOG IN WITH FACEBOOK</button>
         <button className='Pnumber btn' onClick={() => this.handleClick()}>LOG IN WITH PHONE NUMBER</button>
       </div>
     );
