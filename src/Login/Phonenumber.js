@@ -46,7 +46,9 @@ render(){
                <a className='phone-help' href='www.help.tinder.com/hc/en-us/articles/360005147211'>Learn what happens when you number changes.
                </a>
                </p>
+               <Link to='./verify'>
                <button className={(isActive ? 'continue-active' :'continue') + ' btn'}>CONTINUE</button>
+               </Link>
                </div>
             </div>
         )
