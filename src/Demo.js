@@ -7,11 +7,15 @@ import './demo.css';
 const data = Array.from({ length: 10 }, (_, i) => ({
   id: new Date().getTime() + i,
   element: (
+    <div>
     <img className='matchimage'
       draggable={false}
-      src={`../images/${i + 1}`}
-      // src={`https://source.unsplash.com/random/${i + 1}`}
+      // src={`../images/${i + 1}`}
+      src={`https://source.unsplash.com/random/${i + 1}`}
     />
+    </div>
+    
+  
   )
 }));
  
@@ -19,8 +23,14 @@ class Demo extends React.Component {
   onBeforeSwipe = (swipe, direction, state) => {
     console.log('direction', direction);
     console.log('state', state);
- 
+    
     swipe();
+    if(direction === 'right'){
+      console.log('LIKE!')
+    }else{
+      console.log('NOPE!')
+
+    }
   }
  
   onSwipeEnd = ({ data }) => {

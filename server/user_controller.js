@@ -45,7 +45,7 @@ module.exports = {
     const db = req.app.get("db");
 
     let { user_id, min_age, max_age, gender } = db.get_settings(
-      req.session.user_id
+      req.session.user
     );
     console.log(res.body);
 
