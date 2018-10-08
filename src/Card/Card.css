@@ -1,0 +1,29 @@
+.demo-wrapper {
+    height: 80vh;
+    width: 100%; 
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: aqua;
+}
+
+img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 95vw;
+    height: 80vh;
+    user-select: none;
+    border-radius: 4%;
+}
+
+.motion-card-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    width: 150%;
+    /* backgroundxs-color: blue; */
+}
+
