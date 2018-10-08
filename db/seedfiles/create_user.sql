@@ -9,13 +9,20 @@ create table limber_user
     birth_date date,
     user_image text,
     create_date date,
+    about text,
+    job text,
+    company text,
+    school text,
+    anthem text,
+    show_age boolean,
+    show_distance boolean,
     latitude decimal,
     longitude decimal;
 );
 
 
 insert into limber_user
-    ( first_name, user_pwd, email, gender, phone,birth_date, user_image, create_date, latitude, longitude)
+    ( first_name, user_pwd, email, gender, phone,birth_date, user_image, create_date,about, job, company, school,anthem, show_age, show_distance, latitude, longitude)
 values
 ('August', 'ur3yWj1', 'amclane0@biglobe.ne.jp', 'Male', '858-293-1808','8/1/1998','man1.jpeg','10/1/2018',40.7608,111.8910),
 ('Iago', 'ty0lLj', 'imantha1@princeton.edu', 'Male', '302-418-8404','8/1/1998','man2.jpeg','10/1/2018',40.2338, 111.6585 ),
