@@ -1,21 +1,19 @@
 import React, { Component } from "react";
 import "./Login.css";
 import { Link } from "react-router-dom";
-import axios from 'axios';
-
+import axios from "axios";
 
 class Phonenumber extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      prelim:'',
-      phone: "",
+      prelim: "",
+      phone:"",
       keypadShow: false,
-      user:{}
+      user: {}
     };
     this.handleInput = this.handleInput.bind(this);
-    console.log(this.props.location.state)
   }
 
   showKeyPad() {
@@ -24,22 +22,25 @@ class Phonenumber extends Component {
     });
   }
 
-  
   handleInput(e) {
-    this.setState({phone: e.target.value.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3")})
+    console.log(e)
+    this.setState({
+      phone: e
+      // .replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3")
+    });
   }
-  
+
   // handleGetSession(){
   //    axios.get(`/api/user/${this.state.phone}`)
   //    .then(response => {this.setState({user:response.data})
   //   console.log(this.response)
-  //   });   
+  //   });
 
   // }
-  
-  render() {
-        let isActive = this.state.phone.length === 12 ? true : false;
 
+  render() {
+    let isActive = this.state.phone.length === 12 ? true : false;
+    console.log(this.state.phone);
     return (
       <div>
         <div className="arrow-wrapper">
@@ -52,14 +53,14 @@ class Phonenumber extends Component {
           </Link>
         </div>
         <div className="login-main-body">
-          <div className='main-title'>My phone number is</div>
+          <div className="main-title">My phone number is</div>
           <div className="phone-id">
             <input className="country-code" placeholder="US +1" />
             <input
               className="phone-holder"
               onClick={() => this.showKeyPad()}
               placeholder="Phone Number"
-              onChange={e => this.handleInput(e)} 
+              onChange={e => this.handleInput(e)}
             />
           </div>
           <div className="fineprint">
@@ -82,33 +83,62 @@ class Phonenumber extends Component {
               </a>
             </p>
           </div>
-          <Link to={{pathname:"/verify",
-          state:{phone: this.state.phone}
-          }}>
+          <Link
+            to={{
+              pathname: "/verify",
+              state: { phone: this.state.phone }
+            }}
+          >
             <button
-              className={(isActive ? "continue-active" : "continue") + " btn"} >
+              className={(isActive ? "continue-active" : "continue") + " btn"}
+            >
               CONTINUE
             </button>
           </Link>
         </div>
         <div
-          className={(this.state.keypadShow ? "popUpShow" : "popUpNoShow") + " popUp" }
+          className={
+            (this.state.keypadShow ? "popUpShow" : "popUpNoShow") + " popUp"
+          }
         >
           <div className="key-pad">
-            <div className="key num-key">1</div>
-            <div className="key num-key">2</div>
-            <div className="key num-key">3</div>
+            <div
+              className="key num-key" value='1'
+              onClick={e => this.handleInput(e.target.value) } 
+            >
+              1
+            </div>
+            <div className="key num-key" onClick={() => this.handleInput(2)}>
+              2
+            </div>
+            <div className="key num-key" onClick={() => this.handleInput(3)}>
+              3
+            </div>
             <div className="key action-key">Back</div>
-            <div className="key num-key">4</div>
-            <div className="key num-key">5</div>
-            <div className="key num-key">6</div>
+            <div className="key num-key" onClick={() => this.handleInput(4)}>
+              4
+            </div>
+            <div className="key num-key" onClick={() => this.handleInput(5)}>
+              5
+            </div>
+            <div className="key num-key" onClick={() => this.handleInput(6)}>
+              6
+            </div>
             <div className="key action-key">Done</div>
-            <div className="key num-key">7</div>
-            <div className="key num-key">8</div>
-            <div className="key num-key">9</div>
+            <div className="key num-key" onClick={() => this.handleInput(7)}>
+              7
+            </div>
+            <div className="key num-key" onClick={() => this.handleInput(8)}>
+              8
+            </div>
+            <div className="key num-key" onClick={() => this.handleInput(9)}>
+              9
+            </div>
             <div className="key action-key">back</div>
             <div className="key action-key" />
-            <div className="key num-key">0</div>
+            <div className="key num-key" onClick={() => this.handleInput(0)}>
+              0
+            </div>
             <div className="key action-key" />
             <div className="key action-key">back</div>
           </div>

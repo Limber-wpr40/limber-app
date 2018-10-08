@@ -1,0 +1,13 @@
+.my-info{
+    margin: 40px 0;
+}
+
+.profile-pic{
+    border-radius: 50%;
+    width: 100px;
+}
+
+.nameage{
+    font-weight: Bold;
+    font-size: 20px;
+}

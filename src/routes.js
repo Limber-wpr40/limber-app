@@ -5,6 +5,7 @@ import Phonenumber from './Login/Phonenumber';
 import Verify from './Login/Verify';
 import Landing from './Landing';
 import Login from './Login/Login';
+import Profile from './Profile/Profile';
 
 export default (
     <Switch>
@@ -12,6 +13,7 @@ export default (
       <Route exact path='/' component={Login} />
       <Route path='/phone' component={Phonenumber}/>
       <Route path='/verify' component={Verify} /> 
-      <Route path='/landing' component={Landing}/> 
+      <Route path='/landing' component={Landing}/>
+      <Route path='/profile' component={Profile}/> 
     </Switch>
   );
