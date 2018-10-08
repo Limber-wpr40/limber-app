@@ -11,8 +11,9 @@ class Login extends Component {
   }
 
   handleClick() {
-    return "hahaha";
+    
   }
+  
   render() {
     const settings = {
       dots: true,
@@ -69,7 +70,7 @@ class Login extends Component {
           LOG IN WITH FACEBOOK
         </button>
         <Link to='/phone'>
-        <button className="pnumber btn" onClick={() => this.handleClick()}>
+        <button className="pnumber btn">
           LOG IN WITH PHONE NUMBER
         </button>
         </Link>

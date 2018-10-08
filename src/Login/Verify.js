@@ -1,34 +1,93 @@
 import React, { Component } from "react";
+import "./Login.css";
+import { Link } from "react-router-dom";
 
 class Verify extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      vcode: ""
+      vcode: "",
+      phone: "",
+      keypadShow: false
     };
-
-
+    this.handleInput = this.handleInput.bind(this);
+    // console.log(this.session.user)
+  }
+  showKeyPad() {
+    this.setState({
+      keypadShow: !this.state.keypadShow
+    });
   }
 
-  handleInput(e){ 
-    this.setState({vcode:e.target.value})
+  handleInput(e) {
+    this.setState({ vcode: e.target.value });
   }
   render() {
+    console.log(this.state.keypadShow);
+    let isActive = this.state.vcode.length === 6 ? true : false;
     return (
       <div>
-        <img className="myarrow" src="" alt="back" />
-        <h1>My code is</h1>
-        <div className="phone-id">
-
-          <input
-            className="v-code"
-            onChange={e => this.handleInput(e)}
-          />
+        <div className="arrow-wrapper">
+          <Link
+            to={{
+              pathname: "/phone"
+              // state:{phone: this.session.user.phone}
+            }}
+          >
+            <img
+              className="myarrow"
+              src="../images/rleftarrow.png"
+              alt="back"
+            />
+          </Link>
+        </div>
+        <div className="login-main-body">
+          <div className="main-title">My code is</div>
+          <div className="change-phone">
+            <div className="phone-question">+1 989-108-8833</div>
+            <div className="resend-link">RESEND</div>
+          </div>
+          <div className="vcode-id" onClick={() => this.showKeyPad()}>
+            <input
+              type="number"
+              className="v-code"
+              onChange={e => this.handleInput(e)}
+            />
+          </div>
+          <Link to="./landing">
+            <button
+              className={(isActive ? "continue-active" : "continue") + " btn"}
+            >
+              CONTINUE
+            </button>
+          </Link>
+        </div>
+        <div
+          className={(this.state.keypadShow ? "popUpShow" : "popUpNoShow") + " popUp" }
+        >
+          <div className="key-pad">
+            <div className="key num-key">1</div>
+            <div className="key num-key">2</div>
+            <div className="key num-key">3</div>
+            <div className="key action-key">Back</div>
+            <div className="key num-key">4</div>
+            <div className="key num-key">5</div>
+            <div className="key num-key">6</div>
+            <div className="key action-key">Done</div>
+            <div className="key num-key">7</div>
+            <div className="key num-key">8</div>
+            <div className="key num-key">9</div>
+            <div className="key action-key">back</div>
+            <div className="key action-key" />
+            <div className="key num-key">0</div>
+            <div className="key action-key" />
+            <div className="key action-key">back</div>
+          </div>
         </div>
       </div>
     );
   }
 }
 
-export default Verify
+export default Verify;

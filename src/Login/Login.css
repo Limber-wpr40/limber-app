@@ -15,8 +15,8 @@
 }
 
 .view1 > h2 {
-  width: 86%;
-  margin: 0 4%;
+  width: 80%;
+  margin: 0 10% 0 2%;
 }
 
 .login-img {
@@ -25,10 +25,23 @@
   max-width: 250px;
   border-radius: 5%;
 }
+.arrow-wrapper {
+  width: 100%;
+  height: 50px;
+}
+.login-main-body {
+  margin: 60px 0px;
+}
+
+.main-title {
+  text-align: left;
+  font-size: 2em;
+  margin: 10px 0 30px 0;
+}
 
 .btn {
   width: 70%;
-  margin: 10px 0 0 9%;
+  margin: 10px 10% 0 9%;
   /* border-radius: 10%; */
   height: 40px;
   -webkit-border-radius: 28;
@@ -39,7 +52,7 @@
 h3 {
   color: grey;
   font-size: 12px;
-  margin: 0 0 10px 15%;
+  margin: 0 15% 10px 15%;
 }
 
 .fblogin {
@@ -53,22 +66,22 @@ h3 {
 
 .myarrow {
   margin: 20px 0 100px 20px;
-  width: 100%;
+  height: 40px;
   float: left;
 }
-.phone-id{
+.phone-id {
   display: flex;
   flex-direction: row;
   align-items: flex-end;
   justify-content: center;
 }
-.country-code{
+.country-code {
   width: 20%;
   border: none;
   border-bottom: 0.5px solid grey;
-  margin:10px 15px 10px 30px;
+  margin: 10px 15px 10px 30px;
 }
-.phone-holder{
+.phone-holder {
   width: 50%;
   margin: 10px 30px 10px 15px;
   border: none;
@@ -77,33 +90,110 @@ h3 {
 
 .fineprint {
   text-align: left;
-  margin: 20px 10%;
+  margin: 20px 10% 50px 10%;
   font-size: 10px;
 }
-.change-phone{
+.change-phone {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  margin: 0 0 30px 15%;
 }
-.phone-question{
-  font-weight: bold;
+.phone-question {
+  color: grey;
 }
-.email-link{
+.email-link {
   margin: 0 20px;
   color: red;
   text-decoration: none;
 }
-.fineprint>p{
+.resend-link {
+  margin: 0 20px;
+  color: #333;
+  text-decoration: none;
+}
+
+.vcode-id {
+  margin: 0 15%;
+  height: 80px;
+  font-size: 30px;
+  border-bottom: dashed grey 1px;
+}
+
+.v-code {
+  height: 40px;
+  font-size: 40px;
+  text-align: center;
+  padding: 10px;
+  width: 200px;
+  border-color: transparent;
+}
+
+.v-code :active {
+  border: none;
+  border-color: rebeccapurple;
+}
+.fineprint > p {
   color: grey;
 }
-.phone-help{
+.phone-help {
   color: #333;
 }
-.continue{
+.continue {
   background: white;
   color: bisque;
 }
-.continue-active{
-  background:linear-gradient(to right, #ed5172 12%, #fa7a4b 70%);;
-  color: white
+.continue-active {
+  background: linear-gradient(to right, #ed5172 12%, #fa7a4b 70%);
+  color: white;
+}
+
+.popUp {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  font-family: "Open sans";
+  border: solid 1px rgb(197, 193, 193);
+  background-color: #fff;
+  color: #8d003f;
+  overflow: hidden;
+  transition: ease-in-out;
+}
+
+.key-pad {
+  background-color: lightgrey;
+  height: 40%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  overflow: hidden;
+}
+
+.key {
+  margin: 5px 0 6px 0;
+  width: 22%;
+  height: 40px;
+  border-radius: 5%;
+  padding: 5px 0;
+  text-align: center;
+}
+.num-key {
+  font-size: 36px;
+  background-color: #fff;
+}
+
+.action-key {
+  background: rgb(241, 240, 240);
+  font-size: 20px;
+}
+
+.popUpNoShow {
+  height: 0;
+}
+
+.popUpShow {
+  min-height: 260px;
 }

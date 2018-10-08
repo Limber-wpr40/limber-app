@@ -13,11 +13,26 @@ module.exports = {
       });
   },
 
-  getUserData: (req, res, next) => {
+  getUserData: async (req, res, next) => {
+    const db = req.app.get("db");
+    console.log(req.params.phone)
+    let {phone} = req.params;
+    let foundUser = await db.get_user_data([phone])
+    if(foundUser[0]){
+      req.session.user = foundUser[0];
+      console.log('user is', req.session.user)
+      res.status(200).send(req.session.user);
+      // res.redirect("/verify");
+    } else{
+      // res.redirect("/");
+    };
+  },
+
+  getNewMatches: (req, res, next) => {
     const db = req.app.get("db");
     let id = parseInt(req.params.id);
-    db.get_user_data([id])
-      .then(user => res.status(200).send(user))
+    db.get_new_matches([id])
+      .then(matches => res.status(200).send(matches))
       .catch(err => {
         res.status(500).send({
           errorMessage:
@@ -26,7 +41,6 @@ module.exports = {
         console.log(err);
       });
   },
-
   getMatches: (req, res, next) => {
     const db = req.app.get("db");
     let id = parseInt(req.params.id);

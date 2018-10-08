@@ -1,5 +1,4 @@
 import React from 'react';
-import { render } from 'react-dom';
 import MotionStack from 'react-motion-stack';
 import 'react-motion-stack/build/motion-stack.css';
 import './demo.css';
@@ -8,7 +7,7 @@ const data = Array.from({ length: 10 }, (_, i) => ({
   id: new Date().getTime() + i,
   element: (
     <div>
-    <img className='matchimage'
+    <img className='matchimage' alt='pic'
       draggable={false}
       // src={`../images/${i + 1}`}
       src={`https://source.unsplash.com/random/${i + 1}`}
