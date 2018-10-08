@@ -23,7 +23,7 @@ export default class Landing extends Component {
     // renderButtons(props) {
     //     return (
     //         <div className="btn-group">
-                // <button children="👎" onClick={props.reject} />
+    // <button children="👎" onClick={props.reject} />
     //             <button children="👍" onClick={props.accept} />
     //         </div>
     //     );
@@ -35,8 +35,10 @@ export default class Landing extends Component {
         return (
             <div>
                 <Card />
-                {/* <MotionStack 
-
+                {/* <MotionStack
+                    data={this.state.potMatches}
+                    onSwipeEnd={this.onSwipeEnd}
+                    render={props => props.element}
                     renderButtons={this.renderButtons}
                 /> */}
                 <div className='landing-container' >

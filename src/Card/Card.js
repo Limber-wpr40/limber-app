@@ -33,6 +33,20 @@ export default class Card extends Component {
     componentDidMount() {
         axios.get('/api/possiblematches')
         .then(res => {
+            res.data.forEach((potMatch) => {
+                let {user_id, user_image, user_name, user_age, user_job, user_school, user_distance} = potMatch
+                potMatch.id = user_id
+                potMatch.element = (
+                    <div>
+                        <img src={`../images/${user_image}`} alt=""/>
+                        <h1>{user_name}</h1>
+                        <h2>{user_age}</h2>
+                        <p>{user_job}</p>
+                        <p>{user_school}</p>
+                        <p>{user_distance}</p>
+                    </div>
+                )
+            })
             this.setState({
                 potMatches: res.data
             })
@@ -45,7 +59,7 @@ export default class Card extends Component {
         return (
             <div className="demo-wrapper">
                 <MotionStack
-                    data={data}
+                    data={this.state.potMatches}
                     onSwipeEnd={this.onSwipeEnd}
                     render={props => props.element}
                     renderButtons={this.renderButtons}
