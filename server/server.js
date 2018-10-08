@@ -26,7 +26,7 @@ app.use(
 
 function devitron(req, res, next) {
   if (DEVING) {
-   req.session.user ={user_id: 22, user_name:'Fred',user_gender:'Male'};
+   req.session.user ={user_id: 22, user_name:'Lillian',gender:'Female', min_age: 26, max_age: 36, max_distance: 50};
 }
 next()
 }
@@ -37,10 +37,11 @@ massive(CONNECTION_STRING).then(db => {
 app.use(bodyParser.json());
 
 app.use(express.static(`${__dirname}/../build`));
-
-app.get("/api/user/:id", uo.getUserData);
+app.get("/api/settings", uo.getUserSettings );
+app.get("/api/user/:phone", uo.getUserData);
 app.get("/api/profile/:id", uo.getUserProfile);
 app.get("/api/matches/:id", uo.getMatches);
+app.get("/api/newmatches/:id", uo.getNewMatches)
 app.get("/api/possiblematches",devitron, uo.getPossibleMatches);
 app.get("/api/messages", mo.getMessages);
 

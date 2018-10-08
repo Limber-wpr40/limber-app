@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+<<<<<<< HEAD
 import logo from './logo.svg';
 import './App.css';
 import Geolocation from './Geolocation';
@@ -6,7 +7,13 @@ import Messages from './Components/Messages/Messages';
 import Feed from './Components/Feed/Feed';
 import Chat from './Components/Chat/Chat';
 import Demo from './Demo';
+=======
+import './App.css';
+import Geolocation from './Geolocation';
+import Nav from './Nav/Nav';
+>>>>>>> master
 import routes from './routes';
+
 
 class App extends Component {
   render() {
@@ -16,8 +23,9 @@ class App extends Component {
         {/* <Messages /> */}
         {/* <Chat /> */}
       <div className="App">
+        <Nav />
         <Geolocation />
-   {routes}
+        {routes}
       </div>
       </div>
     );

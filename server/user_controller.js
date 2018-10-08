@@ -1,7 +1,7 @@
 module.exports = {
   getUserProfile: (req, res, next) => {
     const db = req.app.get("db");
-    let id = parseInt(req.params.id);
+    let id = parseInt(req.session.user.user_id);
     db.get_user_profile([id])
       .then(profile => res.status(200).send(profile))
       .catch(err => {
@@ -13,11 +13,30 @@ module.exports = {
       });
   },
 
-  getUserData: (req, res, next) => {
+  getUserSettings: (req, res, next) => {
+    res.send(req.session.user);
+  },
+
+  getUserData: async (req, res, next) => {
+    const db = req.app.get("db");
+    console.log(req.params.phone);
+    let { phone } = req.params;
+    let foundUser = await db.get_user_data([phone]);
+    if (foundUser[0]) {
+      req.session.user = foundUser[0];
+      console.log("user is", req.session.user);
+      res.status(200).send(req.session.user);
+      // res.redirect("/verify");
+    } else {
+      // res.redirect("/");
+    }
+  },
+
+  getNewMatches: (req, res, next) => {
     const db = req.app.get("db");
     let id = parseInt(req.params.id);
-    db.get_user_data([id])
-      .then(user => res.status(200).send(user))
+    db.get_new_matches([id])
+      .then(matches => res.status(200).send(matches))
       .catch(err => {
         res.status(500).send({
           errorMessage:
@@ -26,7 +45,6 @@ module.exports = {
         console.log(err);
       });
   },
-
   getMatches: (req, res, next) => {
     const db = req.app.get("db");
     let id = parseInt(req.params.id);
@@ -45,13 +63,14 @@ module.exports = {
     const db = req.app.get("db");
 
     let { user_id, min_age, max_age, gender } = db.get_settings(
-      req.session.user_id
+      req.session.user
     );
     console.log(res.body);
-
-    db.get_matches_by_age_gender_dist(user_id, min_age, max_age, gender)
-      .then(matches => {
-        let filteredMatches = matches.filter(match => match.dist <= dist);
+    
+    db.get_matches_by_age_gender_dist(user_id, min_age, max_age, gender, max_distance)
+    .then(matches => {
+      console.log(matches)
+        let filteredMatches = matches.filter(match => match.dist <= max_distance);
         res.status(200).send(filteredMatches);
       })
 
@@ -110,7 +129,7 @@ module.exports = {
   updateDistance: (req, res, next) => {
     const db = req.app.get("db");
     const { user_id, max_distance } = req.query;
-    console.log(req.query)
+    console.log(req.query);
     db.update_distance(user_id, max_distance)
       .then(() => res.sendStatus(200))
       .catch(err => {
