@@ -1,7 +1,7 @@
 module.exports = {
   getUserProfile: (req, res, next) => {
     const db = req.app.get("db");
-    let id = parseInt(req.params.id);
+    let id = parseInt(req.session.user.user_id);
     db.get_user_profile([id])
       .then(profile => res.status(200).send(profile))
       .catch(err => {
@@ -13,19 +13,23 @@ module.exports = {
       });
   },
 
+  getUserSettings: (req, res, next) => {
+    res.send(req.session.user);
+  },
+
   getUserData: async (req, res, next) => {
     const db = req.app.get("db");
-    console.log(req.params.phone)
-    let {phone} = req.params;
-    let foundUser = await db.get_user_data([phone])
-    if(foundUser[0]){
+    console.log(req.params.phone);
+    let { phone } = req.params;
+    let foundUser = await db.get_user_data([phone]);
+    if (foundUser[0]) {
       req.session.user = foundUser[0];
-      console.log('user is', req.session.user)
+      console.log("user is", req.session.user);
       res.status(200).send(req.session.user);
       // res.redirect("/verify");
-    } else{
+    } else {
       // res.redirect("/");
-    };
+    }
   },
 
   getNewMatches: (req, res, next) => {
@@ -125,7 +129,7 @@ module.exports = {
   updateDistance: (req, res, next) => {
     const db = req.app.get("db");
     const { user_id, max_distance } = req.query;
-    console.log(req.query)
+    console.log(req.query);
     db.update_distance(user_id, max_distance)
       .then(() => res.sendStatus(200))
       .catch(err => {
