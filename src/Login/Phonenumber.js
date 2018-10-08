@@ -23,20 +23,19 @@ class Phonenumber extends Component {
   }
 
   handleInput(e) {
-    console.log(e)
+    console.log(e.target.value)
     this.setState({
-      phone: e
-      // .replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3")
+      phone: e.target.value.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3")
     });
   }
 
-  // handleGetSession(){
-  //    axios.get(`/api/user/${this.state.phone}`)
-  //    .then(response => {this.setState({user:response.data})
-  //   console.log(this.response)
-  //   });
+  handleGetSession(){
+     axios.get(`/api/user/${this.state.phone}`)
+     .then(response => {this.setState({user:response.data})
+    console.log(this.state.user)
+    });
 
-  // }
+  }
 
   render() {
     let isActive = this.state.phone.length === 12 ? true : false;
@@ -83,18 +82,18 @@ class Phonenumber extends Component {
               </a>
             </p>
           </div>
-          <Link
+          {/* <Link
             to={{
               pathname: "/verify",
               state: { phone: this.state.phone }
             }}
-          >
+          > */}
             <button
-              className={(isActive ? "continue-active" : "continue") + " btn"}
+              className={(isActive ? "continue-active" : "continue") + " btn"} onClick={()=>{this.handleGetSession()}}
             >
               CONTINUE
             </button>
-          </Link>
+          {/* </Link> */}
         </div>
         <div
           className={
@@ -103,8 +102,7 @@ class Phonenumber extends Component {
         >
           <div className="key-pad">
             <div
-              className="key num-key" value='1'
-              onClick={e => this.handleInput(e.target.value) } 
+              className="key num-key" 
             >
               1
             </div>

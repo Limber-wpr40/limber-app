@@ -35,7 +35,7 @@ massive(CONNECTION_STRING).then(db => {
 app.use(bodyParser.json());
 
 app.use(express.static(`${__dirname}/../build`));
-
+app.get("/api/settings", uo.getUserSettings );
 app.get("/api/user/:phone", uo.getUserData);
 app.get("/api/profile/:id", uo.getUserProfile);
 app.get("/api/matches/:id", uo.getMatches);
