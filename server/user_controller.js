@@ -62,10 +62,11 @@ module.exports = {
       req.session.user
     );
     console.log(res.body);
-
-    db.get_matches_by_age_gender_dist(user_id, min_age, max_age, gender)
-      .then(matches => {
-        let filteredMatches = matches.filter(match => match.dist <= dist);
+    
+    db.get_matches_by_age_gender_dist(user_id, min_age, max_age, gender, max_distance)
+    .then(matches => {
+      console.log(matches)
+        let filteredMatches = matches.filter(match => match.dist <= max_distance);
         res.status(200).send(filteredMatches);
       })
 
