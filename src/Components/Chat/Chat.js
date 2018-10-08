@@ -40,6 +40,7 @@ export default class Chat extends Component {
 
   componentDidMount() {
     axios.get(`/api/messages?recv_id=${this.props.match.params.match_id}`)
+    
   }
 
   render() {
