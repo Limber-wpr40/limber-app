@@ -36,9 +36,10 @@ app.use(bodyParser.json());
 
 app.use(express.static(`${__dirname}/../build`));
 
-app.get("/api/user/:id", uo.getUserData);
+app.get("/api/user/:phone", uo.getUserData);
 app.get("/api/profile/:id", uo.getUserProfile);
 app.get("/api/matches/:id", uo.getMatches);
+app.get("/api/newmatches/:id", uo.getNewMatches)
 app.get("/api/possiblematches",devitron, uo.getPossibleMatches);
 app.get("/api/messages", mo.getMessages);
 

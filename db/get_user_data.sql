@@ -1,7 +1,5 @@
-SELECT lu.*, lp.*, ls.*
+SELECT lu.user_id,lu.first_name,lu.email,lu.gender,lu.phone,lu.birth_date,lu.user_image, ls.*
 FROM limber_User as lu
-    JOIN limber_profile as lp ON 
- lp.user_id = lu.user_id
     JOIN limber_settings as ls ON 
  lu.user_id = ls.user_id
-where lu.user_id = $1;
+where lu.phone = $1;
