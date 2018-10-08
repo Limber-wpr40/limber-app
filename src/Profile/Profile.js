@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Profile.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 class Profile extends Component {
   constructor(props) {
@@ -20,7 +21,7 @@ class Profile extends Component {
   render() {
     return (
       <div>
-        <div className='user-info-wrapper'>
+        <div className="user-info-wrapper">
           <div className="my-info">
             <img
               src={`./images/${this.state.userData.user_image}`}
@@ -32,26 +33,30 @@ class Profile extends Component {
             }`}</div>
           </div>
           <div className="settings-profile">
-            <div className="group-holder">
-              <div className="profile-image-wrapper">
-                <img
-                  className="profile-image"
-                  src="../images/settings.png"
-                  alt="settings"
-                />
+            <Link to="./settings">
+              <div className="group-holder">
+                <div className="profile-image-wrapper">
+                  <img
+                    className="profile-image"
+                    src="../images/settings.png"
+                    alt="settings"
+                  />
+                </div>
+                <div className="group-title">SETTINGS</div>
               </div>
-              <div className="group-title">SETTINGS</div>
-            </div>
-            <div className="group-holder">
-              <div className="profile-image-wrapper">
-                <img
-                  className="profile-image"
-                  src="../images/edit.png"
-                  alt="Edit Info"
-                />
+            </Link>
+            <Link to="./editinfo">
+              <div className="group-holder">
+                <div className="profile-image-wrapper">
+                  <img
+                    className="profile-image"
+                    src="../images/edit.png"
+                    alt="Edit Info"
+                  />
+                </div>
+                <div className="group-title">EDIT INFO</div>
               </div>
-              <div className="group-title">EDIT INFO</div>
-            </div>
+            </Link>
           </div>
         </div>
       </div>
