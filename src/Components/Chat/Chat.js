@@ -37,9 +37,14 @@ export default class Chat extends Component {
       this.setState({ message: "" });
     };
   }
-
+  createNewMessage() {
+    
+  }
+  
   componentDidMount() {
-    axios.get(`/api/messages?recv_id=${this.props.match.params.match_id}`)
+    axios.get(`/api/messages?recv_id=${this.props.match.params.match_id}`).then(res => {
+      console.log(res)
+    })
     
   }
 
