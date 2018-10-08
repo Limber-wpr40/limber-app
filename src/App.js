@@ -3,6 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import Geolocation from './Geolocation';
 import Messages from './Components/Messages/Messages';
+import Feed from './Components/Feed/Feed';
+import Chat from './Components/Chat/Chat';
 import Demo from './Demo';
 import routes from './routes';
 
@@ -10,8 +12,9 @@ class App extends Component {
   render() {
     return (
 <div className="Navbar">
-        {/* <Geolocation /> */}
-        <Messages />
+       
+        {/* <Messages /> */}
+        {/* <Chat /> */}
       <div className="App">
         <Geolocation />
    {routes}

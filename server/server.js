@@ -5,6 +5,8 @@ const massive = require("massive");
 const session = require("express-session");
 const axios = require("axios");
 
+var socket = require('socket.io');
+
 const uo = require("./user_controller");
 const mo = require("./message_controller");
 
@@ -52,6 +54,26 @@ app.post("/api/message", mo.addMessage);
 
 app.delete("/api/user/:id", uo.deleteUser);
 
-app.listen(SERVER_PORT, () => {
+//added "server=app.listen"
+server = app.listen(SERVER_PORT, () => {
   console.log(`Server evesdropping on port ${SERVER_PORT}.`);
 });
+
+//SOCKET
+io = socket(server);
+
+io.on('connection', (socket) => {
+    console.log(socket.id);
+
+    socket.on('SEND_MESSAGE', function(data){
+        io.emit('RECEIVE_MESSAGE', data);
+    })
+});
+//Joinning and leaving
+io.on('connection', function(socket){
+    socket.join('some room');
+});
+io.to('some room').emit('some event');
+
+
+

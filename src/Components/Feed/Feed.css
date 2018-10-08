@@ -1,3 +1,4 @@
+rcc     
 .navbar {
     display: flex;
     justify-content: center;
@@ -10,24 +11,6 @@
 }
 .chat-icon {
     margin-right: 35px;
-}
-
-.images-wrapper{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.image-icon {
-    image-resolution: 72px;
-    width: 60px;
-    height:60px;
-    border-radius: 50%;
-    margin: 5px;
-
-
 }
 
 .messages-tab {
