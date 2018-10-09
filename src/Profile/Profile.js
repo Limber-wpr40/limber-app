@@ -20,7 +20,16 @@ class Profile extends Component {
 
   render() {
     return (
-      <div>
+      <div className='profile-main'>
+                <div className="arrow-wrapper">
+          <Link to="/">
+            <img
+              className="myarrow"
+              src="../images/rleftarrow.png"
+              alt="back"
+            />
+          </Link>
+        </div>
         <div className="user-info-wrapper">
           <div className="my-info">
             <img
@@ -45,7 +54,7 @@ class Profile extends Component {
                 <div className="group-title">SETTINGS</div>
               </div>
             </Link>
-            <Link to="./editinfo">
+            <Link to={{pathname: "./editinfo", state:{user_id: this.state.userData.user_id} }}>
               <div className="group-holder">
                 <div className="profile-image-wrapper">
                   <img

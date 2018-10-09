@@ -1,7 +1,7 @@
 module.exports = {
   getUserProfile: (req, res, next) => {
     const db = req.app.get("db");
-    let id = parseInt(req.session.user.user_id);
+    let id = (req.session.user.user_id);
     db.get_user_profile([id])
       .then(profile => res.status(200).send(profile))
       .catch(err => {

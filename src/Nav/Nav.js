@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
-import MotionStack from 'react-motion-stack';
 import './Nav.css';
-
 import profileIcon from '../logos/profile_icon.png';
 import chatIcon from '../logos/chatIcon.png';
 
