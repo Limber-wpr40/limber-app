@@ -92,10 +92,88 @@
   height: 70px;
   background: whitesmoke;
   margin: 10px 2% 10px 0;
+  padding: 15px 0 5px 20px;
   border-radius: 10px;
+  font-size: 18px;
+  box-shadow: 2px black;
 }
 
 .setting-title {
   color: red;
-  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.setting-fineprint {
+  font-size: 14px;
+  width: 90%;
+}
+
+.show-me-wrapper {
+  width: 90%;
+  height: 40px;
+  background: whitesmoke;
+  border-radius: 10px;
+  margin: 10px 2% 10px 0;
+  padding: 25px 0 5px 20px;
+  border-radius: 10px;
+  font-size: 18px;
+  box-shadow: 2px black;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.show-me{
+  margin-right: 20px;
+}
+
+.show-me-slider{
+  color: red;
+  margin-left: 70px;
+}
+.setting-group-title{
+  width: 90%;
+  margin: 10px 0;
+  font-weight: bold;
+  text-align: left;
+}
+
+.web-profile{
+  height: 90px;
+}
+
+.web-profile > .setting-fineprint{
+  margin-top: 10px;
+  font-size: 10px;
+}
+
+.notify{
+  margin: 5px 0 15px 0;
+}
+
+.distance{
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+
+justify-content: space-between;
+padding: 0;
+height: 90px;
+}
+.dist{
+  margin: 10px 5px 10px 20px;
+}
+
+.distance-title{
+  width: 10%;
+  margin:10px 20px 5px 5px;
+}
+.distance-btn{
+  width: 45%;
+  height: 30px;
+  margin: 5px 5px;
+  text-align: center;
+}
+.dist-selected{
+  background: red;
 }
