@@ -41,12 +41,12 @@ export default class Chat extends Component {
     
   }
   
-  componentDidMount() {
-    axios.get(`/api/messages?recv_id=${this.props.match.params.match_id}`).then(res => {
-      console.log(res)
-    })
+  // componentDidMount() {
+  //   axios.get(`/api/messages?recv_id=${this.props.match.params.match_id}`).then(res => {
+  //     console.log(res)
+  //   })
     
-  }
+  // }
 
   render() {
     // console.log(this.props.location);
