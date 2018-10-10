@@ -4,6 +4,7 @@ import { render } from 'react-dom';
 import MotionStack from 'react-motion-stack';
 import 'react-motion-stack/build/motion-stack.css';
 import './Card.css';
+import pmtest from '../jestutilities/pmtest';
 import punks from '../jestutilities/jest-testing';
 
 
@@ -22,6 +23,11 @@ export default class Card extends Component {
     onBeforeSwipe = (swipe, direction, state) => {
         console.log('direction', direction);
         console.log('state', state.pressedId);
+        pmtest.handleStateChange(state)
+        pmtest.handleDirectionChange(direction)
+        
+
+       
 
         punks.handleDirectionChange(direction);
         punks.handleState(state);

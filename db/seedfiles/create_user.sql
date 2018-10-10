@@ -17,7 +17,8 @@ create table limber_user
     show_age boolean,
     show_distance boolean,
     latitude decimal,
-    longitude decimal;
+    longitude decimal,
+    socket_id text;
 );
 
 
