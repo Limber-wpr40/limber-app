@@ -14,7 +14,6 @@ class Profile extends Component {
   componentDidMount() {
     axios.get("/api/settings").then(response => {
       this.setState({ userData: response.data });
-      console.log(this.state.userData);
     });
   }
 
@@ -54,7 +53,7 @@ class Profile extends Component {
                 <div className="group-title">SETTINGS</div>
               </div>
             </Link>
-            <Link to={{pathname: "./editinfo", state:{user_id: this.state.userData.user_id} }}>
+            <Link to={{pathname: "./editinfo", state:{user_id: this.state.userData.user_id,user_name:this.state.userData.first_name, gender:this.state.userData.gender} }}>
               <div className="group-holder">
                 <div className="profile-image-wrapper">
                   <img

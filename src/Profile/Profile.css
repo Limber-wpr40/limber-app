@@ -205,3 +205,43 @@ height: 110px;
   margin-bottom: 30px;
   width: 84%;
 }
+.edit-header{
+  margin: 20px 0 5px 10px;
+  font-size: 16px;
+}
+.edit-wrapper{
+  box-sizing: border-box;
+  height: 60px;
+  width: 100%;
+  background: #fff;
+  text-align: center;
+  color: red;
+  padding-top: 22px;
+
+}
+
+.edit-fineprint{
+  margin:5px 10px 5px 10px;
+  font-size: 14px;
+}
+
+.control-profile{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.ps-text{
+  margin-left: 10px;
+  text-align: left;
+  width: 80%;
+
+}
+
+.ps-slider{
+  width:10%
+}
+
