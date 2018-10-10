@@ -3,6 +3,7 @@ import io from "socket.io-client";
 import "./Chat.css";
 import axios from "axios";
 import ChatNav from "./ChatNav";
+import pmtest from '../../jestutilities/pmtest';
 
 export default class Chat extends Component {
   constructor(props) {
@@ -22,12 +23,14 @@ export default class Chat extends Component {
 
     const addMessage = data => {
       console.log(data);
-      this.setState({ messages: [...this.state.messages, data] });
+      // pmtest.addMessage(data)
+      this.setState({ messages: [...this.state.messages, data ] });
       console.log(this.state.messages);
     };
 
     this.sendMessage = ev => {
       ev.preventDefault();
+      // pmtest.sendMessage(data);
       this.socket.emit("SEND_MESSAGE", {
         author: this.state.username,
         message: this.state.message

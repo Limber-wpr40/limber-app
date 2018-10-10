@@ -5,14 +5,11 @@ import Verify from './Login/Verify';
 import Landing from './Landing/Landing';
 import Login from './Login/Login';
 import Profile from './Profile/Profile';
-<<<<<<< HEAD
 import Chat from './Components/Chat/ChatNav';
 import Feed from './Components/Feed/Feed';
 import Messages from './Components/Messages/Messages';
-=======
 import Settings from './Profile/Settings';
 import Editinfo from './Profile/Editinfo';
->>>>>>> master
 
 
 export default (

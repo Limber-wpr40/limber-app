@@ -6,7 +6,6 @@ import Geolocation from './Geolocation';
 import Messages from './Components/Messages/Messages';
 import Feed from './Components/Feed/Feed';
 import Chat from './Components/Chat/Chat';
-import Demo from './Demo';
 
 
 import Nav from './Nav/Nav';

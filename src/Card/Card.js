@@ -4,6 +4,7 @@ import { render } from 'react-dom';
 import MotionStack from 'react-motion-stack';
 import 'react-motion-stack/build/motion-stack.css';
 import './Card.css';
+import pmtest from '../jestutilities/pmtest';
 
 const data = Array.from({ length: 10 }, (_, i) => ({
     id: new Date().getTime() + i,
@@ -32,7 +33,11 @@ export default class Card extends Component {
     onBeforeSwipe = (swipe, direction, state) => {
         console.log('direction', direction);
         console.log('state', state.pressedId);
+        pmtest.handleStateChange(state)
+        pmtest.handleDirectionChange(direction)
         
+
+       
         swipe();
         if(direction === 'right'){
                        this.setState({super_like:true, match_id:state.pressedId})
