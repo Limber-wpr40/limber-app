@@ -6,6 +6,7 @@ import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import Tooltip from "rc-tooltip";
 import funcs from '../jestutilities/function';
+import punks from '../jestutilities/jest-testing';
 
 const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const Range = createSliderWithTooltip(Slider.Range);
@@ -60,6 +61,7 @@ class Settings extends Component {
     let newSettings = {min_age:this.state.min_age, max_age:this.state.max_age, max_distance:this.state.max_distance}
     axios.put("/api/settings",newSettings) 
     console.log('these are the new settings', newSettings)
+    punks.handleUpdateSettings(newSettings)
   }
  
 

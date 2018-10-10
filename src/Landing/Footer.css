@@ -7,11 +7,13 @@
     justify-content: space-around;
     align-content: center;
     flex-direction: row;
+    background-color: rgb(248, 244, 244);
 }
 
 .footer-icons {
     width: 30px;
     height: 30px;
+    
 }
 
 .dot {
@@ -21,8 +23,8 @@
     height: 60px;
     width: 60px;
     background-color: #F8FAF3;
-    border-radius: 50%;
-  }
+    border-radius: 50%
+}
 
 .dot-2 {
     display: flex;

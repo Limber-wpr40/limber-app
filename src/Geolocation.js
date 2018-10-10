@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import punks from './jestutilities/jest-testing';
 
 export default class Geolocation extends Component {
     constructor(){
@@ -14,6 +15,7 @@ export default class Geolocation extends Component {
         if(navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(position => {
                 console.log(position)
+                punks.handleGeolocation(position)
                 this.setState({
                     position
                 })
