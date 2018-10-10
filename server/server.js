@@ -22,12 +22,12 @@ app.use(
 
 
 
-function devitron(req, res, next) {
-  if (DEVING) {
-req.session.user = {user_id: 32, user_name: 'Chucky', gender: 'Male', min_age:32, max_age:45, max_distance:35};
-}
-next()
-}
+// function devitron(req, res, next) {
+//   if (DEVING) {
+// req.session.user = {user_id: 32, user_name: 'Chucky', gender: 'Male', min_age:32, max_age:45, max_distance:35};
+// }
+// next()
+// }
 
 massive(CONNECTION_STRING).then(db => {
   app.set("db", db);
@@ -40,7 +40,7 @@ app.get("/api/user/:phone", uo.getUserData);
 app.get("/api/profile/:id", uo.getUserProfile);
 app.get("/api/matches/:id", uo.getMatches);
 app.get("/api/newmatches/:id", uo.getNewMatches)
-app.get("/api/possiblematches",devitron, uo.getPossibleMatches);
+app.get("/api/possiblematches", uo.getPossibleMatches);
 app.get("/api/messages", mo.getMessages);
 
 app.put("/api/minage", uo.updateMinAge);

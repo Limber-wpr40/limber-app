@@ -32,7 +32,6 @@ class Phonenumber extends Component {
   handleGetSession(){
      axios.get(`/api/user/${this.state.phone}`)
      .then(response => {this.setState({user:response.data})
-    console.log(this.state.user)
     });
 
   }
@@ -82,18 +81,18 @@ class Phonenumber extends Component {
               </a>
             </p>
           </div>
-          {/* <Link
+          <Link
             to={{
               pathname: "/verify",
               state: { phone: this.state.phone }
             }}
-          > */}
+          >
             <button
               className={(isActive ? "continue-active" : "continue") + " btn"} onClick={()=>{this.handleGetSession()}}
             >
               CONTINUE
             </button>
-          {/* </Link> */}
+          </Link>
         </div>
         <div
           className={
@@ -106,35 +105,35 @@ class Phonenumber extends Component {
             >
               1
             </div>
-            <div className="key num-key" onClick={() => this.handleInput(2)}>
+            <div className="key num-key" onClick={(e) => this.handleInput(e.target.value)}value='2'>
               2
             </div>
-            <div className="key num-key" onClick={() => this.handleInput(3)}>
+            <div className="key num-key" onClick={(e) => this.handleInput(3)}>
               3
             </div>
             <div className="key action-key">Back</div>
-            <div className="key num-key" onClick={() => this.handleInput(4)}>
+            <div className="key num-key" onClick={(e) => this.handleInput(4)}>
               4
             </div>
-            <div className="key num-key" onClick={() => this.handleInput(5)}>
+            <div className="key num-key" onClick={(e) => this.handleInput(5)}>
               5
             </div>
-            <div className="key num-key" onClick={() => this.handleInput(6)}>
+            <div className="key num-key" onClick={(e) => this.handleInput(6)}>
               6
             </div>
             <div className="key action-key">Done</div>
-            <div className="key num-key" onClick={() => this.handleInput(7)}>
+            <div className="key num-key" onClick={(e) => this.handleInput(7)}>
               7
             </div>
-            <div className="key num-key" onClick={() => this.handleInput(8)}>
+            <div className="key num-key" onClick={(e) => this.handleInput(8)}>
               8
             </div>
-            <div className="key num-key" onClick={() => this.handleInput(9)}>
+            <div className="key num-key" onClick={(e) => this.handleInput(9)}>
               9
             </div>
             <div className="key action-key">back</div>
             <div className="key action-key" />
-            <div className="key num-key" onClick={() => this.handleInput(0)}>
+            <div className="key num-key" onClick={(e) => this.handleInput(0)}>
               0
             </div>
             <div className="key action-key" />

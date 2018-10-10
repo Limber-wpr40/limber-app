@@ -21,7 +21,7 @@ class Profile extends Component {
     return (
       <div className='profile-main'>
                 <div className="arrow-wrapper">
-          <Link to="/">
+          <Link to="/landing">
             <img
               className="myarrow"
               src="../images/rleftarrow.png"
