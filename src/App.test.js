@@ -1,9 +1,34 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+const funcs = require('./jestutilities/function')
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
-});
+describe('codeValidation method',()=>{
+    test ('should return an empty string',()=>{
+        let result = funcs.codeValidation()
+        expect(result).toBe('')
+    })
+})
+
+describe('distanceValidation method',()=>{
+    test ('should return an empty string',()=>{
+        let result = funcs.distanceValidation()
+        expect(result).toBe('')
+    })
+})
+
+describe('minAgeValidation method',()=>{
+    test ('should return an empty string',()=>{
+        let result = funcs.minAgeValidation()
+        expect(result).toEqual([])
+    })
+})
+describe('maxAgeValidation method',()=>{
+    test ('should return an empty string',()=>{
+        let result = funcs.maxAgeValidation()
+        expect(result).toEqual([])
+    })
+})
+describe('showAgeValidation method',()=>{
+    test ('should return an empty string',()=>{
+        let result = funcs.showAgeValidation()
+        expect(result).toBe('')
+    })
+})
