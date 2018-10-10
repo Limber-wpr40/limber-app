@@ -109,7 +109,6 @@ module.exports = {
     db.update_settings(user_id, min_age, max_age, max_distance)
       .then((updates) =>{
         req.session.user = {...req.session.user,...updates[0]}
-        console.log(req.session.user)
         res.sendStatus(200)})
       .catch(err => {
         res.status(500).send({
