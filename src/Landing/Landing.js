@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MotionStack from 'react-motion-stack';
+import Nav from '../Nav/Nav';
 import Card from '../Card/Card';
 import refresh from '../logos/refresh.png';
 import nope from '../logos/nope.png';
@@ -37,6 +38,7 @@ export default class Landing extends Component {
     render() {
         return (
             <div>
+                <Nav />
                 <Card />
                 <div className='landing-container' >
                     <footer className='landing-footer'>

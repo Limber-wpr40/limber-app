@@ -15,19 +15,9 @@ app.use(
     secret: SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: false },
-    
+    cookie: { secure: false }
   })
 );
-
-
-
-function devitron(req, res, next) {
-  if (DEVING) {
-   req.session.user ={user_id: 22, user_name:'Lillian',gender:'Female', min_age: 26, max_age: 36, max_distance: 50};
-}
-next()
-}
 
 massive(CONNECTION_STRING).then(db => {
   app.set("db", db);
@@ -35,17 +25,15 @@ massive(CONNECTION_STRING).then(db => {
 app.use(bodyParser.json());
 
 app.use(express.static(`${__dirname}/../build`));
-app.get("/api/settings", uo.getUserSettings );
+app.get("/api/settings", uo.getUserSettings);
 app.get("/api/user/:phone", uo.getUserData);
 app.get("/api/profile/:id", uo.getUserProfile);
 app.get("/api/matches/:id", uo.getMatches);
-app.get("/api/newmatches/:id", uo.getNewMatches)
-app.get("/api/possiblematches",devitron, uo.getPossibleMatches);
+app.get("/api/newmatches/:id", uo.getNewMatches);
+app.get("/api/possiblematches", uo.getPossibleMatches);
 app.get("/api/messages", mo.getMessages);
 
-app.put("/api/minage", uo.updateMinAge);
-app.put("/api/maxage", uo.updateMaxAge);
-app.put("/api/maxdist", uo.updateDistance);
+app.put("/api/settings", uo.updateSettings);
 app.put("api/profile", uo.updateProfile);
 
 app.post("/api/likes", uo.addLike);

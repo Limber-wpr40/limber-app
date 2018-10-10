@@ -1,1 +1,0 @@
-UPDATE limber_settings SET max_age = $2 where user_id  = $1;

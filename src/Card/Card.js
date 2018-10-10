@@ -12,28 +12,26 @@ export default class Card extends Component {
 
         this.state = {
             potMatches: [],
-            super_like: false,
-            match_id: 0
+            super_like:false,
+            match_id:0
+
         }
     }
 
     onBeforeSwipe = (swipe, direction, state) => {
         console.log('direction', direction);
         console.log('state', state.pressedId);
-
+        
         swipe();
         if(direction === 'right'){
-            this.setState({
-                super_like: true, match_id: state.pressedId
-            })
-            let matchData = {match_id: this.state.match_id, super_like: this.state.super_like}
+                       this.setState({super_like:true, match_id:state.pressedId})
             console.log(this.state.match_id, this.state.super_like)
-            axios.post('/api/likes', matchData)
-            console.log('Like!')
-        } else {
-            console.log('nope!')
+            axios.post('/api/likes', this.state.match_id, this.state.super_like)
+          console.log('LIKE!')
+        }else{
+          console.log('NOPE!')
         }
-    }
+      }
 
     onSwipeEnd = ({ data }) => {
         console.log("data", data);
@@ -61,6 +59,7 @@ export default class Card extends Component {
             })
             console.log(res.data)
         })
+
 
     }
 
