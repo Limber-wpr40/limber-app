@@ -29,8 +29,8 @@ export default class Card extends Component {
         swipe();
         if (direction === 'right') {
             this.setState({ super_like: true, match_id: state.pressedId })
-            console.log(this.state.match_id, this.state.super_like)
-            axios.post('/api/likes', this.state.match_id, this.state.super_like)
+            let myLike = {match_id:this.state.match_id, super_like: this.state.super_like}
+            axios.post('/api/likes',myLike)
             console.log('LIKE!')
         } else {
             console.log('NOPE!')
