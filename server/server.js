@@ -48,11 +48,10 @@ app.get("/api/profile/:id", uo.getUserProfile);
 app.get("/api/matches/:id", uo.getMatches);
 app.get("/api/newmatches/:id", uo.getNewMatches);
 app.get("/api/possiblematches", devitron, uo.getPossibleMatches);
+app.get("/api/possiblematches", uo.getPossibleMatches);
 app.get("/api/messages", mo.getMessages);
 
-app.put("/api/minage", uo.updateMinAge);
-app.put("/api/maxage", uo.updateMaxAge);
-app.put("/api/maxdist", uo.updateDistance);
+app.put("/api/settings", uo.updateSettings);
 app.put("api/profile", uo.updateProfile);
 
 app.post("/api/likes", uo.addLike);

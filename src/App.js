@@ -22,7 +22,7 @@ class App extends Component {
         {/* <Chat /> */}
       <div className="App">
         {/* <Nav /> */}
-        {/* <Geolocation /> */}
+        <Geolocation />
         {routes}
       </div>
       </div>

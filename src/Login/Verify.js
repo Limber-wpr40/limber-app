@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Login.css";
 import { Link } from "react-router-dom";
+import funcs from '../jestutilities/function';
 
 class Verify extends Component {
   constructor(props) {
@@ -12,7 +13,6 @@ class Verify extends Component {
       keypadShow: false
     };
     this.handleInput = this.handleInput.bind(this);
-    // console.log(this.session.user)
   }
   showKeyPad() {
     this.setState({
@@ -20,8 +20,8 @@ class Verify extends Component {
     });
   }
 
-  handleInput(e) {
-    this.setState({ vcode: e.target.value });
+  handleInput(val) {
+    this.setState({ vcode: funcs.codeValidation(val) });
   }
   render() {
     console.log(this.state.keypadShow);
