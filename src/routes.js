@@ -5,7 +5,7 @@ import Verify from './Login/Verify';
 import Landing from './Landing/Landing';
 import Login from './Login/Login';
 import Profile from './Profile/Profile';
-import Chat from './Components/Chat/ChatNav';
+import Chat from './Components/Chat/Chat';
 import Feed from './Components/Feed/Feed';
 import Messages from './Components/Messages/Messages';
 import Settings from './Profile/Settings';
