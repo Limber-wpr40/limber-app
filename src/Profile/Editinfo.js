@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import Tooltip from "rc-tooltip";
+import funcs from '../jestutilities/function';
 
 const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const Handle = Slider.Handle;
@@ -56,7 +57,7 @@ class Editinfo extends Component {
       });
   }
   handleShowAge(value) {
-    this.setState({ showAge: value });
+    this.setState({ showAge: funcs.showAgeValidation(value) });
   }
 
   handleShowDistance(value) {

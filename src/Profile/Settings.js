@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import Tooltip from "rc-tooltip";
+import funcs from '../jestutilities/function';
 
 const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const Range = createSliderWithTooltip(Slider.Range);
@@ -70,12 +71,17 @@ class Settings extends Component {
       
     }
   }
+
   handleDistanceChange(value) {
-    this.setState({ max_distance: value });
+    this.setState({ max_distance: funcs.distanceValidation(value) });
   }
+  
   handleAgeChange(value) {
+    funcs.minAgeValidation(value);
+    funcs.maxAgeValidation(value);
     this.setState({ min_age: value[0], max_age: value[1] });
   }
+
 
   render() {
 
