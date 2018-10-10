@@ -5,6 +5,8 @@ const massive = require("massive");
 const session = require("express-session");
 const axios = require("axios");
 
+var socket = require("socket.io");
+
 const uo = require("./user_controller");
 const mo = require("./message_controller");
 
@@ -22,6 +24,7 @@ app.use(
 
 
 massive(CONNECTION_STRING).then(db => {
+  console.log("db connected");
   app.set("db", db);
 });
 app.use(bodyParser.json());
@@ -31,7 +34,7 @@ app.get("/api/settings", uo.getUserSettings );
 app.get("/api/user/:phone", uo.getUserData);
 app.get("/api/profile/:id", uo.getUserProfile);
 app.get("/api/matches/:id", uo.getMatches);
-app.get("/api/newmatches/:id", uo.getNewMatches)
+app.get("/api/newmatches/:id", uo.getNewMatches);
 app.get("/api/possiblematches", uo.getPossibleMatches);
 app.get("/api/messages", mo.getMessages);
 
@@ -43,6 +46,36 @@ app.post("/api/message", mo.addMessage);
 
 app.delete("/api/user/:id", uo.deleteUser);
 
-app.listen(SERVER_PORT, () => {
+//added "server=app.listen"
+server = app.listen(SERVER_PORT, () => {
   console.log(`Server evesdropping on port ${SERVER_PORT}.`);
 });
+
+//SOCKET SETUP
+var io = socket(server);
+
+//Connection for a client
+io.on("connection", socket => {
+  const db = app.get("db");
+  db.update_socket_id(socket.id, 61)
+    .then(() => console.log("added socket id"))
+    .catch(console.error);
+  console.log(socket.id);
+
+  // db.get_socket_id(socket.id, 61)
+  //   .then(() => console.log("got socket id"))
+  //   .catch(console.error);
+  //   console.log(socket.id);
+
+  socket.on("SEND_MESSAGE", function(data) {
+    io.emit("RECEIVE_MESSAGE", data);
+  });
+});
+
+//default room
+io.on("connection", function(socket) {
+  socket.on("say to someone", function(id, msg) {
+    socket.broadcast.to(id).emit("my message", msg);
+  });
+});
+

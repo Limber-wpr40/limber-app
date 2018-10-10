@@ -1,0 +1,1 @@
+select socket_id from limber_user where user_id = $1;

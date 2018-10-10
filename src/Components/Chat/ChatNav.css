@@ -1,0 +1,28 @@
+.chatnav {
+    width: 100%;
+}
+
+.chatnav .arrow-icon {
+    text-align: left;
+    color: red;
+    position: relative;
+    right: 40%;
+}
+
+.profile-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+.flag-icon {
+    color: red;
+    float: right;
+    position: relative;
+    left: 40%;
+}
+
