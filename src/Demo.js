@@ -28,7 +28,6 @@ class Demo extends React.Component {
       console.log('LIKE!')
     }else{
       console.log('NOPE!')
-
     }
   }
  
@@ -36,14 +35,14 @@ class Demo extends React.Component {
     console.log('data', data);
   };
  
-  renderButtons(props) {
-    return (
-      <div className="btn-group">
-        <button children="👎" onClick={props.reject} />
-        <button children="👍" onClick={props.accept} />
-      </div>
-    );
-  }
+  // renderButtons(props) {
+  //   return (
+  //     <div className="btn-group">
+  //       <button children="👎" onClick={props.reject} />
+  //       <button children="👍" onClick={props.accept} />
+  //     </div>
+  //   );
+  // }
  
   render() {
     return (

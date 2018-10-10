@@ -24,7 +24,7 @@ app.use(
 
 function devitron(req, res, next) {
   if (DEVING) {
-   req.session.user ={user_id: 22, user_name:'Lillian',gender:'Female', min_age: 26, max_age: 36, max_distance: 50};
+req.session.user = {user_id: 32, user_name: 'Chucky', gender: 'Male', min_age:32, max_age:45, max_distance:35};
 }
 next()
 }

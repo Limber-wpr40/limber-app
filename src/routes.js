@@ -3,7 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import Demo from './Demo';
 import Phonenumber from './Login/Phonenumber';
 import Verify from './Login/Verify';
-import Landing from './Landing';
+import Landing from './Landing/Landing';
 import Login from './Login/Login';
 import Profile from './Profile/Profile';
 import Settings from './Profile/Settings';
