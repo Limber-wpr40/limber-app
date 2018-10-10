@@ -16,9 +16,12 @@ export default class Landing extends Component {
         super(props);
 
         this.state = {
+            
 
         }
     }
+
+
 
     // renderButtons(props) {
     //     return (
@@ -35,12 +38,6 @@ export default class Landing extends Component {
         return (
             <div>
                 <Card />
-                {/* <MotionStack
-                    data={this.state.potMatches}
-                    onSwipeEnd={this.onSwipeEnd}
-                    render={props => props.element}
-                    renderButtons={this.renderButtons}
-                /> */}
                 <div className='landing-container' >
                     <footer className='landing-footer'>
                         <div className='dot-2'>
@@ -53,7 +50,7 @@ export default class Landing extends Component {
                             <img className='footer-icons' src={star} alt="" />
                         </div>
                         <div className='dot'>
-                            <img className='footer-icons' src={like} alt="" />
+                            <img className='footer-icons'  src={like} alt="" />
                         </div>
                         <div className='dot-2'>
                             <img className='footer-icons' src={thunder} alt="" />

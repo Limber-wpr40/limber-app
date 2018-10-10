@@ -62,10 +62,10 @@ module.exports = {
   getPossibleMatches: (req, res, next) => {
     const db = req.app.get("db");
 
-    let { user_id, min_age, max_age, gender } = db.get_settings(
-      req.session.user
-    );
-    console.log(res.body);
+    let { user_id, min_age, max_age, gender, max_distance } = req.session.user
+
+    console.log(req.session.user);
+    console.log('something', min_age, max_age, gender)
     
     db.get_matches_by_age_gender_dist(user_id, min_age, max_age, gender, max_distance)
     .then(matches => {
@@ -85,7 +85,8 @@ module.exports = {
 
   addLike: (req, res, next) => {
     const db = req.app.get("db");
-    const { user_id, match_id, super_like } = req.body;
+    const { user_id } = req.session.user
+    const { match_id, super_like } = req.body;
     console.log(req.body);
     db.add_like(user_id, match_id, super_like)
       .then(() => res.sendStatus(200))
