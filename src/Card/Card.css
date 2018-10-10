@@ -4,8 +4,8 @@
     display: grid;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    background-color: aqua;
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+    background-color: rgb(248, 244, 244);
 }
 
 .user-card img {
@@ -13,17 +13,20 @@
     justify-content: center;
     align-items: center;
     width: 95vw;
-    height: 80vh;
+    height: 75vh;
     user-select: none;
     border-radius: 4%;
+    box-shadow: 0px 0px 50px rgba(202, 200, 200, 0.829);
+}
+
+.user-card h1 {
+    color: black;
 }
 
 .motion-card-item {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 80vh;
-    width: 150%;
-    /* backgroundxs-color: blue; */
+    height: 60vh;
 }
 
