@@ -14,6 +14,7 @@ class Profile extends Component {
   componentDidMount() {
     axios.get("/api/settings").then(response => {
       this.setState({ userData: response.data });
+      console.log('this is the data',this.state.userData)
     });
   }
 

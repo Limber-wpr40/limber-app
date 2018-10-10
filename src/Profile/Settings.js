@@ -39,6 +39,7 @@ class Settings extends Component {
     this.handleMeasurement = this.handleMeasurement.bind(this);
     this.handleAgeChange = this.handleAgeChange.bind(this);
     this.handleDistanceChange = this.handleDistanceChange.bind(this);
+    this.updateSettings = this.updateSettings.bind(this)
   }
   componentDidMount() {
     axios.get("/api/settings").then(response => {
@@ -48,9 +49,18 @@ class Settings extends Component {
         max_age: response.data.max_age,
         max_distance: response.data.max_distance
       });
-      console.log(this.state.userData);
+
     });
   }
+
+
+
+  updateSettings(){
+    let newSettings = {min_age:this.state.min_age, max_age:this.state.max_age, max_distance:this.state.max_distance}
+    axios.put("/api/settings",newSettings) 
+    console.log('these are the new settings', newSettings)
+  }
+ 
 
   handleMeasurement(e) {
     this.setState({ measurement: e });
@@ -68,10 +78,10 @@ class Settings extends Component {
   }
 
   render() {
-    console.log(this.state.userData);
+
     return (
       <div className="profile-main">
-        <div className="arrow-wrapper profile-head">
+        <div className="arrow-wrapper profile-head" onClick={()=> this.updateSettings()}>
           <Link to="/profile">
             <img
               className="myarrow"

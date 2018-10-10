@@ -1,7 +1,8 @@
 module.exports = {
+
   getUserProfile: (req, res, next) => {
     const db = req.app.get("db");
-    let id = (req.session.user.user_id);
+    let id = req.session.user.user_id;
     db.get_user_profile([id])
       .then(profile => res.status(200).send(profile))
       .catch(err => {
@@ -24,7 +25,6 @@ module.exports = {
     let foundUser = await db.get_user_data([phone]);
     if (foundUser[0]) {
       req.session.user = foundUser[0];
-      console.log("user is", req.session.user);
       res.status(200).send(req.session.user);
       // res.redirect("/verify");
     } else {
@@ -45,6 +45,7 @@ module.exports = {
         console.log(err);
       });
   },
+  
   getMatches: (req, res, next) => {
     const db = req.app.get("db");
     let id = parseInt(req.params.id);
@@ -61,13 +62,18 @@ module.exports = {
 
   getPossibleMatches: (req, res, next) => {
     const db = req.app.get("db");
-    let { user_id, min_age, max_age, gender, max_distance } = req.session.user
-    ;
-    console.log('this is a',res.body);
-    db.get_matches_by_age_gender_dist(user_id, min_age, max_age, gender, max_distance)
-    .then(matches => {
-      console.log(matches)
-        let filteredMatches = matches.filter(match => match.dist <= max_distance);
+    let { user_id, min_age, max_age, gender, max_distance } = req.session.user;
+    db.get_matches_by_age_gender_dist(
+      user_id,
+      min_age,
+      max_age,
+      gender,
+      max_distance
+    )
+      .then(matches => {
+        let filteredMatches = matches.filter(
+          match => match.dist <= max_distance
+        );
         res.status(200).send(filteredMatches);
       })
       .catch(err => {
@@ -81,8 +87,8 @@ module.exports = {
 
   addLike: (req, res, next) => {
     const db = req.app.get("db");
-    let {user_id} = req.session.user;
-    const {match_id, super_like } = req.body;
+    let { user_id } = req.session.user;
+    const { match_id, super_like } = req.body;
     console.log(req.body);
     db.add_like(user_id, match_id, super_like)
       .then(() => res.sendStatus(200))
@@ -95,25 +101,16 @@ module.exports = {
       });
   },
 
-  updateMinAge: (req, res, next) => {
+  updateSettings: (req, res, next) => {
     const db = req.app.get("db");
-    const { user_id, min_age } = req.query;
-    db.update_min_age(user_id, min_age)
-      .then(settings => res.status(200).send(settings))
-      .catch(err => {
-        res.status(500).send({
-          errorMessage:
-            "Oops! Something went wrong. Our engineers have been informed!"
-        });
-        console.log(err);
-      });
-  },
-
-  updateMaxAge: (req, res, next) => {
-    const db = req.app.get("db");
-    const { user_id, max_age } = req.query;
-    db.update_max_age(user_id, max_age)
-      .then(() => res.sendStatus(200))
+    const { user_id } = req.session.user;
+    const { min_age, max_age, max_distance } = req.body;
+    console.log("these are the settings", req.body);
+    db.update_settings(user_id, min_age, max_age, max_distance)
+      .then((updates) =>{
+        req.session.user = {...req.session.user,...updates[0]}
+        console.log(req.session.user)
+        res.sendStatus(200)})
       .catch(err => {
         res.status(500).send({
           errorMessage:
