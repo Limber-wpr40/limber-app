@@ -13,7 +13,7 @@ export default class Messages extends Component {
       newMatches: [],
       matches: [],
       user_id: 176,
-      match_id:0
+      match_id: 4
     };
   }
 
@@ -47,7 +47,7 @@ export default class Messages extends Component {
       return (
         <div key={newmatch.match_id}>
           <Link to={{pathname:`/chat/${newmatch.match_id}`,
-           state:{user_id:this.state.user_id, match_id:this.state.match_id}}}>
+           state:{user_id:this.state.user_id, match_id: this.state.match_id, user_image: this.state.user_image}}}>
             <img
               className="image-icon"
               onClick={() => this.handleClick(newmatch.match_id)}
@@ -63,7 +63,7 @@ export default class Messages extends Component {
       return (
         <div key={match.match_id}>
           <Link to={{pathname:`/chat/${match.match_id}`,
-           state:this.state.user_id}}>
+          state:{user_id:this.state.user_id, match_id: this.state.match_id, user_image: this.state.user_image}}}>
             <img
               className="image-icon"
               onClick={() => this.handleClick(match.match_id)}

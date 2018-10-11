@@ -32,6 +32,7 @@ export default class ChatNav extends Component {
         </Link>
         <div className="profile-img">
             <img className="profile-img" src={`./images/${this.state.userData.user_image}`} alt=""/>
+         
         </div>
         <i className="fas fa-flag flag-icon"></i>
         </nav>
