@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import io from "socket.io-client";
 import "./Chat.css";
-import axios from "axios";
 import ChatNav from "./ChatNav";
-import pmtest from '../../jestutilities/pmtest';
+
 
 export default class Chat extends Component {
   constructor(props) {

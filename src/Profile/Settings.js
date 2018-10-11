@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import Tooltip from "rc-tooltip";
-import funcs from '../jestutilities/function';
-import punks from '../jestutilities/jest-testing';
+import funcs from "../jestutilities/function";
+import punks from "../jestutilities/jest-testing";
 
 const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const Range = createSliderWithTooltip(Slider.Range);
@@ -41,7 +41,7 @@ class Settings extends Component {
     this.handleMeasurement = this.handleMeasurement.bind(this);
     this.handleAgeChange = this.handleAgeChange.bind(this);
     this.handleDistanceChange = this.handleDistanceChange.bind(this);
-    this.updateSettings = this.updateSettings.bind(this)
+    this.updateSettings = this.updateSettings.bind(this);
   }
   componentDidMount() {
     axios.get("/api/settings").then(response => {
@@ -51,45 +51,44 @@ class Settings extends Component {
         max_age: response.data.max_age,
         max_distance: response.data.max_distance
       });
-
     });
   }
 
-
-
-  updateSettings(){
-    let newSettings = {min_age:this.state.min_age, max_age:this.state.max_age, max_distance:this.state.max_distance}
-    axios.put("/api/settings",newSettings) 
-    console.log('these are the new settings', newSettings)
-    punks.handleUpdateSettings(newSettings)
+  updateSettings() {
+    let newSettings = {
+      min_age: this.state.min_age,
+      max_age: this.state.max_age,
+      max_distance: this.state.max_distance
+    };
+    axios.put("/api/settings", newSettings);
+    console.log("these are the new settings", newSettings);
+    punks.handleUpdateSettings(newSettings);
   }
- 
 
   handleMeasurement(e) {
     this.setState({ measurement: e });
-    if(this.state.measurement === 'Ki.'){
-
-    }else{
-      
+    if (this.state.measurement === "Ki.") {
+    } else {
     }
   }
 
   handleDistanceChange(value) {
     this.setState({ max_distance: funcs.distanceValidation(value) });
   }
-  
+
   handleAgeChange(value) {
     funcs.minAgeValidation(value);
     funcs.maxAgeValidation(value);
     this.setState({ min_age: value[0], max_age: value[1] });
   }
 
-
   render() {
-
     return (
       <div className="profile-main">
-        <div className="arrow-wrapper profile-head" onClick={()=> this.updateSettings()}>
+        <div
+          className="arrow-wrapper profile-head"
+          onClick={() => this.updateSettings()}
+        >
           <Link to="/profile">
             <img
               className="myarrow"
@@ -115,7 +114,10 @@ class Settings extends Component {
                 min={0}
                 max={100}
                 trackStyle={{ backgroundColor: "#ff0066", height: 2 }}
-                handleStyle={{ borderColor: "#ff0066", backgroundColor: "#ff0066" }}
+                handleStyle={{
+                  borderColor: "#ff0066",
+                  backgroundColor: "#ff0066"
+                }}
                 railStyle={{ backgroundColor: "lightgrey", height: 2 }}
                 value={this.state.max_distance}
                 onChange={value => this.handleDistanceChange(value)}
@@ -135,7 +137,10 @@ class Settings extends Component {
                 max={70}
                 trackStyle={[{ backgroundColor: "#ff0066", height: 2 }]}
                 railStyle={{ backgroundColor: "lightgrey", height: 2 }}
-                handleStyle={{ borderColor: "#ff0066", backgroundColor: "#ff0066" }}
+                handleStyle={{
+                  borderColor: "#ff0066",
+                  backgroundColor: "#ff0066"
+                }}
                 value={[this.state.min_age, this.state.max_age]}
                 onChange={value => this.handleAgeChange(value)}
                 tipformatter={value => `${value}`}
@@ -188,14 +193,18 @@ class Settings extends Component {
             <div
               onClick={e => this.handleMeasurement("Ki.")}
               value="Ki."
-              className={`distance-btn ${this.state.measurement === 'Ki.' ? 'dist-selected' : ''}` }
+              className={`distance-btn ${
+                this.state.measurement === "Ki." ? "dist-selected" : ""
+              }`}
             >
               Kilometers{" "}
             </div>
             <div
               onClick={e => this.handleMeasurement("Mi.")}
               value="Mi."
-              className={`distance-btn ${this.state.measurement === 'Mi.' ? 'dist-selected' : ''}` }
+              className={`distance-btn ${
+                this.state.measurement === "Mi." ? "dist-selected" : ""
+              }`}
             >
               Miles
             </div>
@@ -214,11 +223,11 @@ class Settings extends Component {
             <div className="notify">Privacy Policy</div>
             <div className="notify">Terms of Service</div>
           </div>
-          <Link to='/'>
           <div className="profile-group help">
-            <div className="notify">Logout</div>
+            <Link to="/">
+              <div className="notify">Logout</div>
+            </Link>
           </div>
-          </Link>
           <div className="limber-icon-wrapper">
             <img src="" alt="limber" />
           </div>

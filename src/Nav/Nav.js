@@ -21,7 +21,9 @@ export default class Nav extends Component {
                 <Link to='/profile'>
                     <img className="icons" src={profileIcon} alt="" />
                 </Link>
+                <Link to='/messages'>
                     <img className="icons" src={chatIcon} alt="" />
+                </Link>
                 </header>
             </div>
         )

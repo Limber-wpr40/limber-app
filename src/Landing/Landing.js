@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import MotionStack from 'react-motion-stack';
 import Nav from '../Nav/Nav';
 import Card from '../Card/Card';
 import refresh from '../logos/refresh.png';
@@ -21,18 +20,6 @@ export default class Landing extends Component {
 
         }
     }
-
-
-
-    // renderButtons(props) {
-    //     return (
-    //         <div className="btn-group">
-    // <button children="👎" onClick={props.reject} />
-    //             <button children="👍" onClick={props.accept} />
-    //         </div>
-    //     );
-    // }
-
 
 
     render() {

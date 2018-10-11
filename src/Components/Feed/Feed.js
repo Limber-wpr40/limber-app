@@ -15,8 +15,8 @@ export default class Feed extends Component {
     return (
       <div>
         <div className="navbar">
-             <img className="tinder-icon" src={tinder} style={{width:'40px', height:'40px'}}/>
-             <img className="chat-icon" src={chat} style={{width:'50px', height:'50px'}} />
+             <img className="tinder-icon" src={tinder} style={{width:'40px', height:'40px'}} alt='logo'/>
+             <img className="chat-icon" src={chat} style={{width:'50px', height:'50px'}} alt='chat'/>
 
              
         </div>

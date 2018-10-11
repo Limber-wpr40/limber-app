@@ -1,4 +1,4 @@
-const axios = require('axios');
+
 
 module.exports ={
 handleDirectionChange:(direction) =>{
