@@ -20,7 +20,6 @@ module.exports = {
 
   getUserData: async (req, res, next) => {
     const db = req.app.get("db");
-    console.log(req.params.phone);
     let { phone } = req.params;
     let foundUser = await db.get_user_data([phone]);
     if (foundUser[0]) {

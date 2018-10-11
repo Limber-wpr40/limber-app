@@ -32,6 +32,7 @@ class Phonenumber extends Component {
   handleGetSession(){
      axios.get(`/api/user/${this.state.phone}`)
      .then(response => {this.setState({user:response.data})
+     console.log(this.state.user)
     });
 
   }
@@ -88,7 +89,7 @@ class Phonenumber extends Component {
             }}
           >
             <button
-              className={(isActive ? "continue-active" : "continue") + " btn"} onClick={()=>{this.handleGetSession()}}
+              className={(isActive ? "continue-active" : "continue") + " btn"} onClick={()=> this.handleGetSession()} 
             >
               CONTINUE
             </button>
