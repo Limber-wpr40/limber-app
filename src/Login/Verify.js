@@ -20,8 +20,8 @@ class Verify extends Component {
     });
   }
 
-  handleInput(val) {
-    this.setState({ vcode: funcs.codeValidation(val) });
+  handleInput(e) {
+    this.setState({ vcode: e.target.value });
   }
   render() {
     console.log(this.state.keypadShow);
@@ -31,8 +31,8 @@ class Verify extends Component {
         <div className="arrow-wrapper">
           <Link
             to={{
-              pathname: "/phone"
-              // state:{phone: this.session.user.phone}
+              pathname: "/phone",
+              state:{phone: this.props.location.state.phone}
             }}
           >
             <img
@@ -45,7 +45,7 @@ class Verify extends Component {
         <div className="login-main-body">
           <div className="main-title">My code is</div>
           <div className="change-phone">
-            <div className="phone-question">+1 989-108-8833</div>
+            <div className="phone-question">{this.props.location.state.phone}</div>
             <div className="resend-link">RESEND</div>
           </div>
           <div className="vcode-id" onClick={() => this.showKeyPad()}>

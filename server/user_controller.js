@@ -34,8 +34,9 @@ module.exports = {
 
   getNewMatches: (req, res, next) => {
     const db = req.app.get("db");
-    let id = parseInt(req.params.id);
-    db.get_new_matches([id])
+    let {id} = (req.params);
+    console.log(req.params)
+    db.get_new_matches(id)
       .then(matches => res.status(200).send(matches))
       .catch(err => {
         res.status(500).send({
@@ -48,8 +49,10 @@ module.exports = {
   
   getMatches: (req, res, next) => {
     const db = req.app.get("db");
-    let id = parseInt(req.params.id);
-    db.get_matches([id])
+    console.log(req.params.id)
+    let {id} = req.params;
+    console.log(id)
+    db.get_matches(id)
       .then(matches => res.status(200).send(matches))
       .catch(err => {
         res.status(500).send({

@@ -3,7 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const massive = require("massive");
 const session = require("express-session");
-const axios = require("axios");
+
 
 var socket = require("socket.io");
 
@@ -21,20 +21,6 @@ app.use(
   })
 );
 
-function devitron(req, res, next) {
-  if (DEVING) {
-    req.session.user = {
-      user_id: 22,
-      user_name: "Lillian",
-      gender: "Female",
-      min_age: 26,
-      max_age: 36,
-      max_distance: 50
-    };
-  }
-  next();
-}
-
 massive(CONNECTION_STRING).then(db => {
   console.log("db connected");
   app.set("db", db);
@@ -47,7 +33,6 @@ app.get("/api/user/:phone", uo.getUserData);
 app.get("/api/profile/:id", uo.getUserProfile);
 app.get("/api/matches/:id", uo.getMatches);
 app.get("/api/newmatches/:id", uo.getNewMatches);
-app.get("/api/possiblematches", devitron, uo.getPossibleMatches);
 app.get("/api/possiblematches", uo.getPossibleMatches);
 app.get("/api/messages", mo.getMessages);
 
@@ -67,23 +52,18 @@ server = app.listen(SERVER_PORT, () => {
 //SOCKET SETUP
 var io = socket(server);
 
-//Connection for a client
-io.on("connection", socket => {
-  const db = app.get("db");
-  db.update_socket_id(socket.id, 61)
-    .then(() => console.log("added socket id"))
-    .catch(console.error);
-  console.log(socket.id);
+// //Connection for a client
+// io.on("connection", socket => {
+//   const db = app.get("db");
+//   db.update_socket_id(socket.id, 61)
+//     .then(() => console.log("added socket id"))
+//     .catch(console.error);
+//   console.log(socket.id);
 
-  // db.get_socket_id(socket.id, 61)
-  //   .then(() => console.log("got socket id"))
-  //   .catch(console.error);
-  //   console.log(socket.id);
-
-  socket.on("SEND_MESSAGE", function(data) {
-    io.emit("RECEIVE_MESSAGE", data);
-  });
-});
+//   socket.on("SEND_MESSAGE", function(data) {
+//     io.emit("RECEIVE_MESSAGE", data);
+//   });
+// });
 
 //default room
 io.on("connection", function(socket) {
@@ -91,4 +71,3 @@ io.on("connection", function(socket) {
     socket.broadcast.to(id).emit("my message", msg);
   });
 });
-
