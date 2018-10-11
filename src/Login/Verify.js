@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Login.css";
 import { Link } from "react-router-dom";
+import axios from 'axios';
 import funcs from '../jestutilities/function';
 
 class Verify extends Component {
@@ -10,21 +11,29 @@ class Verify extends Component {
     this.state = {
       vcode: "",
       phone: "",
-      keypadShow: false
+      keypadShow: false,
+      user:{}
     };
     this.handleInput = this.handleInput.bind(this);
   }
-  showKeyPad() {
-    this.setState({
-      keypadShow: !this.state.keypadShow
-    });
-  }
 
-  handleInput(e) {
-    this.setState({ vcode: e.target.value });
-  }
-  render() {
-    console.log(this.state.keypadShow);
+  componentDidUpdate(){
+   
+}
+
+showKeyPad() {
+  this.setState({
+    keypadShow: !this.state.keypadShow
+  });
+}
+
+handleInput(e) {
+  this.setState({ vcode: e.target.value });
+  axios.get(`/api/user/${this.props.location.state.phone}`)
+  .then(response => {this.setState({user:response.data})
+});
+}
+render() {
     let isActive = this.state.vcode.length === 6 ? true : false;
     return (
       <div>
@@ -49,8 +58,7 @@ class Verify extends Component {
             <div className="resend-link">RESEND</div>
           </div>
           <div className="vcode-id" onClick={() => this.showKeyPad()}>
-            <input
-              type="number"
+            <input ref={input => input && input.focus()} type='number'
               className="v-code"
               onChange={e => this.handleInput(e)}
             />
