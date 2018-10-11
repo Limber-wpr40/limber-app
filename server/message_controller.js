@@ -1,8 +1,11 @@
 module.exports = {
   getMessages: (req, res) => {
     const db = req.app.get("db");
-    let { recv_id } = req.query;
-    db.get_message_thread(req.session.user.user_id, recv_id)
+    let { sender_id, recv_id} = req.query;
+    console.log('reqresult',req.query)
+    // db.get_message_thread(req.session.user.user_id, recv_id)
+    
+    db.get_message_thread([sender_id, recv_id])
       .then(messages => res.status(200).send(messages))
       .catch(err => {
         res.status(500).send({

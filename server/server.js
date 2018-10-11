@@ -33,8 +33,10 @@ app.get("/api/user/:phone", uo.getUserData);
 app.get("/api/profile/:id", uo.getUserProfile);
 app.get("/api/matches/:id", uo.getMatches);
 app.get("/api/newmatches/:id", uo.getNewMatches);
-app.get("/api/possiblematches", uo.getPossibleMatches);
+app.get("/api/possiblematches", uo.getPossibleMatches)
 app.get("/api/messages", mo.getMessages);
+;
+// app.get("/api/messages/:id/:recv_id", mo.getMessages);
 
 app.put("/api/settings", uo.updateSettings);
 app.put("api/profile", uo.updateProfile);
@@ -52,18 +54,18 @@ server = app.listen(SERVER_PORT, () => {
 //SOCKET SETUP
 var io = socket(server);
 
-// //Connection for a client
-// io.on("connection", socket => {
-//   const db = app.get("db");
-//   db.update_socket_id(socket.id, 61)
-//     .then(() => console.log("added socket id"))
-//     .catch(console.error);
-//   console.log(socket.id);
+//Connection for a client
+io.on("connection", socket => {
+  const db = app.get("db");
+  db.update_socket_id(socket.id, 61)
+    .then(() => console.log("added socket id"))
+    .catch(console.error);
+  console.log(socket.id);
 
-//   socket.on("SEND_MESSAGE", function(data) {
-//     io.emit("RECEIVE_MESSAGE", data);
-//   });
-// });
+  socket.on("SEND_MESSAGE", function(data) {
+    io.emit("RECEIVE_MESSAGE", data);
+  });
+});
 
 //default room
 io.on("connection", function(socket) {
