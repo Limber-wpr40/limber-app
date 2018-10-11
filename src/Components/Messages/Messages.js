@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import tinder from "../Messages/tinder.png";
 import chat from "../Messages/chat.png";
-import pic1 from "../Messages/pic2.jpg";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import Chat from "../Chat/Chat";
 import "./Messages.css";
 
 export default class Messages extends Component {
@@ -12,15 +10,20 @@ export default class Messages extends Component {
     super();
 
     this.state = {
+      newMatches: [],
       matches: [],
       user_id: 176
-      // match_id: 0
     };
   }
 
   componentDidMount() {
+    axios.get("/api/newmatches/176").then(response => {
+      this.setState({
+        newMatches: response.data
+      });
+    });
     axios.get("/api/matches/176").then(response => {
-      console.log(response.data);
+      console.log(response.data)
       this.setState({
         matches: response.data
       });
@@ -39,34 +42,57 @@ export default class Messages extends Component {
   }
 
   render() {
-    let displayMatches = this.state.matches.map(match => {
-      console.log(this.state.user_id);
+    let displayNewMatches = this.state.newMatches.map(newmatch => {
       return (
-        <Link to={`/chat/${match.match_id}`}>
-          <div key={match.match_id}>
+        <div key={newmatch.match_id}>
+          <Link to={{pathname:`/chat/${newmatch.match_id}`,
+           state:this.state.user_id}}>
+            <img
+              className="image-icon"
+              onClick={() => this.handleClick(newmatch.match_id)}
+              src={`../images/${newmatch.user_image}`}
+              alt={newmatch.match_id}
+            />
+          </Link>
+        </div>
+      );
+    });
+
+    let displayMatches = this.state.matches.map(match => {
+      return (
+        <div key={match.match_id}>
+          <Link to={{pathname:`/chat/${match.match_id}`,
+           state:this.state.user_id}}>
             <img
               className="image-icon"
               onClick={() => this.handleClick(match.match_id)}
               src={`../images/${match.user_image}`}
               alt={match.match_id}
             />
-          </div>
-        </Link>
+          </Link>
+        </div>
       );
     });
+
     return (
       <div>
         <div className="navbar">
-          <img
-            className="tinder-icon"
-            src={tinder}
-            style={{ width: "40px", height: "40px" }}
-          />
-          <img
-            className="chat-icon"
-            src={chat}
-            style={{ width: "50px", height: "50px" }}
-          />
+          <Link to="/landing">
+            <img
+              className="tinder-icon"
+              src={tinder}
+              style={{ width: "40px", height: "40px" }}
+              alt='logo'
+            />
+          </Link>
+          <Link to="/chat">
+            <img
+              className="chat-icon"
+              src={chat}
+              style={{ width: "50px", height: "50px" }}
+              alt='chat'
+            />
+          </Link>
         </div>
         <div className="text">
           <h2 className="messages-tab">Messages</h2>
@@ -83,13 +109,15 @@ export default class Messages extends Component {
         <div className="matches">
           <h4>New matches</h4>
 
-          <div className="images-wrapper">{displayMatches}</div>
+          <div className="images-wrapper">{displayNewMatches}</div>
         </div>
 
         <div className="messages">
           <h4>Messages</h4>
+          <div className="images-wrapper">{displayMatches}</div>
         </div>
-      </div>
+
+        </div>
     );
   }
 }
