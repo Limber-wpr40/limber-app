@@ -5,6 +5,9 @@ import 'react-motion-stack/build/motion-stack.css';
 import './Card.css';
 import pmtest from '../jestutilities/pmtest';
 import punks from '../jestutilities/jest-testing';
+import briefcase from '../logos/briefcase.png';
+import gpslogo from '../logos/placeholder.png';
+import gradcap from '../logos/mortarboard.png';
 
 
 export default class Card extends Component {
@@ -24,9 +27,9 @@ export default class Card extends Component {
         console.log('state', state.pressedId);
         pmtest.handleStateChange(state)
         pmtest.handleDirectionChange(direction)
-        
 
-       
+
+
 
         punks.handleDirectionChange(direction);
         punks.handleState(state);
@@ -34,8 +37,8 @@ export default class Card extends Component {
         swipe();
         if (direction === 'right') {
             this.setState({ super_like: true, match_id: state.pressedId })
-            let myLike = {match_id:this.state.match_id, super_like: this.state.super_like}
-            axios.post('/api/likes',myLike)
+            let myLike = { match_id: this.state.match_id, super_like: this.state.super_like }
+            axios.post('/api/likes', myLike)
             console.log('LIKE!')
         } else {
             console.log('NOPE!')
@@ -50,19 +53,33 @@ export default class Card extends Component {
     componentDidMount() {
         axios.get('/api/possiblematches')
             .then(res => {
-                res.data.forEach((potMatch) => {
-                    let { user_id, user_image, user_name, user_age, user_job, user_school, user_distance } = potMatch
+                res.data.map((potMatch) => {
+                    let { user_id, user_image, first_name, current_age, job, school, dist } = potMatch
                     potMatch.id = user_id
                     potMatch.element = (
                         <div className="user-card">
                             <img src={`../images/${user_image}`} alt="" />
-                            <h1>{user_name}</h1>
-                            <h2>{user_age}</h2>
-                            <p>{user_job}</p>
-                            <p>{user_school}</p>
-                            <p>{user_distance}</p>
+                            <section className="section-match-details">
+                                <h1 className="name-detail">{first_name}
+                                    <span className="age-detail"> {current_age}</span>
+                                </h1>
+                                <p className="job-detail">
+                                    <img className="briefcase" src={briefcase} alt="" />
+                                    {job}
+                                </p>
+                                <p className="school-detail">
+                                    <img src={gradcap} alt="" />
+                                    {school}
+                                </p>
+                                <p className="dist-detail">
+                                    <img src={gpslogo} alt="" />
+                                    {dist} miles away
+                                </p>
+                            </section>
                         </div>
+
                     )
+
                 })
                 this.setState({
                     potMatches: res.data
@@ -84,6 +101,7 @@ export default class Card extends Component {
                     renderButtons={this.renderButtons}
                     infinite={false}
                 />
+                {/* {displayDetails} */}
             </div>
         );
     }
