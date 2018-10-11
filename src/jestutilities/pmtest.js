@@ -20,7 +20,7 @@ module.exports ={
     
     addMessageValidation: (state) => {
         if(!state){
-            return ''
+            return []
         }else{
             return state
         }
@@ -28,7 +28,7 @@ module.exports ={
 
     sendMessageValidation: (state) => {
         if(!state){
-            return ''
+            return []
         }else{
             return state
         }
@@ -40,7 +40,7 @@ module.exports ={
         }else{
             return state
         }
-    },
+    }
 
 
 
