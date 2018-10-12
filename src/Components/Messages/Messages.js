@@ -12,30 +12,34 @@ export default class Messages extends Component {
     this.state = {
       newMatches: [],
       matches: [],
-      user_id: '',
-      match_id: '',
+      user_id: "",
+      match_id: "",
       match_image: ""
     };
   }
 
   componentDidMount() {
-    axios.get('api/settings').then(user => {
-      this.setState({user_id: user.data.user_id})
-    })
-    axios.get("/api/newmatches/176").then(response => {
+    const matchesCall = async () => {
+      let userInfo = await axios.get("api/settings");
+      this.setState({ user_id: userInfo.data.user_id });
+      console.log(this.state.user_id);
+
+      let newMatchGroup = await axios.get(
+        `/api/newmatches/${this.state.user_id}`
+      );
       this.setState({
-        newMatches: response.data
+        newMatches: newMatchGroup.data
       });
-    });
-    axios.get("/api/matches/176").then(res => {
+
+      let matchGroup = await axios.get(`/api/matches/${this.state.user_id}`);
       this.setState({
-        matches: res.data,
+        matches: matchGroup.data
       });
-    });
+    };
+    matchesCall();
   }
 
   handleClick(match_id) {
-    // const user_id = 176;
     this.setState({
       match_id: match_id
     });
@@ -101,14 +105,13 @@ export default class Messages extends Component {
               alt="logo"
             />
           </Link>
-          <Link to="/chat">
-            <img
-              className="chat-icon"
-              src={chat}
-              style={{ width: "50px", height: "50px" }}
-              alt="chat"
-            />
-          </Link>
+
+          <img
+            className="chat-icon"
+            src={chat}
+            style={{ width: "50px", height: "50px" }}
+            alt="chat"
+          />
         </div>
         <div className="text">
           <h2 className="messages-tab">Messages</h2>

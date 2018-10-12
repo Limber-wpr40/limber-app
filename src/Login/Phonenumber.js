@@ -53,7 +53,7 @@ class Phonenumber extends Component {
           <div className="main-title">My phone number is</div>
           <div className="phone-id">
             <input className="country-code" placeholder="US +1" />
-            <input
+            <input ref={input => input && input.focus()} type='number'
               className="phone-holder"
               onClick={() => this.showKeyPad()}
               placeholder="Phone Number"

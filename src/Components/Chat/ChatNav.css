@@ -1,12 +1,21 @@
 .chatnav {
-    width: 100%;
+    width: 94%;
+    margin: 0 3% 0 3%;
+}
+.chat-navbar{
+    margin: 10px 0 20px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
+
 .chatnav .arrow-icon {
-    text-align: left;
+    
     color: red;
-    position: relative;
-    right: 40%;
+    /* position: relative;
+    right: 40%; */
 }
 
 .profile-img {
@@ -21,8 +30,6 @@
 
 .flag-icon {
     color: red;
-    float: right;
-    position: relative;
-    left: 40%;
+
 }
 
