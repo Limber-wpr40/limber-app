@@ -16,7 +16,6 @@ class Profile extends Component {
   componentDidMount() {
     axios.get("/api/settings").then(response => {
       this.setState({ userData: response.data });
-      console.log("this is the data", this.state.userData);
     });
   }
 
@@ -103,8 +102,8 @@ class Profile extends Component {
               <div className="advert1">
                 <img
                   className="profile-logo-icon"
-                  src="../images/tinder.png"
-                  alt="gold"
+                  src="../images/thunder.png"
+                  alt="boost"
                 />
                 <h5>Get More Matches Faster</h5>
                 <p>Boost your Profile once a Month!</p>
@@ -112,8 +111,8 @@ class Profile extends Component {
               <div className="advert1">
                 <img
                   className="profile-logo-icon"
-                  src="../images/thunder.png"
-                  alt="boost"
+                  src="../images/star.png"
+                  alt="super_likes"
                 />
                 <h5>Standout With Super Likes</h5>
                 <p>You're 3x more likely to get a match!</p>
@@ -121,8 +120,8 @@ class Profile extends Component {
               <div className="advert1">
                 <img
                   className="profile-logo-icon"
-                  src="../images/star.png"
-                  alt="super like"
+                  src="../images/location.png"
+                  alt="location"
                 />
                 <h5>Swipe Around the World</h5>
                 <p>Passport to anywhere with Limber Plus</p>
@@ -130,17 +129,17 @@ class Profile extends Component {
               <div className="advert1">
                 <img
                   className="profile-logo-icon"
-                  src="../images/location.png"
-                  alt="location pin"
+                  src="../images/wrench.png"
+                  alt="wrench"
                 />
                 <h5>Control Your Profile</h5>
                 <p>Limit What Others see with Limber Plus</p>
               </div>
               <div className="advert1">
-                <image
+                <img
                   className="profile-logo-icon"
-                  src="../images/wrench.png"
-                  alt="wrench"
+                  src="../images/refresh.png"
+                  alt="rewind"
                 />
                 <h5>I Meant to Swipe Right</h5>
 
@@ -149,8 +148,8 @@ class Profile extends Component {
               <div className="advert1">
                 <img
                   className="profile-logo-icon"
-                  src="../images/refresh.png"
-                  alt="rewind"
+                  src="../images/like.png"
+                  alt="heart"
                 />
                 <h5>Increase Your Chances</h5>
                 <p>Get Unlimited Likes with Limber Plus</p>

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./Login.css";
 import { Link } from "react-router-dom";
 import axios from 'axios';
-import funcs from '../jestutilities/function';
 
 class Verify extends Component {
   constructor(props) {
