@@ -15,9 +15,7 @@ export default class Feed extends Component {
   }
 
   componentDidMount() {
-    // axios.get(`api/feed?user_id=${this.state.user_id}`).then(response => {
-    //   this.setState({ matchFeed: response.data });
-    // });
+
     const feedCall = async () => {
       let userInfo = await axios.get("api/settings");
       this.setState({ user_id: userInfo.data.user_id });
@@ -62,6 +60,8 @@ export default class Feed extends Component {
               alt=""
             />
             {feed.school}
+            {feed.anthem}
+
           </div>
         </div>
       );
