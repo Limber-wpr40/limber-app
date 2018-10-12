@@ -1,14 +1,26 @@
 import React, { Component } from 'react'
 import tinder from '../Messages/tinder.png';
 import chat from '../Messages/chat.png';
-
-
-
-
 import './Feed.css';
+import axios from 'axios';
 
 
 export default class Feed extends Component {
+  constructor(props){
+    super(props);
+
+    this.state = {
+      matchFeed:[]
+    }
+  }
+
+  componentDidMount(){
+    axios.get(`api/feed?user_id=${user_id}`)
+    .then(response => {
+      this.setState({matchFeed:response.data})
+    })
+
+  }
     
   render() {
 

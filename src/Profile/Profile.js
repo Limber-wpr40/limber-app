@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import "./Profile.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Nav from "../Nav/Nav";
 
 class Profile extends Component {
   constructor(props) {
@@ -26,21 +27,13 @@ class Profile extends Component {
       speed: 500,
       slidesToShow: 1,
       slidesToScroll: 1,
-      autoplay:true,
-      autoplaySpeed:1500
+      autoplay: true,
+      autoplaySpeed: 1500
     };
 
     return (
-      <div className="profile-main">
-        <div className="arrow-wrapper">
-          <Link to="/landing">
-            <img
-              className="myarrow"
-              src="../images/rleftarrow.png"
-              alt="back"
-            />
-          </Link>
-        </div>
+      <div>
+        <Nav />
         <div className="user-info-wrapper">
           <div className="my-info">
             <img
@@ -110,8 +103,8 @@ class Profile extends Component {
               <div className="advert1">
                 <img
                   className="profile-logo-icon"
-                  src="../images/thunder.png"
-                  alt="boost"
+                  src="../images/tinder.png"
+                  alt="gold"
                 />
                 <h5>Get More Matches Faster</h5>
                 <p>Boost your Profile once a Month!</p>
@@ -119,8 +112,8 @@ class Profile extends Component {
               <div className="advert1">
                 <img
                   className="profile-logo-icon"
-                  src="../images/star.png"
-                  alt="super like"
+                  src="../images/thunder.png"
+                  alt="boost"
                 />
                 <h5>Standout With Super Likes</h5>
                 <p>You're 3x more likely to get a match!</p>
@@ -129,7 +122,7 @@ class Profile extends Component {
                 <img
                   className="profile-logo-icon"
                   src="../images/star.png"
-                  alt="location"
+                  alt="super like"
                 />
                 <h5>Swipe Around the World</h5>
                 <p>Passport to anywhere with Limber Plus</p>
@@ -137,8 +130,8 @@ class Profile extends Component {
               <div className="advert1">
                 <img
                   className="profile-logo-icon"
-                  src="../images/wrench.png"
-                  alt="profile"
+                  src="../images/location.png"
+                  alt="location pin"
                 />
                 <h5>Control Your Profile</h5>
                 <p>Limit What Others see with Limber Plus</p>
@@ -146,8 +139,8 @@ class Profile extends Component {
               <div className="advert1">
                 <image
                   className="profile-logo-icon"
-                  src="../images/refresh.png"
-                  alt="rewind"
+                  src="../images/wrench.png"
+                  alt="wrench"
                 />
                 <h5>I Meant to Swipe Right</h5>
 
@@ -156,7 +149,7 @@ class Profile extends Component {
               <div className="advert1">
                 <img
                   className="profile-logo-icon"
-                  src="../images/like.png"
+                  src="../images/refresh.png"
                   alt="rewind"
                 />
                 <h5>Increase Your Chances</h5>
@@ -164,8 +157,8 @@ class Profile extends Component {
               </div>
             </Slider>
           </div>
-          <div className='my-limber-plus'>
-          <button className='limber-plus-btn'>MY LIMBER PLUS</button>
+          <div className="my-limber-plus">
+            <button className="limber-plus-btn">MY LIMBER PLUS</button>
           </div>
         </div>
       </div>
