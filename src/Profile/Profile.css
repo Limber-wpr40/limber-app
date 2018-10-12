@@ -8,6 +8,13 @@
   height: 50px;
 }
 
+.red-profile {
+  padding-right: 3px;
+    width: 35px;
+    height: 35px;
+
+}
+
 .profile-head {
   display: flex;
   flex-direction: row;
@@ -17,7 +24,7 @@
 .myarrow {
   margin: 10px 0 0 20px;
   height: 40px;
-  float: left;
+  float: right;
 }
 
 .user-info-wrapper {

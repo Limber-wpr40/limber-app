@@ -3,6 +3,8 @@ import Slider from "react-slick";
 import "./Profile.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import tinderLogo from '../logos/tinder_grey.png';
+import redprofile from '../logos/redprofile.png';
 
 class Profile extends Component {
   constructor(props) {
@@ -33,10 +35,12 @@ class Profile extends Component {
     return (
       <div className="profile-main">
         <div className="arrow-wrapper">
+        <img className="red-profile" src={redprofile} alt=""/>
+      
           <Link to="/landing">
             <img
               className="myarrow"
-              src="../images/rleftarrow.png"
+              src={tinderLogo}
               alt="back"
             />
           </Link>
