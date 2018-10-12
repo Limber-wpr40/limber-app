@@ -21,7 +21,7 @@ export default class Feed extends Component {
     const feedCall = async () => {
       let userInfo = await axios.get("api/settings");
       this.setState({ user_id: userInfo.data.user_id });
-      console.log(this.state.user_id);
+    
 
       let newFeed = await axios.get(
         `/api/newmatches/${this.state.user_id}`
@@ -29,12 +29,13 @@ export default class Feed extends Component {
       this.setState({
         matchFeed: newFeed.data
       });
+      
     };
     feedCall();
   }
 
   render() {
-    console.log(this.state.matchFeed);
+    console.log('this is the feed data', this.state.matchFeed);
     let myFeed = this.state.matchFeed.map(feed => {
       return (
         <div className="feed-body" key={feed.match_id}>

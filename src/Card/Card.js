@@ -57,19 +57,44 @@ export default class Card extends Component {
     return (
       <div className="btn-group">
         <button className="dot">
-          <img className="footer-icons" src={refresh} alt="" onClick={props.reject}/>
+          <img
+            className="footer-icons"
+            src={refresh}
+            alt=""
+            onClick={props.reject}
+          />
         </button>
         <button className="dot">
-          <img className="footer-icons" src={nope} alt="" onClick={props.reject}/>
+          <img
+            className="footer-icons"
+            src={nope}
+            alt=""
+            onClick={props.reject}
+          />
         </button>
         <button className="dot">
-          <img className="footer-icons" src={star} alt="" onClick={props.accept}/>
+          <img
+            className="footer-icons"
+            src={star}
+            alt=""
+            onClick={props.accept}
+          />
         </button>
         <button className="dot">
-          <img className="footer-icons" src={like} alt="" onClick={props.accept}/>
+          <img
+            className="footer-icons"
+            src={like}
+            alt=""
+            onClick={props.accept}
+          />
         </button>
         <button className="dot">
-          <img className="footer-icons" src={thunder} alt="" onClick={props.accept}/>
+          <img
+            className="footer-icons"
+            src={thunder}
+            alt=""
+            onClick={props.accept}
+          />
         </button>
       </div>
     );
