@@ -59,8 +59,11 @@ export default class Chat extends Component {
   }
 
   render() {
+    console.log(this.state.match_image)
     let oldMessageThread = this.state.messagethread.map(thread => {
       return (
+
+        
         <div key={thread.message_id}>
           <div
             className={
@@ -86,7 +89,7 @@ export default class Chat extends Component {
 
     return (
       <div className="container">
-        <ChatNav />
+        <ChatNav match_image={this.state.match_image} />
         <div className="row">
           <div className="card">
             <div className="card-body">
