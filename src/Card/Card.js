@@ -15,97 +15,146 @@ import like from "../logos/like.png";
 import thunder from "../logos/thunder.png";
 
 export default class Card extends Component {
-  constructor() {
-    super();
+    constructor() {
+        super();
 
-    this.state = {
-      potMatches: [],
-      super_like: false,
-      match_id: 0
-    };
-}
-
-componentDidMount() {
-    axios.get('/api/possiblematches')
-        .then(res => {
-            res.data.map(potMatch => {
-                let { user_id, user_image, first_name, current_age, job, school, dist } = potMatch
-                potMatch.id = user_id
-                potMatch.element = (
-                    <div className="user-card">
-                        <img src={`../images/${user_image}`} alt="" />
-                        <section className="section-match-details">
-                            <div className="name-detail">{first_name}
-                                <span className="age-detail"> {current_age}</span>
-                            </div>
-                            <div className="job-detail">
-                                <img className="briefcase" src={briefcase} alt="" />
-                                {job}
-                            </div>
-                            <div className="school-detail">
-                                <img src={gradcap} alt="" />
-                                {school}
-                            </div>
-                            <div className="dist-detail">
-                                <img src={gpslogo} alt="" />
-                                {dist} miles away
-                            </div>
-                        </section>
-                    </div>
-
-                )
-
-            })
-            this.setState({
-                potMatches: res.data
-            })
-            console.log(res.data)
-        });
-    
-  
-}
-
-
-onBeforeSwipe = (swipe, direction, state) => {
-    console.log("direction", direction);
-    console.log("swipe", swipe);
-    console.log("state", state.pressedId);
-    pmtest.handleStateChange(state);
-    pmtest.handleDirectionChange(direction);
-    
-    punks.handleDirectionChange(direction);
-    punks.handleState(state);
-    
-    swipe();
-    if (direction === "right") {
-        this.setState({ super_like: true, match_id: state.pressedId });
-        let myLike = {
-            match_id: this.state.match_id,
-            super_like: this.state.super_like
+        this.state = {
+            potMatches: [],
+            super_like: false,
+            match_id: 0
         };
-        axios.post("/api/likes", myLike);
-        console.log("LIKE!");
-    } else {
-        console.log("NOPE!");
     }
-};
 
-onSwipeEnd = ({ data }) => {
-    punks.handleOnSwipeEnd(data);
-};
 
-render() {
-    return (
-        <div className="demo-wrapper">
-        <MotionStack
-          data={this.state.potMatches}
-          onSwipeEnd={this.onSwipeEnd}
-          onBeforeSwipe={this.onBeforeSwipe}
-          render={props => props.element}
-          infinite={false}
-          renderButtons={this.renderButtons}
-        />
-      </div>
-    );
-  }
+
+
+    onBeforeSwipe = (swipe, direction, state) => {
+        console.log("direction", direction);
+        console.log("swipe", swipe);
+        console.log("state", state.pressedId);
+        pmtest.handleStateChange(state);
+        pmtest.handleDirectionChange(direction);
+
+        punks.handleDirectionChange(direction);
+        punks.handleState(state);
+
+        swipe();
+        if (direction === "right") {
+            this.setState({ super_like: true, match_id: state.pressedId });
+            let myLike = {
+                match_id: this.state.match_id,
+                super_like: this.state.super_like
+            };
+            axios.post("/api/likes", myLike);
+            console.log("LIKE!");
+        } else {
+            console.log("NOPE!");
+        }
+    };
+
+    onSwipeEnd = ({ data }) => {
+        punks.handleOnSwipeEnd(data);
+    };
+
+    renderButtons(props) {
+        return (
+            <div className="btn-group">
+                <button className="dot">
+                    <img
+                        className="footer-icons"
+                        src={refresh}
+                        alt=""
+                        onClick={props.reject}
+                    />
+                </button>
+                <button className="dot">
+                    <img
+                        className="footer-icons"
+                        src={nope}
+                        alt=""
+                        onClick={props.reject}
+                    />
+                </button>
+                <button className="dot">
+                    <img
+                        className="footer-icons"
+                        src={star}
+                        alt=""
+                        onClick={props.accept}
+                    />
+                </button>
+                <button className="dot">
+                    <img
+                        className="footer-icons"
+                        src={like}
+                        alt=""
+                        onClick={props.accept}
+                    />
+                </button>
+                <button className="dot">
+                    <img
+                        className="footer-icons"
+                        src={thunder}
+                        alt=""
+                        onClick={props.accept}
+                    />
+                </button>
+            </div>
+        );
+    }
+
+    componentDidMount() {
+        axios.get('/api/possiblematches')
+            .then(res => {
+                res.data.map(potMatch => {
+                    let { user_id, user_image, first_name, current_age, job, school, dist } = potMatch
+                    potMatch.id = user_id
+                    potMatch.element = (
+                        <div className="user-card">
+                            <img src={`../images/${user_image}`} alt="" />
+                            <section className="section-match-details">
+                                <div className="name-detail">{first_name}
+                                    <span className="age-detail"> {current_age}</span>
+                                </div>
+                                <div className="job-detail">
+                                    <img className="briefcase" src={briefcase} alt="" />
+                                    {job}
+                                </div>
+                                <div className="school-detail">
+                                    <img src={gradcap} alt="" />
+                                    {school}
+                                </div>
+                                <div className="dist-detail">
+                                    <img src={gpslogo} alt="" />
+                                    {dist} miles away
+                            </div>
+                            </section>
+                        </div>
+
+                    )
+
+                })
+                this.setState({
+                    potMatches: res.data
+                })
+                console.log(res.data)
+            });
+
+
+    }
+
+    render() {
+        return (
+            <div className="demo-wrapper">
+                <MotionStack
+                    data={this.state.potMatches}
+                    onSwipeEnd={this.onSwipeEnd}
+                    onBeforeSwipe={this.onBeforeSwipe}
+                    render={props => props.element}
+                    infinite={false}
+                    renderButtons={this.renderButtons}
+                />
+            </div>
+        );
+    }
 }
