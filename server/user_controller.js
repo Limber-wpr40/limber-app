@@ -24,6 +24,7 @@ module.exports = {
     let foundUser = await db.get_user_data([phone]);
     if (foundUser[0]) {
       req.session.user = foundUser[0];
+      console.log(req.session.user)
       res.status(200).send(req.session.user);
       // res.redirect("/verify");
     } else {

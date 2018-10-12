@@ -310,4 +310,6 @@ advert1 > h5 {
   -moz-border-radius: 28;
   border-radius: 28px;
   font-size: 16px;
+  font-weight: bold;
+  color: #ff0066;
 }

@@ -7,7 +7,7 @@ import "rc-slider/assets/index.css";
 import Tooltip from "rc-tooltip";
 import funcs from '../jestutilities/function';
 
-const createSliderWithTooltip = Slider.createSliderWithTooltip;
+
 const Handle = Slider.Handle;
 const handle = props => {
   const { value, dragging, index, ...restProps } = props;
@@ -43,8 +43,6 @@ class Editinfo extends Component {
     axios
       .get(`/api/profile/${this.props.location.state.user_id}`)
       .then(response => {
-        console.log(response.data);
-        console.log(this.props.location.state);
         this.setState({
           userName: this.props.location.state.user_name,
           about: response.data[0].about,
@@ -53,7 +51,6 @@ class Editinfo extends Component {
           school: response.data[0].school,
           gender: this.props.location.state.gender
         });
-        console.log("the user is", this.state.userName);
       });
   }
   handleShowAge(value) {

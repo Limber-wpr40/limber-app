@@ -28,6 +28,7 @@ massive(CONNECTION_STRING).then(db => {
 app.use(bodyParser.json());
 
 app.use(express.static(`${__dirname}/../build`));
+
 app.get("/api/settings", uo.getUserSettings);
 app.get("/api/user/:phone", uo.getUserData);
 app.get("/api/profile/:id", uo.getUserProfile);
@@ -35,8 +36,9 @@ app.get("/api/matches/:id", uo.getMatches);
 app.get("/api/newmatches/:id", uo.getNewMatches);
 app.get("/api/possiblematches", uo.getPossibleMatches)
 app.get("/api/messages", mo.getMessages);
+app.get("/api/feed", mo.getFeed);
 ;
-// app.get("/api/messages/:id/:recv_id", mo.getMessages);
+
 
 app.put("/api/settings", uo.updateSettings);
 app.put("api/profile", uo.updateProfile);
