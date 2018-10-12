@@ -59,21 +59,21 @@ export default class Card extends Component {
                         <div className="user-card">
                             <img src={`../images/${user_image}`} alt="" />
                             <section className="section-match-details">
-                                <h1 className="name-detail">{first_name}
+                                <div className="name-detail">{first_name}
                                     <span className="age-detail"> {current_age}</span>
-                                </h1>
-                                <p className="job-detail">
+                                </div>
+                                <div className="job-detail">
                                     <img className="briefcase" src={briefcase} alt="" />
                                     {job}
-                                </p>
-                                <p className="school-detail">
+                                </div>
+                                <div className="school-detail">
                                     <img src={gradcap} alt="" />
                                     {school}
-                                </p>
-                                <p className="dist-detail">
+                                </div>
+                                <div className="dist-detail">
                                     <img src={gpslogo} alt="" />
                                     {dist} miles away
-                                </p>
+                                </div>
                             </section>
                         </div>
 

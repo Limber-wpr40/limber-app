@@ -23,27 +23,28 @@
 }
 
 .section-match-details{
-    line-height: .9em;
+    width: 100%;
+    line-height: 1.5em;
     position: absolute;
-    bottom: -5px;
+    bottom: 5px;
     padding-left: 10px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .name-detail {
     color: white;
     font-size: 28px;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .age-detail {
     color: white;
     font-size: 25px;
-    font-weight: 200;
+    font-weight: 100;
 }
 
 .job-detail {
     display: flex;
-    /* justify-content: space-between; */
     align-items: center;
     color: white;
     font-size: 15px;
@@ -51,19 +52,18 @@
 
 .school-detail {
     display: flex;
-    /* justify-content: space-between; */
     color: white;
     font-size: 15px;
 }
 
 .dist-detail {
     display: flex;
-    /* justify-content: space-between; */
     color: white;
     font-size: 15px;
 }
 
 .section-match-details img {
+    margin-top: 3px;
     max-width: 15px;
     max-height: 15px;
     margin-right: 5px;
