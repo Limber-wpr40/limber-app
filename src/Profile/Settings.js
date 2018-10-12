@@ -36,12 +36,14 @@ class Settings extends Component {
       min_age: 28,
       max_age: 38,
       max_distance: 29,
-      measurement: "Mi."
+      measurement: "Mi.",
+      user_id:''
     };
     this.handleMeasurement = this.handleMeasurement.bind(this);
     this.handleAgeChange = this.handleAgeChange.bind(this);
     this.handleDistanceChange = this.handleDistanceChange.bind(this);
     this.updateSettings = this.updateSettings.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
   componentDidMount() {
     axios.get("/api/settings").then(response => {
@@ -49,7 +51,8 @@ class Settings extends Component {
         userData: response.data,
         min_age: response.data.min_age,
         max_age: response.data.max_age,
-        max_distance: response.data.max_distance
+        max_distance: response.data.max_distance,
+        user_id: response.data.user_id
       });
     });
   }
@@ -79,6 +82,10 @@ class Settings extends Component {
     funcs.minAgeValidation(value);
     funcs.maxAgeValidation(value);
     this.setState({ min_age: value[0], max_age: value[1] });
+  }
+
+  handleDelete(){
+    axios.delete(`/api/user/${this.state.user_id}`)
   }
 
   render() {
@@ -231,7 +238,9 @@ class Settings extends Component {
             <img src="" alt="limber" />
           </div>
           <div className="profile-group help del-act">
-            <div className="notify">Delete Account</div>
+          <Link to='/'>
+            <div className="notify" onClick={() => this.handleDelete()}>Delete Account</div>
+          </Link>
           </div>
         </div>
       </div>

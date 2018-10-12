@@ -15,9 +15,22 @@ export default class Feed extends Component {
   }
 
   componentDidMount() {
-    axios.get(`api/feed?user_id=${this.state.user_id}`).then(response => {
-      this.setState({ matchFeed: response.data });
-    });
+    // axios.get(`api/feed?user_id=${this.state.user_id}`).then(response => {
+    //   this.setState({ matchFeed: response.data });
+    // });
+    const feedCall = async () => {
+      let userInfo = await axios.get("api/settings");
+      this.setState({ user_id: userInfo.data.user_id });
+      console.log(this.state.user_id);
+
+      let newFeed = await axios.get(
+        `/api/newmatches/${this.state.user_id}`
+      );
+      this.setState({
+        matchFeed: newFeed.data
+      });
+    };
+    feedCall();
   }
 
   render() {
