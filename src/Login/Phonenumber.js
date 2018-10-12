@@ -23,7 +23,6 @@ class Phonenumber extends Component {
   }
 
   handleInput(e) {
-    console.log(e.target.value)
     this.setState({
       phone: e.target.value.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3")
     });
@@ -32,14 +31,13 @@ class Phonenumber extends Component {
   handleGetSession(){
      axios.get(`/api/user/${this.state.phone}`)
      .then(response => {this.setState({user:response.data})
-     console.log(this.state.user)
     });
 
   }
 
   render() {
     let isActive = this.state.phone.length === 12 ? true : false;
-    console.log(this.state.phone);
+
     return (
       <div>
         <div className="arrow-wrapper">

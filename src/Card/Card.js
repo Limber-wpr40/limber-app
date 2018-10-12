@@ -46,7 +46,6 @@ export default class Card extends Component {
     }
 
     onSwipeEnd = ({ data }) => {
-        console.log("data", data);
         punks.handleOnSwipeEnd(data)
     };
 

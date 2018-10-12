@@ -61,7 +61,6 @@ class Settings extends Component {
       max_distance: this.state.max_distance
     };
     axios.put("/api/settings", newSettings);
-    console.log("these are the new settings", newSettings);
     punks.handleUpdateSettings(newSettings);
   }
 
