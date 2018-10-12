@@ -27,25 +27,6 @@ export default class Landing extends Component {
             <div>
                 <Nav />
                 <Card />
-                <div className='landing-container' >
-                    <footer className='landing-footer'>
-                        <div className='dot-2'>
-                            <img className='footer-icons' src={refresh} alt="" />
-                        </div>
-                        <div className='dot'>
-                            <img className='footer-icons' src={nope} alt="" />
-                        </div>
-                        <div className='dot-2'>
-                            <img className='footer-icons' src={star} alt="" />
-                        </div>
-                        <div className='dot'>
-                            <img className='footer-icons'  src={like} alt="" />
-                        </div>
-                        <div className='dot-2'>
-                            <img className='footer-icons' src={thunder} alt="" />
-                        </div>
-                    </footer>
-                </div>
             </div>
         )
     }

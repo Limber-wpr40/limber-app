@@ -58,7 +58,6 @@ rcc
 }
 
 .feed-name{
-    margin: 20px 0 0 20px;
     font-size: 24px;
     font-weight: 500;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
@@ -66,6 +65,34 @@ rcc
 
 .feed-img{
     width: 100%;
-    margin: 10px 0 30px 0;
+    margin-top: 10px;
+}
+
+.feed-details{
+    margin: 0 0 30px 20px;
+}
+
+.feed-pic{
+    width: 45px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.feed-body{
+
+}
+
+.feed-head{
+    margin: 10px 0 0 20px;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.feed-icons{
+    width: 30px;
+    margin-right: 5px;
+
 }
 

@@ -1,30 +1,27 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import './ChatNav.css'
+import "./ChatNav.css";
 
 export default class ChatNav extends Component {
-
-  componentDidMount() {
-      console.log('this is the data',this.state)
-
-  }
+  componentDidMount() {}
 
   render() {
     return (
       <div className="chatnav">
+        <nav className="chat-navbar navbar-expand-sm">
+          <Link to="/messages">
+            <i className="fas fa-arrow-left arrow-icon" />
+          </Link>
+     
+            <img
+              className="profile-img"
+              src={`../images/${this.props.match_image}`}
+              alt=""
+            />
         
-        <nav className="navbar navbar-expand-sm">
-        <Link to='/messages'>
-        <i className="fas fa-arrow-left arrow-icon"/>
-        </Link>
-        <div className="profile-img">
-            {/* <img className="profile-img" src={`../images/${this.state.match_image}`} alt=""/> */}
-         
-        </div>
-        <i className="fas fa-flag flag-icon"></i>
+          <i className="fas fa-flag flag-icon" />
         </nav>
-        
       </div>
-    )
+    );
   }
 }

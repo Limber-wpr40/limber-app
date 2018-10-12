@@ -1,25 +1,26 @@
 .demo-wrapper {
-    height: 80vh;
-    width: 100%; 
-    display: grid;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(248, 244, 244);
+  margin-top: 70px;
+  height: 80vh;
+  width: 100%;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(248, 244, 244);
 }
 
 .user-card {
-    position: relative;
+  position: relative;
 }
 
 .user-card img {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 95vw;
-    height: 75vh;
-    user-select: none;
-    border-radius: 4%;
-    box-shadow: 0px 0px 50px rgba(202, 200, 200, 0.829);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 95vw;
+  height:75vh;
+  user-select: none;
+  border-radius: 4%;
+  box-shadow: 0px 0px 50px rgba(202, 200, 200, 0.829);
 }
 
 .section-match-details{
@@ -71,9 +72,21 @@
 }
 
 .motion-card-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
 }
 
+.btn-group {
+  display: flex;
+  flex-direction: row;
+  background: white;
+}
+
+.dot {
+  border: 1px;
+  margin-top: 40px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
