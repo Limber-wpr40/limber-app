@@ -1,5 +1,5 @@
 .demo-wrapper {
-  margin-top: 70px;
+  /* margin-top: 70px; */
   height: 80vh;
   width: 100%;
   display: grid;
@@ -8,26 +8,59 @@
   background-color: rgb(248, 244, 244);
 }
 
+.motion-card-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30vh;
+}
+
 .user-card {
   position: relative;
 }
 
-.user-card img {
+.user-card-pic {
+}
+
+.user-card-pic-noinfo {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 95vw;
-  height:75vh;
+  height: 75vh;
   user-select: none;
   border-radius: 4%;
   box-shadow: 0px 0px 50px rgba(202, 200, 200, 0.829);
 }
 
+.user-card-pic-info {
+  width: 100vw;
+  height: 50vh;
+}
+
 .section-match-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.match-visible-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
   line-height: 0.9em;
   position: absolute;
-  bottom: -5px;
+  bottom: 10px;
   padding-left: 10px;
+}
+
+.match-details-wrapper img {
+  max-width: 15px;
+  max-height: 15px;
+  margin-right: 5px;
 }
 
 .name-detail {
@@ -64,21 +97,25 @@
   font-size: 15px;
 }
 
-.section-match-details img {
-  max-width: 15px;
-  max-height: 15px;
-  margin-right: 5px;
-  /* background: none; */
+.info-icon-wrapper {
+  /* position: absolute; */
+  /* bottom: 10px;
+  right: 20px; */
+  width: 50px;
+  height: 50px;
+  border: solid 2px red;
 }
 
-.motion-card-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 60vh;
+.info-icon-btn {
+  height: 50px;
+  width: 50px;
 }
 
 .btn-group {
+  z-index:2;
+  position: fixed;
+  bottom: 0;
+  left: 0;
   display: flex;
   flex-direction: row;
   background: white;
@@ -89,4 +126,25 @@
   margin-top: 40px;
   margin-left: 10px;
   margin-right: 10px;
+}
+
+.dropdown {
+  /* position: absolute;
+  bottom: -90px;
+  left: 0; */
+  width: 100%;
+  font-family: "Open sans";
+  border: solid 1px #c5c1c1;
+  background-color:#fff;
+  overflow: hidden;
+  transition: all 0.3s ease-out;
+}
+
+.dropDownNoShow {
+  height: 0;
+}
+
+.dropDownShow {
+  min-height: 500px;
+  overflow: scroll;
 }

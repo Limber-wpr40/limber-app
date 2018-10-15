@@ -21,17 +21,47 @@ export default class Card extends Component {
     this.state = {
       potMatches: [],
       super_like: false,
-      match_id: 0
+      match_id: 0,
+      showDownArrow: false,
+      infoShow: false
     };
+
+    this.handleInfoClick - this.handleInfoClick.bind(this);
+    this.showInfo = this.showInfo.bind(this);
+  }
+
+  showInfo() {
+    let infoBtn = document.querySelector(".info-icon-btn");
+    let dropDownEl = document.querySelector(".dropdown");
+    let cardPicEl = document.querySelector(".user-card-pic");
+    this.setState({
+      infoShow: !this.state.infoShow
+    });
+    if (!this.state.infoShow) {
+      infoBtn.classList.add("close");
+      infoBtn.src = "../images/downarrow.png";
+      dropDownEl.classList.add("dropDownShow");
+      dropDownEl.classList.remove("dropDownNoShow");
+      cardPicEl.classList.add("user-card-pic-info");
+      cardPicEl.classList.remove("user-card-pic-noinfo");
+    } else {
+      infoBtn.classList.remove("close");
+      infoBtn.src = "../images/info.png";
+      dropDownEl.classList.remove("dropDownShow");
+      dropDownEl.classList.add("dropDownNoShow");
+      cardPicEl.classList.remove("user-card-pic-info");
+      cardPicEl.classList.add("user-card-pic-noinfo");
+    }
+  }
+
+  handleInfoClick() {
+    if (this.state.showDownArrow) {
+    }
   }
 
   onBeforeSwipe = (swipe, direction, state) => {
-    console.log("direction", direction);
-    console.log("swipe", swipe);
-    console.log("state", state.pressedId);
     pmtest.handleStateChange(state);
     pmtest.handleDirectionChange(direction);
-
     punks.handleDirectionChange(direction);
     punks.handleState(state);
 
@@ -43,9 +73,7 @@ export default class Card extends Component {
         super_like: this.state.super_like
       };
       axios.post("/api/likes", myLike);
-      console.log("LIKE!");
     } else {
-      console.log("NOPE!");
     }
   };
 
@@ -115,36 +143,59 @@ export default class Card extends Component {
         potMatch.id = user_id;
         potMatch.element = (
           <div className="user-card">
-            <img src={`../images/${user_image}`} alt="" />
-            <section className="section-match-details">
-              <h1 className="name-detail">
-                {first_name}
-                <span className="age-detail"> {current_age}</span>
-              </h1>
-              <p className="job-detail">
-                <img className="briefcase" src={briefcase} alt="" />
-                {job}
-              </p>
-              <p className="school-detail">
-                <img src={gradcap} alt="" />
-                {school}
-              </p>
-              <p className="dist-detail">
-                <img src={gpslogo} alt="" />
-                {dist} miles away
-              </p>
-            </section>
+            <img
+              className="user-card-pic user-card-pic-noinfo"
+              src={`../images/${user_image}`}
+              alt=""
+            />
+            <div className="section-match-details">
+              <div className="match-visible-wrapper">
+                <div className="match-details-wrapper">
+                  <h1 className="name-detail">
+                    {first_name}
+                    <span className="age-detail"> {current_age}</span>
+                  </h1>
+                  <p className="job-detail">
+                    <img className="briefcase" src={briefcase} alt="" />
+                    {job}
+                  </p>
+                  <p className="school-detail">
+                    <img src={gradcap} alt="" />
+                    {school}
+                  </p>
+                  <p className="dist-detail">
+                    <img src={gpslogo} alt="" />
+                    {dist} miles away
+                  </p>
+                </div>
+                <div className="info-icon-wrapper">
+                  <img
+                    className="info-icon-btn"
+                    onClick={() => this.showInfo()}
+                    src={
+                      this.state.infoShow
+                        ? "../images/downarrow.png"
+                        : "../images/info.png"
+                    }
+                    alt="icon"
+                  />
+                </div>
+              </div>
+              <div className="dropdown dropDownNoShow">
+                Can you see this? I want to see even more
+              </div>
+            </div>
           </div>
         );
       });
       this.setState({
         potMatches: res.data
       });
-      console.log(res.data);
     });
   }
 
   render() {
+    console.log("Show additional info?", this.state.infoShow);
     return (
       <div className="demo-wrapper">
         <MotionStack
