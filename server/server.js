@@ -37,7 +37,7 @@ app.get("/api/newmatches/:id", uo.getNewMatches);
 app.get("/api/possiblematches", uo.getPossibleMatches)
 app.get("/api/messages", mo.getMessages);
 app.get("/api/feed", mo.getFeed);
-;
+
 
 
 app.put("/api/settings", uo.updateSettings);
