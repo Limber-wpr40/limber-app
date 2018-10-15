@@ -18,7 +18,6 @@ export default class Chat extends Component {
       messagethread: [],
       chats: []
     };
-
     this.socket = io("localhost:4000");
 
     this.socket.on("RECEIVE_MESSAGE", function(data) {
@@ -26,9 +25,7 @@ export default class Chat extends Component {
     });
 
     const addMessage = data => {
-
       this.setState({ messages: [...this.state.messages, data] });
-
     };
 
     this.sendMessage = ev => {
@@ -38,8 +35,22 @@ export default class Chat extends Component {
         message: this.state.message
       });
       this.setState({ message: "" });
+      // console.log('this is the body', this.state.user_id, this.state.match_id, this.state.message)
+      let newMessage = {sender_id: this.state.user_id, recv_id: this.state.match_id, msg_body: this.state.message}
+      axios.post(`/api/message`, newMessage).then(res => {
+        this.setState({
+          message: res.data
+        })
+      })
     };
   }
+
+
+  //changesmade
+  handleEnter = e => {
+    if (e.key !== "Enter") return;
+    this.sendMessage();
+  };
 
   componentDidMount() {
     const { user_id, match_id } = this.props.location.state;
@@ -53,17 +64,15 @@ export default class Chat extends Component {
       .get(`/api/messages?sender_id=${user_id}&recv_id=${match_id}`)
       .then(res => {
         this.setState({
-          messagethread: res.data,
+          messagethread: res.data
         });
       });
   }
 
   render() {
-    console.log(this.state.match_image)
+    console.log(this.state.match_image);
     let oldMessageThread = this.state.messagethread.map(thread => {
       return (
-
-        
         <div key={thread.message_id}>
           <div
             className={
@@ -99,20 +108,20 @@ export default class Chat extends Component {
                 {this.state.messages.map(message => {
                   return (
                     <div className="userClass">
-                      {message.author}:{message.message}
+                      {message.message}
                     </div>
                   );
                 })}
               </div>
             </div>
             <div className="card-footer">
-              <input
+              {/* <input
                 type="text"
                 placeholder="Username"
                 value={this.state.username}
                 onChange={ev => this.setState({ username: ev.target.value })}
                 className="form-control"
-              />
+              /> */}
               <br />
               <input
                 type="text"
@@ -120,6 +129,7 @@ export default class Chat extends Component {
                 className="form-control"
                 value={this.state.message}
                 onChange={ev => this.setState({ message: ev.target.value })}
+                onKeyPress={this.handleEnter}
               />
               <br />
               <button onClick={this.sendMessage} className="send-btn">
@@ -132,4 +142,3 @@ export default class Chat extends Component {
     );
   }
 }
-
