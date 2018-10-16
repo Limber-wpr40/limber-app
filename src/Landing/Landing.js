@@ -5,7 +5,7 @@ import refresh from '../logos/refresh.png';
 import nope from '../logos/nope.png';
 import star from '../logos/star.png';
 import like from '../logos/like.png';
-import thunder from '../logos/thunder.png'
+import thunder from '../logos/thunder.png';
 
 import './Footer.css';
 

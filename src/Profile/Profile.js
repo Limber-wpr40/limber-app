@@ -3,7 +3,8 @@ import Slider from "react-slick";
 import "./Profile.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import Nav from "../Nav/Nav";
+import tinderLogo from '../logos/tinder_grey.png';
+import redprofile from '../logos/redprofile.png';
 
 class Profile extends Component {
   constructor(props) {
@@ -31,8 +32,22 @@ class Profile extends Component {
     };
 
     return (
+      <div className="profile-main">
+      
+        <div className="profile-header">
+        <div className="profile-icon-div">
+        <img className="red-profile" src={redprofile} alt=""/>
+          <Link to="/landing">
+            <img
+              className="grey-tinder-logo"
+              src={tinderLogo}
+              alt="back"
+            />
+          </Link>
+          </div>
+        </div>
+
       <div>
-        <Nav />
         <div className="user-info-wrapper">
           <div className="my-info">
             <img
@@ -161,7 +176,8 @@ class Profile extends Component {
           </div>
         </div>
       </div>
-    );
+    </div>
+    )
   }
 }
 

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './Nav.css';
-import profileIcon from '../logos/profile_icon.png';
-import chatIcon from '../logos/chatIcon.png';
+import profileIcon from '../logos/user.png';
+import bubble from '../logos/speech-bubbles.png';
+import tinderLogo from '../logos/tinder.jpg';
 import {Link } from 'react-router-dom'
 
 
@@ -21,8 +22,11 @@ export default class Nav extends Component {
                 <Link to='/profile'>
                     <img className="icons" src={profileIcon} alt="" />
                 </Link>
+                <Link to='/landing'>
+                <img className="logo" src={tinderLogo} alt="" />
+                </Link>
                 <Link to='/messages'>
-                    <img className="icons" src={chatIcon} alt="" />
+                    <img className="icons" src={bubble} alt="" />
                 </Link>
                 </header>
             </div>
