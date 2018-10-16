@@ -16,15 +16,13 @@ export default class Chat extends Component {
       match_id: "",
       match_image: "",
       messagethread: [],
-      chats: []
+      chats: [],
+      roomName: ''
     };
     this.socket = io("localhost:4000");
 
-    this.socket.on("RECEIVE_MESSAGE", function(data) {
-      addMessage(data);
-    });
-
-    const addMessage = data => {
+    
+    this.addMessage = data => {
       this.setState({ messages: [...this.state.messages, data] });
     };
 
@@ -32,19 +30,23 @@ export default class Chat extends Component {
       ev.preventDefault();
       this.socket.emit("SEND_MESSAGE", {
         author: this.state.username,
-        message: this.state.message
+        message: this.state.message,
+        roomName: this.state.roomName
       });
       this.setState({ message: "" });
       // console.log('this is the body', this.state.user_id, this.state.match_id, this.state.message)
-      let newMessage = {sender_id: this.state.user_id, recv_id: this.state.match_id, msg_body: this.state.message}
+      let newMessage = {
+        sender_id: this.state.user_id,
+        recv_id: this.state.match_id,
+        msg_body: this.state.message
+      };
       axios.post(`/api/message`, newMessage).then(res => {
         this.setState({
           message: res.data
-        })
-      })
+        });
+      });
     };
   }
-
 
   //changesmade
   handleEnter = e => {
@@ -67,9 +69,41 @@ export default class Chat extends Component {
           messagethread: res.data
         });
       });
+
+      if (
+        this.props.location.state.user_id > this.props.location.state.match_id
+      ) {
+        
+          var roomName = 
+            this.props.location.state.match_id +
+            "_" +
+            this.props.location.state.user_id
+     
+      } else {
+        
+        var roomName = 
+        this.props.location.state.user_id +
+            "_" +
+            this.props.location.state.match_id
+     
+      }
+      this.setState({
+        roomName: roomName
+      })
+
+      this.socket.emit("JOINROOM", roomName) 
+        
+      this.socket.on("ROOM_MESSAGE", (data) => {
+        console.log('room message', data)
+        this.addMessage(data);
+      });
+     
+  
+    
   }
 
   render() {
+    console.log(this.state.roomName);
     console.log(this.state.match_image);
     let oldMessageThread = this.state.messagethread.map(thread => {
       return (
@@ -106,11 +140,7 @@ export default class Chat extends Component {
               <div>{oldMessageThread}</div>
               <div>
                 {this.state.messages.map(message => {
-                  return (
-                    <div className="userClass">
-                      {message.message}
-                    </div>
-                  );
+                  return <div className="userClass">{message.message}</div>;
                 })}
               </div>
             </div>

@@ -3,6 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const massive = require("massive");
 const session = require("express-session");
+const sharedSession = require('express-socket.io-session');
 
 
 var socket = require("socket.io");
@@ -12,14 +13,16 @@ const mo = require("./message_controller");
 
 const app = express();
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET, DEVING } = process.env;
-app.use(
-  session({
+  
+var sess = session({
     secret: SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: { secure: false }
   })
-);
+
+  app.use(sess);
+
 
 massive(CONNECTION_STRING).then(db => {
   console.log("db connected");
@@ -55,18 +58,28 @@ server = app.listen(SERVER_PORT, () => {
 
 //SOCKET SETUP
 var io = socket(server);
+io.use(sharedSession(sess));
 
 //Connection for a client
 io.on("connection", socket => {
   const db = app.get("db");
-  db.update_socket_id(socket.id, 61)
+  console.log(socket.handshake.session);
+  db.update_socket_id(socket.id, socket.handshake.session.user.user_id)
     .then(() => console.log("added socket id"))
     .catch(console.error);
   console.log(socket.id);
 
   socket.on("SEND_MESSAGE", function(data) {
-    io.emit("RECEIVE_MESSAGE", data);
+    console.log(data);
+    io.to(data.roomName).emit("ROOM_MESSAGE", data.message);
   });
+
+  socket.on('JOINROOM', function(data) {
+    socket.join(data);
+    // console.log(data);
+    // io.to('roomName').emit('some event');
+  })
+  
 });
 
 //default room
