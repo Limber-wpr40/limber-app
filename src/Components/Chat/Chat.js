@@ -16,30 +16,54 @@ export default class Chat extends Component {
       match_id: "",
       match_image: "",
       messagethread: [],
-      chats: []
+      chats: [],
+      roomName: ""
     };
+    this.socket = io();
 
-    this.socket = io("localhost:4000");
-
-    this.socket.on("RECEIVE_MESSAGE", function(data) {
-      addMessage(data);
-    });
-
-    const addMessage = data => {
-
-      this.setState({ messages: [...this.state.messages, data] });
-
+    this.addMessage = data => {
+      console.log("add message function: ", data);
+      // create object to add to message thread array
+      var add = {
+        sender_id: data.sender_id,
+        recv_id: data.recv_id,
+         msg_body: data.message, 
+         user_image: this.props.location.state.match_image
+         }
+         console.log(this.props.location.state.match_id);
+      this.setState({ messagethread: [...this.state.messagethread, add] });
+    
     };
 
     this.sendMessage = ev => {
       ev.preventDefault();
       this.socket.emit("SEND_MESSAGE", {
-        author: this.state.username,
-        message: this.state.message
+        // author: this.state.username,
+        sender_id: this.props.location.state.user_id,
+        recv_id: this.props.location.state.match_id,
+        message: this.state.message,
+        roomName: this.state.roomName
       });
       this.setState({ message: "" });
+      // console.log('this is the body', this.state.user_id, this.state.match_id, this.state.message)
+      let newMessage = {
+        sender_id: this.state.user_id,
+        recv_id: this.state.match_id,
+        msg_body: this.state.message
+      };
+      axios.post(`/api/message`, newMessage).then(res => {
+        this.setState({
+          message: res.data
+        });
+      });
     };
   }
+
+  //changesmade
+  handleEnter = e => {
+    if (e.key !== "Enter") return;
+    this.sendMessage();
+  };
 
   componentDidMount() {
     const { user_id, match_id } = this.props.location.state;
@@ -53,17 +77,39 @@ export default class Chat extends Component {
       .get(`/api/messages?sender_id=${user_id}&recv_id=${match_id}`)
       .then(res => {
         this.setState({
-          messagethread: res.data,
+          messagethread: res.data
         });
       });
+
+    if (
+      this.props.location.state.user_id > this.props.location.state.match_id
+    ) {
+      var roomName =
+        this.props.location.state.match_id +
+        "_" +
+        this.props.location.state.user_id;
+    } else {
+      var roomName =
+        this.props.location.state.user_id +
+        "_" +
+        this.props.location.state.match_id;
+    }
+    this.setState({
+      roomName: roomName
+    });
+
+    this.socket.emit("JOINROOM", roomName);
+
+    this.socket.on("ROOM_MESSAGE", data => {
+      console.log("room message", data);
+      this.addMessage(data);
+    });
   }
 
   render() {
-    console.log(this.state.match_image)
+    console.log("state: ", this.state);
     let oldMessageThread = this.state.messagethread.map(thread => {
       return (
-
-        
         <div key={thread.message_id}>
           <div
             className={
@@ -97,22 +143,18 @@ export default class Chat extends Component {
               <div>{oldMessageThread}</div>
               <div>
                 {this.state.messages.map(message => {
-                  return (
-                    <div className="userClass">
-                      {message.author}:{message.message}
-                    </div>
-                  );
+                  return <div className="userClass">{message.message}</div>;
                 })}
               </div>
             </div>
             <div className="card-footer">
-              <input
+              {/* <input
                 type="text"
                 placeholder="Username"
                 value={this.state.username}
                 onChange={ev => this.setState({ username: ev.target.value })}
                 className="form-control"
-              />
+              /> */}
               <br />
               <input
                 type="text"
@@ -120,6 +162,7 @@ export default class Chat extends Component {
                 className="form-control"
                 value={this.state.message}
                 onChange={ev => this.setState({ message: ev.target.value })}
+                onKeyPress={this.handleEnter}
               />
               <br />
               <button onClick={this.sendMessage} className="send-btn">
@@ -132,4 +175,3 @@ export default class Chat extends Component {
     );
   }
 }
-

@@ -14,12 +14,17 @@
 
 .images-wrapper{
     display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.new-images-wrapper{
+    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;
 }
-
 .image-icon {
     image-resolution: 72px;
     width: 60px;
