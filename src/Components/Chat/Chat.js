@@ -19,17 +19,28 @@ export default class Chat extends Component {
       chats: [],
       roomName: ""
     };
-
     this.socket = io();
 
     this.addMessage = data => {
-      this.setState({ messages: [...this.state.messages, data] });
+      console.log("add message function: ", data);
+      // create object to add to message thread array
+      var add = {
+        sender_id: data.sender_id,
+        recv_id: data.recv_id,
+         msg_body: data.message, 
+         user_image: this.props.location.state.match_image
+         }
+         console.log(this.props.location.state.match_id);
+      this.setState({ messagethread: [...this.state.messagethread, add] });
+    
     };
 
     this.sendMessage = ev => {
       ev.preventDefault();
       this.socket.emit("SEND_MESSAGE", {
-        author: this.state.username,
+        // author: this.state.username,
+        sender_id: this.props.location.state.user_id,
+        recv_id: this.props.location.state.match_id,
         message: this.state.message,
         roomName: this.state.roomName
       });
@@ -87,14 +98,15 @@ export default class Chat extends Component {
     });
 
     this.socket.emit("JOINROOM", roomName);
+
     this.socket.on("ROOM_MESSAGE", data => {
-      console.log('room_message',data)
+      console.log("room message", data);
       this.addMessage(data);
     });
   }
 
   render() {
-    console.log(this.state.roomName)
+    console.log("state: ", this.state);
     let oldMessageThread = this.state.messagethread.map(thread => {
       return (
         <div key={thread.message_id}>

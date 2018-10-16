@@ -11,8 +11,10 @@ var socket = require("socket.io");
 const uo = require("./user_controller");
 const mo = require("./message_controller");
 
+
 const app = express();
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET, DEVING } = process.env;
+app.use(express.static(__dirname + '/../build'));
   
 var sess = session({
     secret: SESSION_SECRET,
@@ -64,20 +66,20 @@ io.use(sharedSession(sess));
 //Connection for a client
 io.on("connection", socket => {
   const db = app.get("db");
-  console.log(socket.handshake.session);
+  // console.log('socket..', socket.handshake.session);
   db.update_socket_id(socket.id, socket.handshake.session.user.user_id)
     .then(() => console.log("added socket id"))
     .catch(console.error);
   console.log(socket.id);
 
   socket.on("SEND_MESSAGE", function(data) {
-    console.log(data);
-    io.to(data.roomName).emit("ROOM_MESSAGE", data.message);
+    console.log('SendMessage', data);
+    io.to(data.roomName).emit("ROOM_MESSAGE", data);
   });
 
   socket.on('JOINROOM', function(data) {
     socket.join(data);
-    // console.log(data);
+    console.log(data);
     // io.to('roomName').emit('some event');
   })
   
