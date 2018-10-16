@@ -17,16 +17,17 @@ export default class Chat extends Component {
       match_image: "",
       messagethread: [],
       chats: [],
+<<<<<<< HEAD
       roomName: ""
+=======
+      roomName: ''
+>>>>>>> master
     };
 
     this.socket = io("localhost:4000");
 
-    this.socket.on("RECEIVE_MESSAGE", function(data) {
-      addMessage(data);
-    });
-
-    const addMessage = data => {
+    
+    this.addMessage = data => {
       this.setState({ messages: [...this.state.messages, data] });
     };
 
@@ -34,9 +35,11 @@ export default class Chat extends Component {
       ev.preventDefault();
       this.socket.emit("SEND_MESSAGE", {
         author: this.state.username,
-        message: this.state.message
+        message: this.state.message,
+        roomName: this.state.roomName
       });
       this.setState({ message: "" });
+      // console.log('this is the body', this.state.user_id, this.state.match_id, this.state.message)
       let newMessage = {
         sender_id: this.state.user_id,
         recv_id: this.state.match_id,
@@ -72,27 +75,41 @@ export default class Chat extends Component {
         });
       });
 
-    if (
-      this.props.location.state.user_id > this.props.location.state.match_id
-    ) {
+      if (
+        this.props.location.state.user_id > this.props.location.state.match_id
+      ) {
+        
+          var roomName = 
+            this.props.location.state.match_id +
+            "_" +
+            this.props.location.state.user_id
+     
+      } else {
+        
+        var roomName = 
+        this.props.location.state.user_id +
+            "_" +
+            this.props.location.state.match_id
+     
+      }
       this.setState({
-        roomName:
-          this.props.location.state.match_id +
-          "_" +
-          this.props.location.state.user_id
+        roomName: roomName
+      })
+
+      this.socket.emit("JOINROOM", roomName) 
+        
+      this.socket.on("ROOM_MESSAGE", (data) => {
+        console.log('room message', data)
+        this.addMessage(data);
       });
-    } else {
-      this.setState({
-        roomName:
-          this.props.location.state.user_id +
-          "_" +
-          this.props.location.state.match_id
-      });
-    }
+     
+  
+    
   }
 
   render() {
     console.log(this.state.roomName);
+    console.log(this.state.match_image);
     let oldMessageThread = this.state.messagethread.map(thread => {
       return (
         <div key={thread.message_id}>

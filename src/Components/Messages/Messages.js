@@ -129,7 +129,7 @@ export default class Messages extends Component {
         <div className="matches">
           <h4>New matches</h4>
 
-          <div className="images-wrapper">{displayNewMatches}</div>
+          <div className="new-images-wrapper">{displayNewMatches}</div>
         </div>
 
         <div className="messages">

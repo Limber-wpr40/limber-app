@@ -31,7 +31,8 @@ module.exports = {
   addMessage: async (req, res, next) => {
     const db = req.app.get("db");
     const { recv_id, msg_body } = req.body;
-    const sender_id = req.session.user.user_id;
+    const sender_id = req.session.user.user_id
+    // console.log('this is the body', req.body )
     await db.add_message(sender_id, recv_id, msg_body);
 
     res.status(200);
