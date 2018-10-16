@@ -195,7 +195,7 @@ export default class Card extends Component {
   }
 
   render() {
-    console.log("Show additional info?", this.state.infoShow);
+
     return (
       <div className="demo-wrapper">
         <MotionStack

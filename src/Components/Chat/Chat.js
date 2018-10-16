@@ -17,16 +17,11 @@ export default class Chat extends Component {
       match_image: "",
       messagethread: [],
       chats: [],
-<<<<<<< HEAD
       roomName: ""
-=======
-      roomName: ''
->>>>>>> master
     };
 
-    this.socket = io("localhost:4000");
+    this.socket = io();
 
-    
     this.addMessage = data => {
       this.setState({ messages: [...this.state.messages, data] });
     };
@@ -39,7 +34,6 @@ export default class Chat extends Component {
         roomName: this.state.roomName
       });
       this.setState({ message: "" });
-      // console.log('this is the body', this.state.user_id, this.state.match_id, this.state.message)
       let newMessage = {
         sender_id: this.state.user_id,
         recv_id: this.state.match_id,
@@ -75,41 +69,32 @@ export default class Chat extends Component {
         });
       });
 
-      if (
-        this.props.location.state.user_id > this.props.location.state.match_id
-      ) {
-        
-          var roomName = 
-            this.props.location.state.match_id +
-            "_" +
-            this.props.location.state.user_id
-     
-      } else {
-        
-        var roomName = 
+    if (
+      this.props.location.state.user_id > this.props.location.state.match_id
+    ) {
+      var roomName =
+        this.props.location.state.match_id +
+        "_" +
+        this.props.location.state.user_id;
+    } else {
+      var roomName =
         this.props.location.state.user_id +
-            "_" +
-            this.props.location.state.match_id
-     
-      }
-      this.setState({
-        roomName: roomName
-      })
+        "_" +
+        this.props.location.state.match_id;
+    }
+    this.setState({
+      roomName: roomName
+    });
 
-      this.socket.emit("JOINROOM", roomName) 
-        
-      this.socket.on("ROOM_MESSAGE", (data) => {
-        console.log('room message', data)
-        this.addMessage(data);
-      });
-     
-  
-    
+    this.socket.emit("JOINROOM", roomName);
+    this.socket.on("ROOM_MESSAGE", data => {
+      console.log('room_message',data)
+      this.addMessage(data);
+    });
   }
 
   render() {
-    console.log(this.state.roomName);
-    console.log(this.state.match_image);
+    console.log(this.state.roomName)
     let oldMessageThread = this.state.messagethread.map(thread => {
       return (
         <div key={thread.message_id}>
@@ -150,13 +135,7 @@ export default class Chat extends Component {
               </div>
             </div>
             <div className="card-footer">
-              {/* <input
-                type="text"
-                placeholder="Username"
-                value={this.state.username}
-                onChange={ev => this.setState({ username: ev.target.value })}
-                className="form-control"
-              /> */}
+
               <br />
               <input
                 type="text"
