@@ -31,11 +31,9 @@ module.exports = {
   addMessage: async (req, res, next) => {
     const db = req.app.get("db");
     const { recv_id, msg_body } = req.body;
-    const sender_id = req.session.user.user_id
-    console.log('this is the body', req.body )
+    const sender_id = req.session.user.user_id;
     await db.add_message(sender_id, recv_id, msg_body);
-    // let updatedMessage = await db.get_message_thread(req.session.user.user_id, recv_id);
-    // res.status(200).send(updatedMessage);
+
     res.status(200);
   }
 };

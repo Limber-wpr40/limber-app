@@ -16,8 +16,10 @@ export default class Chat extends Component {
       match_id: "",
       match_image: "",
       messagethread: [],
-      chats: []
+      chats: [],
+      roomName: ""
     };
+
     this.socket = io("localhost:4000");
 
     this.socket.on("RECEIVE_MESSAGE", function(data) {
@@ -35,16 +37,18 @@ export default class Chat extends Component {
         message: this.state.message
       });
       this.setState({ message: "" });
-      // console.log('this is the body', this.state.user_id, this.state.match_id, this.state.message)
-      let newMessage = {sender_id: this.state.user_id, recv_id: this.state.match_id, msg_body: this.state.message}
+      let newMessage = {
+        sender_id: this.state.user_id,
+        recv_id: this.state.match_id,
+        msg_body: this.state.message
+      };
       axios.post(`/api/message`, newMessage).then(res => {
         this.setState({
           message: res.data
-        })
-      })
+        });
+      });
     };
   }
-
 
   //changesmade
   handleEnter = e => {
@@ -67,10 +71,28 @@ export default class Chat extends Component {
           messagethread: res.data
         });
       });
+
+    if (
+      this.props.location.state.user_id > this.props.location.state.match_id
+    ) {
+      this.setState({
+        roomName:
+          this.props.location.state.match_id +
+          "_" +
+          this.props.location.state.user_id
+      });
+    } else {
+      this.setState({
+        roomName:
+          this.props.location.state.user_id +
+          "_" +
+          this.props.location.state.match_id
+      });
+    }
   }
 
   render() {
-    console.log(this.state.match_image);
+    console.log(this.state.roomName);
     let oldMessageThread = this.state.messagethread.map(thread => {
       return (
         <div key={thread.message_id}>
@@ -106,11 +128,7 @@ export default class Chat extends Component {
               <div>{oldMessageThread}</div>
               <div>
                 {this.state.messages.map(message => {
-                  return (
-                    <div className="userClass">
-                      {message.message}
-                    </div>
-                  );
+                  return <div className="userClass">{message.message}</div>;
                 })}
               </div>
             </div>
