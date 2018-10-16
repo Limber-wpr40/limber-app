@@ -17,16 +17,13 @@ import thunder from "../logos/thunder.png";
 export default class Card extends Component {
     constructor() {
         super();
-
         this.state = {
             potMatches: [],
             super_like: false,
-            match_id: 0
+            match_id: 0,
+            hide: true
         };
     }
-
-
-
 
     onBeforeSwipe = (swipe, direction, state) => {
         console.log("direction", direction);
@@ -34,7 +31,6 @@ export default class Card extends Component {
         console.log("state", state.pressedId);
         pmtest.handleStateChange(state);
         pmtest.handleDirectionChange(direction);
-
         punks.handleDirectionChange(direction);
         punks.handleState(state);
 
@@ -104,57 +100,73 @@ export default class Card extends Component {
     }
 
     componentDidMount() {
-        axios.get('/api/possiblematches')
+        axios
+            .get('/api/possiblematches')
             .then(res => {
-                res.data.map(potMatch => {
+                res.data.forEach(potMatch => {
                     let { user_id, user_image, first_name, current_age, job, school, dist } = potMatch
                     potMatch.id = user_id
                     potMatch.element = (
                         <div className="user-card">
                             <img src={`../images/${user_image}`} alt="" />
-                            <section className="section-match-details">
-                                <div className="name-detail">{first_name}
-                                    <span className="age-detail"> {current_age}</span>
+
+                            <div className="overlay">
+                                <div className="name-detail">
+                                    <span>{first_name}</span>
+                                    <span>{current_age}</span>
                                 </div>
-                                <div className="job-detail">
-                                    <img className="briefcase" src={briefcase} alt="" />
-                                    {job}
+
+                                <div className='match-info'>
+                                    <div>
+                                        <img src={briefcase} alt="job" />
+                                        {job}
+                                    </div>
+                                    <div>
+                                        <img src={gradcap} alt="school" />
+                                        {school}
+                                    </div>
+                                    <div>
+                                        <img src={gpslogo} alt="location" />
+                                        {dist} miles away
+                                    <button
+                                        className="show-profile-button"
+                                        onClick={() => this.setState({ hide: !this.state.hide })}>
+                                        i
+                                        </button>
+                                        </div>
                                 </div>
-                                <div className="school-detail">
-                                    <img src={gradcap} alt="" />
-                                    {school}
-                                </div>
-                                <div className="dist-detail">
-                                    <img src={gpslogo} alt="" />
-                                    {dist} miles away
                             </div>
-                            </section>
+
+                            <div className={`profile-details${this.state.hide ? ' hide' : ''}`}>
+                                <h1>salkdsfjldfdsfljfsdjl</h1>
+                                <h1>salkdsfjldfdsfljfsdjl</h1>
+                                <h1>salkdsfjldfdsfljfsdjl</h1>
+                                <h1>salkdsfjldfdsfljfsdjl</h1>
+                                <h1>salkdsfjldfdsfljfsdjl</h1>
+                            </div>
                         </div>
-
                     )
-
                 })
+
                 this.setState({
                     potMatches: res.data
                 })
-                console.log(res.data)
             });
-
-
     }
 
     render() {
+        console.log(this.state.potMatches)
         return (
-            <div className="demo-wrapper">
-                <MotionStack
-                    data={this.state.potMatches}
-                    onSwipeEnd={this.onSwipeEnd}
-                    onBeforeSwipe={this.onBeforeSwipe}
-                    render={props => props.element}
-                    infinite={false}
-                    renderButtons={this.renderButtons}
-                />
-            </div>
+            // <div className="demo-wrapper">
+            <MotionStack
+                data={this.state.potMatches}
+                onSwipeEnd={this.onSwipeEnd}
+                onBeforeSwipe={this.onBeforeSwipe}
+                render={props => props.element}
+                infinite={false}
+                renderButtons={this.renderButtons}
+            />
+            // </div>
         );
     }
 }
