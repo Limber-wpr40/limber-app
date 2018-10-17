@@ -45,7 +45,6 @@ export default class Chat extends Component {
         roomName: this.state.roomName
       });
       this.setState({ message: "" });
-      // console.log('this is the body', this.state.user_id, this.state.match_id, this.state.message)
       let newMessage = {
         sender_id: this.state.user_id,
         recv_id: this.state.match_id,
@@ -107,7 +106,7 @@ export default class Chat extends Component {
   }
 
   render() {
-    console.log("state: ", this.state);
+    console.log("state: ", this.state.messagethread);
     let oldMessageThread = this.state.messagethread.map(thread => {
       return (
         <div key={thread.message_id}>
@@ -148,13 +147,7 @@ export default class Chat extends Component {
               </div>
             </div>
             <div className="card-footer">
-              {/* <input
-                type="text"
-                placeholder="Username"
-                value={this.state.username}
-                onChange={ev => this.setState({ username: ev.target.value })}
-                className="form-control"
-              /> */}
+
               <br />
               <input
                 type="text"
