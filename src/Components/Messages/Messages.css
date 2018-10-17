@@ -1,81 +1,91 @@
 .navbar {
-    display: flex;
-    justify-content: center;
-    padding-top: 10px;
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
 }
 
 .tinder-icon {
-    position: relative;
-    right: 115px;
+  position: relative;
+  right: 115px;
 }
 .chat-icon {
-    margin-right: 35px;
+  margin-right: 35px;
 }
 
-.images-wrapper{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+.images-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
-.new-images-wrapper{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: center;
+.new-images-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
 }
 .image-icon {
-    image-resolution: 72px;
-    width: 60px;
-    height:60px;
-    border-radius: 50%;
-    margin: 5px;
-
-
+  image-resolution: 72px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin: 5px;
 }
 
 .messages-tab {
-    float: left;
-    line-height: 1.3;
-    margin-left: 50px;
-    border-right: 1px solid black;
-    padding-right: 30px;
-    color: orangered;
-
+  float: left;
+  line-height: 1.3;
+  margin-left: 50px;
+  border-right: 1px solid black;
+  padding-right: 30px;
+  color: orangered;
 }
 
 .feed-tab {
-    float: right;
-    margin-right: 60px;
-    color: grey;
+  float: right;
+  margin-right: 60px;
+  color: grey;
 }
 
 .text-border {
-    border-bottom: 1px solid rgb(117, 117, 117);
-    margin-top: 60px;
+  border-bottom: 1px solid rgb(117, 117, 117);
+  margin-top: 60px;
 }
 
 .input {
-    width: 250px;
-    height: 30px;
-    padding-left: 10px;
-    padding-bottom: 10px;
+  width: 250px;
+  height: 30px;
+  padding-left: 10px;
+  padding-bottom: 10px;
 }
 
 .matches {
-    color: orangered;
-    padding-left: 10px;
-
+  color: orangered;
+  padding-left: 10px;
 }
 
 .pic {
-    border-radius: 50%;
+  border-radius: 50%;
 }
 
 .messages {
-    color: orangered;
-    padding-left: 10px;
-
+  color: orangered;
+  padding-left: 10px;
+  background-color: transparent !important;
+  border: none !important;
 }
 
+.matches-link {
+    position: relative;
+    right: 50px;
+}
+
+.line-image {
+    position: absolute;
+    left: -0px;
+    display: inline-block;
+    background: lightgray;
+    width: 500px;
+    height: 1px;
+}

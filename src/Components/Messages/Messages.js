@@ -72,7 +72,7 @@ export default class Messages extends Component {
 
     let displayMatches = this.state.matches.map(match => {
       return (
-        <div key={match.match_id}>
+        <div key={match.match_id} className="matches-link">
           <Link
             to={{
               pathname: `/chat`,
@@ -83,12 +83,14 @@ export default class Messages extends Component {
               }
             }}
           >
+          
             <img
               className="image-icon"
               onClick={() => this.handleClick(match.match_id)}
               src={`../images/${match.user_image}`}
               alt={match.match_id}
             />
+            <span className="line-image"></span>
           </Link>
         </div>
       );
@@ -134,7 +136,9 @@ export default class Messages extends Component {
 
         <div className="messages">
           <h4>Messages</h4>
-          <div className="images-wrapper">{displayMatches}</div>
+          <div className="images-wrapper">
+          
+          {displayMatches}</div>
         </div>
       </div>
     );
