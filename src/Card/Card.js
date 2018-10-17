@@ -21,11 +21,14 @@ export default class Card extends Component {
             potMatches: [],
             super_like: false,
             match_id: 0,
-            hide: true
+            hide: true,
+            hasSwiped: false,
+            direction: ''
         };
     }
 
     onBeforeSwipe = (swipe, direction, state) => {
+
         console.log("direction", direction);
         console.log("swipe", swipe);
         console.log("state", state.pressedId);
@@ -33,7 +36,10 @@ export default class Card extends Component {
         pmtest.handleDirectionChange(direction);
         punks.handleDirectionChange(direction);
         punks.handleState(state);
-
+        this.setState({
+            direction
+        })
+        console.log(this.state.direction, 'this is state direction')
         swipe();
         if (direction === "right") {
             this.setState({ super_like: true, match_id: state.pressedId });
@@ -50,7 +56,17 @@ export default class Card extends Component {
 
     onSwipeEnd = ({ data }) => {
         punks.handleOnSwipeEnd(data);
+        console.log('hello');
+        this.setState({hasSwiped: false})
+        
     };
+
+    handleStartSwipe=()=>{
+        console.log(this.state.hasSwiped)
+        this.setState({
+            hasSwiped: true
+        })
+    }
 
     renderButtons(props) {
         return (
@@ -107,10 +123,20 @@ export default class Card extends Component {
                     let { user_id, user_image, first_name, current_age, job, school, dist } = potMatch
                     potMatch.id = user_id
                     potMatch.element = (
-                        <div className="user-card">
+                        <div className="user-card" onClick={this.handleStartSwipe}>
                             <img src={`../images/${user_image}`} alt="" />
 
                             <div className="overlay">
+                                <div className="like-nope">
+                                    {this.state.hasSwiped ? (
+                                        <div>
+                                            <div className={`like ${this.state.super_like ? '' : 'hide'}`}>LIKE</div>
+                                            <div className={`nope ${this.state.super_like ? 'hide' : ''}`}>NOPE</div>
+                                        </div>
+                                    ) : (
+                                            null
+                                        )}
+                                </div>
                                 <div className="name-detail">
                                     <span>{first_name}</span>
                                     <span>{current_age}</span>
@@ -129,11 +155,11 @@ export default class Card extends Component {
                                         <img src={gpslogo} alt="location" />
                                         {dist} miles away
                                     <button
-                                        className="show-profile-button"
-                                        onClick={() => this.setState({ hide: !this.state.hide })}>
-                                        i
+                                            className="show-profile-button"
+                                            onClick={() => this.setState({ hide: !this.state.hide })}>
+                                            i
                                         </button>
-                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
