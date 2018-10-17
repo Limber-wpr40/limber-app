@@ -128,18 +128,17 @@
 .details-overlay{
     display: flex;
     flex-direction: row;
-    
+    justify-content: space-between;
+    align-items: flex-end;    
+}
+
+.info-group{
+    width: 50%;
 }
 
 .show-profile-button {
-    height: 60px;
-    width: 60px;
-   /* color: black;
-   float: right;
-   height: 2.5em;
-   width: 2.5em;
-   border-radius: 50%;
-   border: solid 1px white;
-   background: white;
-   margin: 5px 5px; */
-}
+    height: 40px;
+    width: 40px;
+    float: right;
+    margin: 0 15px 0 0 ;
+  }
