@@ -106,7 +106,7 @@ export default class Chat extends Component {
   }
 
   render() {
-    console.log("state: ", this.state);
+    console.log("state: ", this.state.messagethread);
     let oldMessageThread = this.state.messagethread.map(thread => {
       return (
         <div key={thread.message_id}>

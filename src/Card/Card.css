@@ -30,10 +30,6 @@
 
 }
 
-.hide{
-    display: none;
-}
-
 .like {
     border: solid 5px rgb(120, 240, 120);
     background: transparent;
@@ -120,7 +116,7 @@
 
 .profile-details {
     width: 100%;
-    height: 40vh;
+    height: 200px;
     background-color: blueviolet;
 }
 
@@ -129,13 +125,21 @@
     overflow: hidden;
 }
 
+.details-overlay{
+    display: flex;
+    flex-direction: row;
+    
+}
+
 .show-profile-button {
-   color: black;
+    height: 60px;
+    width: 60px;
+   /* color: black;
    float: right;
-   height: 1.5em;
-   width: 1.5em;
+   height: 2.5em;
+   width: 2.5em;
    border-radius: 50%;
    border: solid 1px white;
    background: white;
-   margin: 5px 5px;
+   margin: 5px 5px; */
 }
