@@ -3,48 +3,41 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const massive = require("massive");
 const session = require("express-session");
-const sharedSession = require('express-socket.io-session');
-
+const sharedSession = require("express-socket.io-session");
 
 var socket = require("socket.io");
 
 const uo = require("./user_controller");
 const mo = require("./message_controller");
 
-
 const app = express();
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET, DEVING } = process.env;
-app.use(express.static(__dirname + '/../build'));
-  
+app.use(express.static(__dirname + "/../build"));
+
 var sess = session({
-    secret: SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
-    cookie: { secure: false }
-  })
+  secret: SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: false }
+});
 
-  app.use(sess);
-
+app.use(sess);
 
 massive(CONNECTION_STRING).then(db => {
   console.log("db connected");
   app.set("db", db);
 });
 app.use(bodyParser.json());
-app.use(express.static(_dirname+''));
 
-app.use(express.static(`${__dirname}/../build`));
 
 app.get("/api/settings", uo.getUserSettings);
 app.get("/api/user/:phone", uo.getUserData);
 app.get("/api/profile/:id", uo.getUserProfile);
 app.get("/api/matches/:id", uo.getMatches);
 app.get("/api/newmatches/:id", uo.getNewMatches);
-app.get("/api/possiblematches", uo.getPossibleMatches)
+app.get("/api/possiblematches", uo.getPossibleMatches);
 app.get("/api/messages", mo.getMessages);
 app.get("/api/feed", mo.getFeed);
-
-
 
 app.put("/api/settings", uo.updateSettings);
 app.put("api/profile", uo.updateProfile);
@@ -73,16 +66,15 @@ io.on("connection", socket => {
   console.log(socket.id);
 
   socket.on("SEND_MESSAGE", function(data) {
-    console.log('SendMessage', data);
+    console.log("SendMessage", data);
     io.to(data.roomName).emit("ROOM_MESSAGE", data);
   });
 
-  socket.on('JOINROOM', function(data) {
+  socket.on("JOINROOM", function(data) {
     socket.join(data);
     console.log(data);
     // io.to('roomName').emit('some event');
-  })
-  
+  });
 });
 
 //default room
