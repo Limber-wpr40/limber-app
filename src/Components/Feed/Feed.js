@@ -33,7 +33,7 @@ export default class Feed extends Component {
   }
 
   render() {
-    console.log('this is the feed data', this.state.matchFeed);
+
     let myFeed = this.state.matchFeed.map(feed => {
       return (
         <div className="feed-body" key={feed.match_id}>

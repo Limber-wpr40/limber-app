@@ -33,6 +33,7 @@ handleInput(e) {
 });
 }
 render() {
+  console.log(this.props)
     let isActive = this.state.vcode.length === 6 ? true : false;
     return (
       <div>
