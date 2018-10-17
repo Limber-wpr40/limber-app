@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Nav.css';
 import profileIcon from '../logos/user.png';
 import bubble from '../logos/speech-bubbles.png';
-import tinderLogo from '../logos/tinder.jpg';
+import tinderLogo from '../logos/tinder-logo.png';
 import {Link } from 'react-router-dom'
 
 
