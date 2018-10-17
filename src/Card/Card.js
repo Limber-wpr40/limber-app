@@ -29,9 +29,7 @@ export default class Card extends Component {
   }
 
   onBeforeSwipe = (swipe, direction, state) => {
-    console.log("direction", direction);
-    console.log("swipe", swipe);
-    console.log("state", state.pressedId);
+
     pmtest.handleStateChange(state);
     pmtest.handleDirectionChange(direction);
     punks.handleDirectionChange(direction);
@@ -39,7 +37,7 @@ export default class Card extends Component {
     this.setState({
       direction
     });
-    console.log(this.state.direction, "this is state direction");
+
     swipe();
     if (direction === "right") {
       this.setState({ super_like: true, match_id: state.pressedId });
@@ -56,16 +54,18 @@ export default class Card extends Component {
 
   onSwipeEnd = ({ data }) => {
     punks.handleOnSwipeEnd(data);
-    console.log("hello");
     this.setState({ hasSwiped: false });
   };
 
   handleStartSwipe = () => {
-    console.log("swiping");
     this.setState({
       hasSwiped: true
     });
   };
+
+  handleInfoDropDown(){
+
+  }
 
   renderButtons(props) {
     return (
@@ -169,10 +169,10 @@ export default class Card extends Component {
                       {dist} miles away
                     </div>
                   </div>
-                  <div className="info-group">
-                    <div className="show-profile-button">
-                      <img src="../images/info.png" width="60px" />
-                    </div>
+                </div>
+                <div className="info-group">
+                  <div className="show-profile-button">
+                    <img src="../images/info.png" width="30px" onClick={()=> this.handleInfoDropDown()} />
                   </div>
                 </div>
               </div>
