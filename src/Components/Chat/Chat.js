@@ -146,7 +146,7 @@ export default class Chat extends Component {
                 })}
               </div>
             </div>
-            <footer>
+            <footer className="chatroom-footer">
             <div className="card-footer">
               <input
                 type="text"
