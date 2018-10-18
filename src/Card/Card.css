@@ -38,6 +38,7 @@
   height: 550px;
   /* border-radius: 4%; */
   overflow-y: scroll;
+  box-shadow: 0px 0px 50px rgba(202, 200, 200, 0.829);
 }
 
 

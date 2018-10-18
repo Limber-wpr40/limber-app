@@ -122,7 +122,7 @@ export default class Card extends Component {
         </button>
         <button className="dot">
           <img
-            className="footer-icons"
+            className="footer-icons "
             src={thunder}
             alt=""
             onClick={props.accept}
