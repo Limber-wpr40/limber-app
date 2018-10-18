@@ -11,6 +11,9 @@
   height: 50px;
 }
 
+<<<<<<< HEAD
+.profile-icon-div {
+=======
 .settings-header {
   width: 90%;
   margin: 10px 0;
@@ -25,6 +28,7 @@
 }
 
 .profile-icon-div{
+>>>>>>> master
   width: 50%;
   display: flex;
   justify-content: space-between;
@@ -33,8 +37,8 @@
 }
 
 .red-profile {
-    width: 35px;
-    height: 35px;
+  width: 35px;
+  height: 35px;
 }
 
 .profile-head {
@@ -50,7 +54,7 @@
 }
 
 .user-info-wrapper {
-  background: #F8F9F9;
+  background: #f8f9f9;
   height: 70vh;
   width: 100%;
 }
@@ -72,7 +76,7 @@
 
 .nameage {
   font-weight: 500;
-  letter-spacing: .1em;
+  letter-spacing: 0.1em;
   font-size: 20px;
   text-align: center;
 }
@@ -84,9 +88,9 @@
   justify-content: space-evenly;
   align-items: flex-start;
   width: 100%;
-  height:200px;
+  height: 200px;
   border-bottom-left-radius: 150px;
-  border-bottom-right-radius:150px;
+  border-bottom-right-radius: 150px;
 }
 
 .group-holder {
@@ -99,7 +103,7 @@
 .profile-image-wrapper {
   width: 60px;
   height: 60px;
-  background: #F8F9F9;
+  background: #f8f9f9;
   border-radius: 50%;
   box-shadow: 0px 0px 10px rgba(202, 200, 200, 0.829);
 }
@@ -112,7 +116,7 @@
 .group-title {
   margin-top: 10px;
   color: rgb(194, 187, 187);
-  letter-spacing: .2em;
+  letter-spacing: 0.2em;
   font-size: 10px;
 }
 
@@ -277,7 +281,7 @@
   width: 10%;
 }
 
-.profile-advert{
+.profile-advert {
   background: lightgrey;
 }
 
@@ -289,19 +293,24 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  background: #F8F9F9;
+  background: #f8f9f9;
   height: 100px;
   text-align: center;
   padding: 40px;
 }
+<<<<<<< HEAD
+.advert1 > .slick-dots {
+  background: #f8f9f9;
+=======
 advert1 > .slick-dots{
   background: #F8F9F9;
+>>>>>>> master
 }
 .slick-dots li.slick-active button:before {
   color: purple !important;
 }
 
-advert1 > h5 {
+.advert1 > h5 {
   margin-bottom: 0;
 }
 
@@ -310,7 +319,7 @@ advert1 > h5 {
   width: 30px;
 } */
 
-.profile-logo-icon{
+.profile-logo-icon {
   margin-right: 15px;
   width: 30px;
 }
@@ -319,14 +328,13 @@ advert1 > h5 {
   font-size: 14px;
 }
 
-.my-limber-plus{
+.my-limber-plus {
   height: 125px;
-  background: #F8F9F9;
+  background: #f8f9f9;
   border: none;
-
 }
 
-.limber-plus-btn{
+.limber-plus-btn {
   width: 70%;
   background: #fff;
   border: none;
@@ -338,7 +346,14 @@ advert1 > h5 {
   border-radius: 28px;
   font-size: 16px;
   font-weight: Bold;
-  letter-spacing: .1em;
+  letter-spacing: 0.1em;
   color: #ff0066;
-  box-shadow: 0px 0px 30px rgba(202, 200, 200, 0.829)
+  box-shadow: 0px 0px 30px rgba(202, 200, 200, 0.829);
+}
+
+.limber-icon-wrapper {
+  box-sizing: border-box;
+  height: 30px;
+  width: 100%;
+  padding: 10px 40% 60px 40%;
 }
