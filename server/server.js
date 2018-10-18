@@ -11,6 +11,10 @@ const uo = require("./user_controller");
 const mo = require("./message_controller");
 
 const app = express();
+/////////////////////////
+app.use( express.static( `${__dirname}/../build` ) );
+///////////////////////////////////
+
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET, DEVING } = process.env;
 app.use(express.static(__dirname + "/../build"));
 
