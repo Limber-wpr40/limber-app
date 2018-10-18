@@ -1,7 +1,10 @@
 .container {
     width: 375px;
     height: 667px;
-    border: 1px solid black;
+}
+
+.chatroom-header {
+
 }
 .card {
     width: 400px;
@@ -22,7 +25,7 @@
 }
 
 .messages {
-    color: black;
+    color: blue;
     border: 1px solid rgb(218, 218, 218);
     width: 50%;
     background-color: skyblue;
@@ -76,7 +79,6 @@
     margin-right: 10px;
 }
 
-/* .card-footer {
-    height: 70px;
-
-} */
+.card-footer {
+    height: 30px;
+}

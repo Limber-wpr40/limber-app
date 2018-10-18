@@ -146,9 +146,8 @@ export default class Chat extends Component {
                 })}
               </div>
             </div>
+            <footer>
             <div className="card-footer">
-
-              <br />
               <input
                 type="text"
                 placeholder="Message"
@@ -157,11 +156,12 @@ export default class Chat extends Component {
                 onChange={ev => this.setState({ message: ev.target.value })}
                 onKeyPress={this.handleEnter}
               />
-              <br />
+            
               <button onClick={this.sendMessage} className="send-btn">
                 Send
               </button>
             </div>
+            </footer>
           </div>
         </div>
       </div>
