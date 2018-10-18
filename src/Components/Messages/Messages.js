@@ -136,7 +136,6 @@ export default class Messages extends Component {
         <div className="messages">
           <h4 className="messages-h4">Messages</h4>
           <div className="images-wrapper">{displayMatches}</div>
-          <hr className="messages-hr"/>
         </div>
       </div>
     );
