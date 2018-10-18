@@ -14,7 +14,8 @@ export default class Messages extends Component {
       matches: [],
       user_id: "",
       match_id: "",
-      match_image: ""
+      match_image: "",
+      first_name: ''
     };
   }
 
@@ -58,42 +59,49 @@ export default class Messages extends Component {
                 match_image: this.state.user_image
               }
             }}
-          >
+            >
             <img
               className="image-icon"
               onClick={() => this.handleClick(newmatch.match_id)}
               src={`../images/${newmatch.user_image}`}
               alt={newmatch.match_id}
-            />
+              />
           </Link>
         </div>
       );
     });
-
+    
     let displayMatches = this.state.matches.map(match => {
       return (
-        <div key={match.match_id}>
+        <div key={match.match_id} className="matches-link">
           <Link
             to={{
               pathname: `/chat`,
               state: {
                 user_id: match.user_id,
                 match_id: match.match_id,
-                match_image: match.user_image
+                match_image: match.user_image,
+                first_name: match.first_name
               }
             }}
-          >
+            >
+          <div className='match-wrapper'>
             <img
               className="image-icon"
               onClick={() => this.handleClick(match.match_id)}
               src={`../images/${match.user_image}`}
+              
+
               alt={match.match_id}
-            />
+              />
+            <div className='name-display'>{match.first_name}</div>
+              </div>
+            <span className="line-image"></span>
           </Link>
         </div>
       );
     });
-
+    
     return (
       <div>
         <div className="navbar">

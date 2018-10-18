@@ -6,8 +6,8 @@
 }
 
 .tinder-icon {
-    position: relative;
-    right: 115px;
+  position: relative;
+  right: 115px;
 }
 
 .chat-icon {
@@ -66,8 +66,8 @@
 }
 
 .text-border {
-    border-bottom: 1px solid rgb(117, 117, 117);
-    margin-top: 60px;
+  border-bottom: 1px solid rgb(117, 117, 117);
+  margin-top: 60px;
 }
 
 .input{
@@ -127,7 +127,7 @@ input::placeholder {
 }
 
 .pic {
-    border-radius: 50%;
+  border-radius: 50%;
 }
 
 .messages-h4{
@@ -139,6 +139,19 @@ input::placeholder {
     padding-left: 10px;
     background: none;
     border: none;
-
 }
 
+.match-wrapper{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 90px;
+}
+
+.name-display{
+  border: 1px black white;
+  height: 30px;
+  width: 90px;
+  color: black;
+}
