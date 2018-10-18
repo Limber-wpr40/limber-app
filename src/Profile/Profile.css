@@ -11,6 +11,19 @@
   height: 50px;
 }
 
+.settings-header {
+  width: 90%;
+  margin: 10px 0;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.myarrow1{
+  height: 40px;
+  float: left;
+}
+
 .profile-icon-div{
   width: 50%;
   display: flex;
@@ -24,15 +37,15 @@
     height: 35px;
 }
 
-/* .profile-head {
+.profile-head {
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
   background: white;
   height: 60px;
-} */
+}
 
 .grey-tinder-logo {
-  /* margin: 10px 0 0 20px; */
   height: 35px;
 }
 
@@ -164,8 +177,10 @@
 .setting-group-title {
   width: 90%;
   margin: 10px 0;
-  font-weight: bold;
+  font-weight: 200;
   text-align: left;
+  color: rgb(189, 181, 181);
+
 }
 
 .web-profile {
@@ -173,7 +188,6 @@
 }
 
 .web-profile > .setting-fineprint {
-  margin-top: 10px;
   font-size: 10px;
 }
 
@@ -280,7 +294,7 @@
   text-align: center;
   padding: 40px;
 }
-adert1 > .slick-dots{
+advert1 > .slick-dots{
   background: #F8F9F9;
 }
 .slick-dots li.slick-active button:before {

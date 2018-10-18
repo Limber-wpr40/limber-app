@@ -97,15 +97,15 @@ class Settings extends Component {
         >
           <Link to="/profile">
             <img
-              className="myarrow"
+              className="myarrow1"
               src="../images/rleftarrow.png"
               alt="back"
             />
           </Link>
-          <div className="profile-header">Settings</div>
+          <div className="settings-header">Settings</div>
         </div>
         <div className="discover-wrapper">
-          <div className="setting-group-title">Discovery Settings</div>
+          <div className="setting-group-title">DISCOVERY SETTINGS</div>
           <div className="profile-group">
             <div className="setting-title">Show Me</div>
             <div className="men-women">
