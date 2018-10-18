@@ -1,4 +1,4 @@
-select Distinct On (limber_likes.match_id) limber_likes.user_id, limber_likes.match_id, limber_user.user_image, limber_message.msg_body from limber_likes
+select Distinct On (limber_likes.match_id) limber_likes.user_id, limber_likes.match_id,limber_user.first_name, limber_user.user_image, limber_message.msg_body from limber_likes
 Inner Join limber_likes as likes_1
 ON (limber_likes.match_id = likes_1.user_id)
 AND (limber_likes.user_id = likes_1.match_id)
