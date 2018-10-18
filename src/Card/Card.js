@@ -26,7 +26,6 @@ export default class Card extends Component {
       super_like: false,
       match_id: 0,
       hide: true,
-      hasSwiped: false,
       direction: ""
     };
     this.handleInfoDropDown = this.handleInfoDropDown.bind(this);
@@ -55,7 +54,6 @@ export default class Card extends Component {
 
   onSwipeEnd = ({ data }) => {
     punks.handleOnSwipeEnd(data);
-    this.setState({ hasSwiped: false });
   };
 
   handleStartSwipe = () => {

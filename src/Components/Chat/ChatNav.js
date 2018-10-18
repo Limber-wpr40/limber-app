@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./ChatNav.css";
 
+
 export default class ChatNav extends Component {
   componentDidMount() {}
 
