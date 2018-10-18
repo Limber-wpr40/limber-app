@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import tinder from "../Messages/tinder.png";
-import chat from "../Messages/chat.png";
+import tinderLogo from '../../logos/tinder_grey.png';
+import tinderChat from '../../logos/chattinder.png';
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./Messages.css";
@@ -100,7 +100,7 @@ export default class Messages extends Component {
           <Link to="/landing">
             <img
               className="tinder-icon"
-              src={tinder}
+              src={tinderLogo}
               style={{ width: "40px", height: "40px" }}
               alt="logo"
             />
@@ -108,32 +108,33 @@ export default class Messages extends Component {
 
           <img
             className="chat-icon"
-            src={chat}
+            src={tinderChat}
             style={{ width: "50px", height: "50px" }}
             alt="chat"
           />
-        </div>
         <div className="text">
           <h2 className="messages-tab">Messages</h2>
+          {/* <hr className="messages-feed-hr" size="500"/> */}
           <Link to="/feed">
             <h2 className="feed-tab">Feed</h2>
           </Link>
         </div>
-
-        <div className="text-border" />
-
-        <div className="input">
-          <input type="text" placeholder="Search Matches" />
         </div>
 
+        {/* <div className="text-border" /> */}
+
+        {/* <div className="input"> */}
+          <input className="search-matches-input" type="text" placeholder="Search Matches"/>
+        {/* </div> */}
+
         <div className="matches">
-          <h4>New matches</h4>
+          <h4 className="new-matches-list">New Matches</h4>
 
           <div className="new-images-wrapper">{displayNewMatches}</div>
         </div>
 
         <div className="messages">
-          <h4>Messages</h4>
+          <h4 className="messages-h4">Messages</h4>
           <div className="images-wrapper">{displayMatches}</div>
         </div>
       </div>
