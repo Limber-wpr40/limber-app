@@ -123,7 +123,7 @@ export default class Card extends Component {
                     let { user_id, user_image, first_name, current_age, job, school, dist } = potMatch
                     potMatch.id = user_id
                     potMatch.element = (
-                        <div className="user-card" onClick={this.handleStartSwipe}>
+                        <div className="user-card" onDragStart={this.handleStartSwipe} draggable="true">
                             <img src={`../images/${user_image}`} alt="" />
 
                             <div className="overlay">
