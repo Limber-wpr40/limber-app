@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import Tooltip from "rc-tooltip";
+import LimberLogo from '../logos/tinder-logo.png';
 import funcs from "../jestutilities/function";
 import punks from "../jestutilities/jest-testing";
 
@@ -235,7 +236,7 @@ class Settings extends Component {
             </Link>
           </div>
           <div className="limber-icon-wrapper">
-            <img src="" alt="limber" />
+            <img src={LimberLogo} alt="limber"  height='40px'/>
           </div>
           <div className="profile-group help del-act">
           <Link to='/'>
