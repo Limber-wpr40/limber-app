@@ -11,9 +11,6 @@
   height: 50px;
 }
 
-<<<<<<< HEAD
-.profile-icon-div {
-=======
 .settings-header {
   width: 90%;
   margin: 10px 0;
@@ -28,7 +25,6 @@
 }
 
 .profile-icon-div{
->>>>>>> master
   width: 50%;
   display: flex;
   justify-content: space-between;
@@ -298,13 +294,8 @@
   text-align: center;
   padding: 40px;
 }
-<<<<<<< HEAD
-.advert1 > .slick-dots {
-  background: #f8f9f9;
-=======
 advert1 > .slick-dots{
   background: #F8F9F9;
->>>>>>> master
 }
 .slick-dots li.slick-active button:before {
   color: purple !important;
