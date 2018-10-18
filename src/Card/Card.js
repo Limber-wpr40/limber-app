@@ -23,7 +23,6 @@ export default class Card extends Component {
       super_like: false,
       match_id: 0,
       hide: true,
-      hasSwiped: false,
       direction: ""
     };
   }
@@ -52,30 +51,11 @@ export default class Card extends Component {
     }
   };
 
-    componentDidMount() {
-        axios
-            .get('/api/possiblematches')
-            .then(res => {
-                res.data.forEach(potMatch => {
-                    let { user_id, user_image, first_name, current_age, job, school, dist } = potMatch
-                    potMatch.id = user_id
-                    potMatch.element = (
-                        <div className="user-card" onDragStart={this.handleStartSwipe} draggable="true">
-                            <img src={`../images/${user_image}`} alt="" />
   onSwipeEnd = ({ data }) => {
     punks.handleOnSwipeEnd(data);
-    this.setState({ hasSwiped: false });
   };
-
-  handleStartSwipe = () => {
-    this.setState({
-      hasSwiped: true
-    });
-  };
-
-  handleInfoDropDown(){
-
-  }
+  
+    
 
   renderButtons(props) {
     return (
