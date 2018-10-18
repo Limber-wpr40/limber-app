@@ -209,7 +209,7 @@ export default class Card extends Component {
                 </div>
               </div>
             </div>
-            <div className="profile-details">
+            <div className="profile-details hide">
               <div className="hide-profile-button">
                 <img
                   src="../images/downarrow.png"
