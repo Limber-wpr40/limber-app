@@ -60,7 +60,14 @@ export default class Feed extends Component {
               alt=""
             />
             {feed.school}
+            <br/>
+            <img
+              className="feed-icons"
+              src="../images/music.png"
+              alt=""
+            />
             {feed.anthem}
+            <br/>
 
           </div>
         </div>
