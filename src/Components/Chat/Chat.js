@@ -4,7 +4,8 @@ import "./Chat.css";
 import ChatNav from "./ChatNav";
 import axios from "axios";
 
-export default class Chat extends Component {
+
+ class Chat extends Component {
   constructor(props) {
     super(props);
 
@@ -22,17 +23,14 @@ export default class Chat extends Component {
     this.socket = io();
 
     this.addMessage = data => {
-      console.log("add message function: ", data);
-      // create object to add to message thread array
       var add = {
         sender_id: data.sender_id,
         recv_id: data.recv_id,
-         msg_body: data.message, 
-         user_image: this.props.location.state.match_image
-         }
-         console.log(this.props.location.state.match_id);
+        msg_body: data.message,
+        user_image: this.props.location.state.match_image
+      };
+
       this.setState({ messagethread: [...this.state.messagethread, add] });
-    
     };
 
     this.sendMessage = ev => {
@@ -58,6 +56,7 @@ export default class Chat extends Component {
     };
   }
 
+
   //changesmade
   handleEnter = e => {
     if (e.key !== "Enter") return;
@@ -79,16 +78,16 @@ export default class Chat extends Component {
           messagethread: res.data
         });
       });
-
+var roomName = ''
     if (
       this.props.location.state.user_id > this.props.location.state.match_id
     ) {
-      var roomName =
+       roomName =
         this.props.location.state.match_id +
         "_" +
         this.props.location.state.user_id;
     } else {
-      var roomName =
+       roomName =
         this.props.location.state.user_id +
         "_" +
         this.props.location.state.match_id;
@@ -100,13 +99,14 @@ export default class Chat extends Component {
     this.socket.emit("JOINROOM", roomName);
 
     this.socket.on("ROOM_MESSAGE", data => {
-      console.log("room message", data);
       this.addMessage(data);
     });
   }
 
+
+
   render() {
-    console.log("state: ", this.state.messagethread);
+
     let oldMessageThread = this.state.messagethread.map(thread => {
       return (
         <div key={thread.message_id}>
@@ -134,12 +134,12 @@ export default class Chat extends Component {
 
     return (
       <div className="container">
-      <div className="chatroom-header">
-        <ChatNav match_image={this.state.match_image} />
+        <div className="chatroom-header">
+          <ChatNav match_image={this.state.match_image} />
         </div>
         <div className="row">
           <div className="card">
-            <div className="card-body">
+            <div className="card-body" id='card-chat'>
               <div>{oldMessageThread}</div>
               <div>
                 {this.state.messages.map(message => {
@@ -148,21 +148,20 @@ export default class Chat extends Component {
               </div>
             </div>
             <footer className="chatroom-footer">
-            <div className="card-footer">
-              <input
-                id="chat-input"
-                type="text"
-                placeholder="Message"
-                className="form-control"
-                value={this.state.message}
-                onChange={ev => this.setState({ message: ev.target.value })}
-                onKeyPress={this.handleEnter}
-              />
-              <h4 onClick={this.sendMessage} className="send-btn">
-                Send
-              </h4>
-            
-            </div>
+              <div className="card-footer">
+                <input
+                  id="chat-input"
+                  type="text"
+                  placeholder="Message"
+                  className="form-control"
+                  value={this.state.message}
+                  onChange={ev => this.setState({ message: ev.target.value })}
+                  onKeyPress={this.handleEnter}
+                />
+                <h4 onClick={this.sendMessage} className="send-btn">
+                  Send
+                </h4>
+              </div>
             </footer>
           </div>
         </div>
@@ -170,3 +169,6 @@ export default class Chat extends Component {
     );
   }
 }
+
+
+export default Chat
