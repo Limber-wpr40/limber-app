@@ -229,7 +229,7 @@ export default class Card extends Component {
                 />
                 {dist} miles away
               </div>
-              <div className='about-details'>{about}</div>
+              <div className="about-details">{about}</div>
             </div>
           </div>
         );
@@ -242,7 +242,6 @@ export default class Card extends Component {
   }
 
   render() {
-    console.log("state of hide at render", this.state.hide);
     return (
       <div>
         <div className="nav-conatiner">

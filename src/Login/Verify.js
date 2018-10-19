@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./Login.css";
 import { Link } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
 
 class Verify extends Component {
   constructor(props) {
@@ -11,29 +11,26 @@ class Verify extends Component {
       vcode: "",
       phone: "",
       keypadShow: false,
-      user:{}
+      user: {}
     };
     this.handleInput = this.handleInput.bind(this);
   }
 
-  componentDidUpdate(){
-   
-}
+  componentDidUpdate() {}
 
-showKeyPad() {
-  this.setState({
-    keypadShow: !this.state.keypadShow
-  });
-}
+  showKeyPad() {
+    this.setState({
+      keypadShow: !this.state.keypadShow
+    });
+  }
 
-handleInput(e) {
-  this.setState({ vcode: e.target.value });
-  axios.get(`/api/user/${this.props.location.state.phone}`)
-  .then(response => {this.setState({user:response.data})
-});
-}
-render() {
-  console.log(this.props)
+  handleInput(e) {
+    this.setState({ vcode: e.target.value });
+    axios.get(`/api/user/${this.props.location.state.phone}`).then(response => {
+      this.setState({ user: response.data });
+    });
+  }
+  render() {
     let isActive = this.state.vcode.length === 6 ? true : false;
     return (
       <div>
@@ -41,7 +38,7 @@ render() {
           <Link
             to={{
               pathname: "/phone",
-              state:{phone: this.props.location.state.phone}
+              state: { phone: this.props.location.state.phone }
             }}
           >
             <img
@@ -54,11 +51,15 @@ render() {
         <div className="login-main-body">
           <div className="main-title">My code is</div>
           <div className="change-phone">
-            <div className="phone-question">{this.props.location.state.phone}</div>
+            <div className="phone-question">
+              {this.props.location.state.phone}
+            </div>
             <div className="resend-link">RESEND</div>
           </div>
           <div className="vcode-id" onClick={() => this.showKeyPad()}>
-            <input ref={input => input && input.focus()} type='number'
+            <input
+              ref={input => input && input.focus()}
+              type="number"
               className="v-code"
               onChange={e => this.handleInput(e)}
             />
@@ -72,7 +73,9 @@ render() {
           </Link>
         </div>
         <div
-          className={(this.state.keypadShow ? "popUpShow" : "popUpNoShow") + " popUp" }
+          className={
+            (this.state.keypadShow ? "popUpShow" : "popUpNoShow") + " popUp"
+          }
         >
           <div className="key-pad">
             <div className="key num-key">1</div>
