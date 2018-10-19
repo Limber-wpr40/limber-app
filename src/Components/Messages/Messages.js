@@ -122,18 +122,13 @@ export default class Messages extends Component {
           />
         <div className="text">
           <h2 className="messages-tab">Messages</h2>
-          {/* <hr className="messages-feed-hr" size="500"/> */}
           <Link to="/feed">
             <h2 className="feed-tab">Feed</h2>
           </Link>
         </div>
         </div>
 
-        {/* <div className="text-border" /> */}
-
-        {/* <div className="input"> */}
           <input className="search-matches-input" type="text" placeholder="Search Matches"/>
-        {/* </div> */}
 
         <div className="matches">
           <h4 className="new-matches-list">New Matches</h4>

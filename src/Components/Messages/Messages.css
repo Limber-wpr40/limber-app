@@ -146,7 +146,6 @@ input::placeholder {
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  /* margin-left: 90px; */
 }
 
 .name-display{

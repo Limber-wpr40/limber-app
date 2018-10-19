@@ -134,11 +134,12 @@ export default class Chat extends Component {
 
     return (
       <div className="container">
+      <div className="chatroom-header">
         <ChatNav match_image={this.state.match_image} />
+        </div>
         <div className="row">
           <div className="card">
             <div className="card-body">
-              <hr />
               <div>{oldMessageThread}</div>
               <div>
                 {this.state.messages.map(message => {
@@ -146,10 +147,10 @@ export default class Chat extends Component {
                 })}
               </div>
             </div>
+            <footer className="chatroom-footer">
             <div className="card-footer">
-
-              <br />
               <input
+                id="chat-input"
                 type="text"
                 placeholder="Message"
                 className="form-control"
@@ -157,11 +158,12 @@ export default class Chat extends Component {
                 onChange={ev => this.setState({ message: ev.target.value })}
                 onKeyPress={this.handleEnter}
               />
-              <br />
-              <button onClick={this.sendMessage} className="send-btn">
+              <h4 onClick={this.sendMessage} className="send-btn">
                 Send
-              </button>
+              </h4>
+            
             </div>
+            </footer>
           </div>
         </div>
       </div>

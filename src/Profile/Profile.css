@@ -305,11 +305,6 @@ advert1 > .slick-dots{
   margin-bottom: 0;
 }
 
-/* .slick-slide img {
-  margin-right: 15px;
-  width: 30px;
-} */
-
 .profile-logo-icon {
   margin-right: 15px;
   width: 30px;
@@ -330,7 +325,6 @@ advert1 > .slick-dots{
   background: #fff;
   border: none;
   margin: 40px 0 0 16%;
-  /* border-radius: 10%; */
   height: 60px;
   -webkit-border-radius: 28;
   -moz-border-radius: 28;
