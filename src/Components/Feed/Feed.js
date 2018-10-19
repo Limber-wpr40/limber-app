@@ -59,7 +59,7 @@ export default class Feed extends Component {
               src="../images/mortarboard.png"
               alt=""
             />
-            {feed.school}
+            {feed.school}<br/>
             {feed.anthem}
 
           </div>
