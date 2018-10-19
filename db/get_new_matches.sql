@@ -5,6 +5,5 @@ AND (limber_likes.user_id = likes_1.match_id)
 INNER Join limber_user
 On (limber_likes.match_id = limber_user.user_id)
 where limber_likes.user_id = $1
-And limber_likes.match_id <> 4
-And limber_likes.match_id <> 54
+And limber_likes.match_id <> 176
 ;

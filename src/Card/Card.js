@@ -219,8 +219,7 @@ export default class Card extends Component {
                 />
               </div>
               <div className="detail-name">
-                <span>{first_name}</span>
-                <span>{current_age}</span>
+                <span>{`${first_name}, ${current_age}`}</span>
               </div>
               <div>
                 <img
