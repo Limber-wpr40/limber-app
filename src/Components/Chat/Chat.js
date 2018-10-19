@@ -4,7 +4,8 @@ import "./Chat.css";
 import ChatNav from "./ChatNav";
 import axios from "axios";
 
-export default class Chat extends Component {
+
+ class Chat extends Component {
   constructor(props) {
     super(props);
 
@@ -55,6 +56,7 @@ export default class Chat extends Component {
     };
   }
 
+
   //changesmade
   handleEnter = e => {
     if (e.key !== "Enter") return;
@@ -76,16 +78,16 @@ export default class Chat extends Component {
           messagethread: res.data
         });
       });
-
+var roomName = ''
     if (
       this.props.location.state.user_id > this.props.location.state.match_id
     ) {
-      var roomName =
+       roomName =
         this.props.location.state.match_id +
         "_" +
         this.props.location.state.user_id;
     } else {
-      var roomName =
+       roomName =
         this.props.location.state.user_id +
         "_" +
         this.props.location.state.match_id;
@@ -101,7 +103,10 @@ export default class Chat extends Component {
     });
   }
 
+
+
   render() {
+
     let oldMessageThread = this.state.messagethread.map(thread => {
       return (
         <div key={thread.message_id}>
@@ -134,7 +139,7 @@ export default class Chat extends Component {
         </div>
         <div className="row">
           <div className="card">
-            <div className="card-body">
+            <div className="card-body" id='card-chat'>
               <div>{oldMessageThread}</div>
               <div>
                 {this.state.messages.map(message => {
@@ -164,3 +169,6 @@ export default class Chat extends Component {
     );
   }
 }
+
+
+export default Chat

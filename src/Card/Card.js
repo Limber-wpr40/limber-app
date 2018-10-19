@@ -67,9 +67,13 @@ export default class Card extends Component {
     let hideOverlay = document.querySelector(".details-overlay");
     let alterUserCardImg = document.querySelector(".user-card-image");
     let alterUserCard = document.querySelector(".user-card");
+    let hideButton = document.querySelector(".dot1");
+    let hideLight = document.querySelector(".dot3");
     let hideHeader = document.querySelector(".header");
     if (this.state.hide === true) {
       hideDetails.classList.remove("hide");
+      hideButton.classList.add("dot2");
+      hideLight.classList.add("dot4");
       hideOverlay.classList.add("hide");
       hideHeader.classList.add("hide");
       alterUserCardImg.classList.add("alterImg");
@@ -78,6 +82,8 @@ export default class Card extends Component {
     } else {
       hideDetails.classList.add("hide");
       hideOverlay.classList.remove("hide");
+      hideButton.classList.remove("dot2");
+      hideLight.classList.remove("dot4");
       hideHeader.classList.remove("hide");
       alterUserCardImg.classList.remove("alterImg");
       alterUserCard.classList.remove("alterCard");
@@ -88,9 +94,9 @@ export default class Card extends Component {
   renderButtons(props) {
     return (
       <div className="btn-group">
-        <button className="dot">
+        <button className="dot1 dot">
           <img
-            className="footer-icons"
+            className="footer-icons "
             src={refresh}
             alt=""
             onClick={props.reject}
@@ -120,7 +126,7 @@ export default class Card extends Component {
             onClick={props.accept}
           />
         </button>
-        <button className="dot">
+        <button className="dot3 dot">
           <img
             className="footer-icons "
             src={thunder}
